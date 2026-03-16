@@ -13,7 +13,6 @@
   --blue:#2563eb;--bbg:#dbeafe;--btxt:#1e40af;
   --amber:#d97706;--abg:#fef3c7;--atxt:#92400e;
   --red:#dc2626;--rbg:#fee2e2;--rtxt:#991b1b;
-  --purple:#7c3aed;--pbg:#ede9fe;--ptxt:#4c1d95;
   --gray:#64748b;--gbg2:#f1f5f9;--gtxt2:#334155;
   --border:#e2e8f0;--surf:#f8fafc;
   --text:#0f172a;--text2:#475569;
@@ -27,24 +26,21 @@ body{font-family:'IBM Plex Sans TC',sans-serif;background:var(--gbg2);color:var(
 .spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.overlay{position:fixed;inset:0;background:rgba(15,39,68,.5);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .2s;padding:16px;overflow-y:auto}
+.overlay{position:fixed;inset:0;background:rgba(15,39,68,.5);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .18s;padding:16px;overflow-y:auto}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.modal{background:#fff;border-radius:20px;padding:36px 32px;width:500px;max-width:100%;box-shadow:var(--shlg);animation:slideUp .22s;max-height:90vh;overflow-y:auto}
-.modal-icon{font-size:24px;margin-bottom:12px}
-.modal h2{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:5px}
-.modal p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:18px}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal{background:#fff;border-radius:20px;padding:32px 28px;width:500px;max-width:100%;box-shadow:var(--shlg);animation:slideUp .2s;max-height:90vh;overflow-y:auto}
+.modal-icon{font-size:22px;margin-bottom:10px}
+.modal h2{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.modal p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:16px}
 .modal a{color:var(--navy3)}
 
-.field{margin-bottom:12px}
-.lbl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:5px}
+.field{margin-bottom:11px}
+.lbl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px}
 .inp{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s;background:#fff}
 .inp:focus{border-color:var(--navy3)}
-textarea.inp{resize:vertical;min-height:78px}
+textarea.inp{resize:vertical;min-height:76px}
 select.inp{cursor:pointer}
-.check-row{display:flex;align-items:center;gap:8px;margin:10px 0;cursor:pointer}
-.check-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer}
-.check-row span{font-size:13px;color:var(--text2)}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 18px;border-radius:9px;border:none;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .1s;white-space:nowrap}
 .btn:hover{opacity:.86}
@@ -59,27 +55,23 @@ select.inp{cursor:pointer}
 .btn-sm{padding:4px 11px;font-size:12px}
 .btn-icon{padding:5px 8px;font-size:13px;border-radius:7px}
 
-/* ── RAG TRAFFIC LIGHT ── */
-.rag{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.03em}
-.rag-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.rag-green {background:#d1fae5;color:#065f46}
-.rag-green .rag-dot{background:#059669;box-shadow:0 0 0 2px rgba(5,150,105,.25)}
-.rag-amber {background:#fef3c7;color:#92400e}
-.rag-amber .rag-dot{background:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.25)}
-.rag-red   {background:#fee2e2;color:#991b1b}
-.rag-red .rag-dot{background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.25)}
-.rag-gray  {background:#f1f5f9;color:#475569}
-.rag-gray .rag-dot{background:#94a3b8}
+/* RAG */
+.rag{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700}
+.rag-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.rag-green{background:#d1fae5;color:#065f46}.rag-green .rag-dot{background:#059669;box-shadow:0 0 0 2px rgba(5,150,105,.2)}
+.rag-amber{background:#fef3c7;color:#92400e}.rag-amber .rag-dot{background:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.2)}
+.rag-red  {background:#fee2e2;color:#991b1b}.rag-red   .rag-dot{background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.2)}
+.rag-gray {background:#f1f5f9;color:#475569}.rag-gray  .rag-dot{background:#94a3b8}
 
-/* ── HEADER ── */
+/* header */
 .header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}
 .hdr{max-width:1060px;margin:0 auto;padding:18px 24px 0}
-.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:14px}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:12px}
 .hdr-title{font-size:17px;font-weight:700}
 .hdr-sub{font-size:12px;opacity:.7;margin-top:3px}
 .stat-pct{font-size:26px;font-weight:700;font-family:'IBM Plex Mono';line-height:1}
 .stat-lbl{font-size:11px;opacity:.65;margin-top:2px;text-align:right}
-.prog-wrap{background:rgba(255,255,255,.15);border-radius:100px;height:5px;overflow:hidden;margin-bottom:14px}
+.prog-wrap{background:rgba(255,255,255,.15);border-radius:100px;height:5px;overflow:hidden;margin-bottom:12px}
 .prog-fill{height:5px;background:linear-gradient(90deg,#34d399,#10b981);border-radius:100px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 .sync-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px;font-size:11px;margin-bottom:10px}
 .sdot{width:6px;height:6px;background:#34d399;border-radius:50%;animation:pulse 2s infinite}
@@ -89,7 +81,6 @@ select.inp{cursor:pointer}
 .nav-tab{padding:8px 18px;border-radius:8px 8px 0 0;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);transition:all .15s}
 .nav-tab.active{background:#fff;color:var(--navy)}
 
-/* ── CONTENT ── */
 .content{max-width:1060px;margin:0 auto;padding:20px 24px}
 
 .sum-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
@@ -97,32 +88,33 @@ select.inp{cursor:pointer}
 .sum-num{font-size:21px;font-weight:700;font-family:'IBM Plex Mono'}
 .sum-lbl{font-size:11px;color:var(--text2);margin-top:2px}
 
+.rag-legend{display:flex;gap:10px;align-items:center;background:#fff;border-radius:9px;padding:8px 14px;box-shadow:var(--sh);margin-bottom:12px;flex-wrap:wrap}
+.rag-legend-lbl{font-size:11px;color:var(--text2);font-weight:600}
+
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.tl,.tr{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.tl,.tr{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .fbtn{padding:5px 12px;border-radius:100px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s;color:var(--text2)}
 .fbtn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.srch{padding:6px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:170px;color:var(--text);transition:border-color .15s}
+.srch{padding:6px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:160px;color:var(--text);transition:border-color .15s}
 .srch:focus{border-color:var(--navy3)}
 
-/* ── TASK CARDS ── */
 .tasks-list{display:flex;flex-direction:column;gap:10px}
-.task-card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:visible;border:1.5px solid transparent;transition:box-shadow .15s,opacity .15s;position:relative}
+.task-card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);border:1.5px solid transparent;transition:box-shadow .15s,opacity .15s;position:relative}
 .task-card:hover{box-shadow:0 4px 20px rgba(15,39,68,.1)}
 .task-card.overdue{border-color:#fca5a5}
-.task-card.dragging{opacity:.4;box-shadow:none}
-.task-card.drag-over{box-shadow:0 0 0 2px var(--navy3),0 4px 20px rgba(37,99,168,.2)}
+.task-card.dragging{opacity:.35;box-shadow:none}
+.task-card.drag-over{box-shadow:0 0 0 2px var(--navy3),0 4px 20px rgba(37,99,168,.18)}
+.drag-hint{font-size:12px;color:#94a3b8;text-align:center;margin-top:8px}
 
-/* drag handle */
-.drag-handle{width:28px;display:flex;align-items:center;justify-content:center;cursor:grab;color:#cbd5e1;font-size:14px;flex-shrink:0;user-select:none;padding:4px 0}
+.task-head{padding:14px 16px 14px 4px;cursor:pointer;user-select:none;display:flex;align-items:flex-start}
+.drag-handle{width:26px;display:flex;align-items:center;justify-content:center;cursor:grab;color:#cbd5e1;font-size:13px;flex-shrink:0;padding:2px 0;user-select:none}
 .drag-handle:hover{color:var(--gray)}
 .drag-handle:active{cursor:grabbing}
-
-.task-head{padding:14px 16px 14px 4px;cursor:pointer;user-select:none;display:flex;align-items:flex-start;gap:0}
 .th-inner{flex:1;min-width:0}
-.th-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.th-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .th-left{flex:1;min-width:0}
-.ttl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.tmeta{display:flex;gap:12px;margin-top:5px;flex-wrap:wrap;align-items:center}
+.ttl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.4}
+.tmeta{display:flex;gap:12px;margin-top:5px;flex-wrap:wrap}
 .tm{font-size:12px;color:var(--text2)}
 .tm.red{color:var(--red)}
 .th-actions{display:flex;gap:5px;flex-shrink:0;align-items:center}
@@ -137,7 +129,6 @@ select.inp{cursor:pointer}
 .mp-none  {background:var(--gbg2);color:var(--gray);border-color:var(--border)}
 .pdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 
-/* ── TASK BODY (member rows) ── */
 .task-body{border-top:1px solid var(--gbg2);overflow:hidden;border-radius:0 0 var(--r) var(--r)}
 .mr{display:flex;align-items:stretch;border-bottom:1px solid var(--gbg2)}
 .mr:last-child{border-bottom:none}
@@ -150,17 +141,15 @@ select.inp{cursor:pointer}
 .log-e .lm{font-size:10px;color:var(--gray);margin-bottom:2px}
 .log-e.latest{border-left-color:var(--navy3)}
 .no-log{font-size:12px;color:#94a3b8;font-style:italic;padding:4px 0}
-
 .ied{background:var(--surf);border-top:1px solid var(--border);padding:14px 18px;animation:slideUp .15s}
 .ied-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .ied-f{margin-top:9px}
 .ied-a{display:flex;gap:7px;margin-top:10px}
 
-/* ── ADD/EDIT FORM ── */
 .task-form{background:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:12px;box-shadow:var(--sh);border:1.5px solid var(--navy3);animation:slideUp .2s}
 .task-form h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
 .form-2{display:grid;grid-template-columns:2fr 1fr;gap:10px}
-.mtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;min-height:30px;align-items:center}
+.mtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;min-height:28px;align-items:center}
 .mtag{display:inline-flex;align-items:center;gap:5px;background:var(--bbg);color:var(--btxt);border-radius:100px;padding:3px 11px;font-size:12px;font-weight:500}
 .mtag button{background:none;border:none;cursor:pointer;color:var(--btxt);font-size:14px;line-height:1;padding:0;opacity:.6}
 .mtag button:hover{opacity:1}
@@ -168,7 +157,6 @@ select.inp{cursor:pointer}
 .madd .inp{flex:1}
 .form-actions{display:flex;gap:7px;margin-top:12px}
 
-/* ── BADGE ── */
 .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600}
 .bg-g {background:var(--gbg);color:var(--gtxt)}
 .bg-b {background:var(--bbg);color:var(--btxt)}
@@ -176,7 +164,9 @@ select.inp{cursor:pointer}
 .bg-r {background:var(--rbg);color:var(--rtxt)}
 .bg-gr{background:var(--gbg2);color:var(--gtxt2)}
 
-/* ── CALENDAR ── */
+.empty{text-align:center;padding:52px 24px;background:#fff;border-radius:var(--r);color:var(--text2)}
+
+/* calendar */
 .cal-wrap{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
 .cal-header{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
 .cal-nav{display:flex;align-items:center;gap:10px}
@@ -193,11 +183,11 @@ select.inp{cursor:pointer}
 .cal-cell.today{border-color:var(--navy3);background:#eff6ff}
 .cal-cell.other-month .cal-day{opacity:.3}
 .cal-cell.other-month .cal-events{opacity:.4}
-.cal-day{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px;display:flex;align-items:center}
-.cal-cell.today .cal-day-num{background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
+.cal-day{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px}
+.today-num{background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
 .cal-events{display:flex;flex-direction:column;gap:2px}
 .cal-ev{font-size:10px;padding:2px 5px;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;display:flex;align-items:center;gap:3px}
-.cal-ev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cal-ev-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .cal-more{font-size:10px;color:var(--gray);margin-top:1px}
 .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .week-col{border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
@@ -206,30 +196,27 @@ select.inp{cursor:pointer}
 .week-dow{font-size:11px;color:var(--text2);font-weight:600}
 .week-day{font-size:18px;font-weight:700;color:var(--navy)}
 .week-col.today .week-day{color:var(--blue)}
-.week-col-body{padding:8px;display:flex;flex-direction:column;gap:4px;min-height:120px}
+.week-col-body{padding:7px;display:flex;flex-direction:column;gap:4px;min-height:110px}
 .week-ev{font-size:11px;padding:4px 7px;border-radius:6px;font-weight:500;line-height:1.4;display:flex;align-items:center;gap:4px}
-.week-ev-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.week-ev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .yr-month{border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
 .yr-month-head{padding:7px 10px;background:var(--gbg2);font-size:12px;font-weight:700;color:var(--navy);text-align:center;border-bottom:1px solid var(--border)}
 .yr-dow{display:grid;grid-template-columns:repeat(7,1fr)}
-.yr-dow-lbl{text-align:center;font-size:9px;color:var(--text2);padding:3px 0}
-.yr-grid-inner{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:4px}
-.yr-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:10px;border-radius:4px;cursor:pointer;transition:background .1s;color:var(--text2);position:relative}
+.yr-dow-lbl{text-align:center;font-size:9px;color:var(--text2);padding:2px 0}
+.yr-grid-inner{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:3px}
+.yr-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:10px;border-radius:3px;cursor:pointer;transition:background .1s;color:var(--text2);position:relative}
 .yr-cell:hover{background:var(--gbg2)}
 .yr-cell.today{background:var(--navy);color:#fff;font-weight:700}
-.yr-cell.has-tasks{font-weight:700;color:var(--navy)}
-.yr-cell.has-tasks::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--amber)}
-.yr-cell.other-m{opacity:.25}
+.yr-cell.has-tasks::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--amber)}
+.yr-cell.other-m{opacity:.2}
 
-/* day popup */
 .day-popup{position:fixed;inset:0;background:rgba(15,39,68,.45);display:flex;align-items:center;justify-content:center;z-index:300;padding:16px}
-.day-popup-inner{background:#fff;border-radius:16px;padding:24px;width:420px;max-width:100%;max-height:80vh;overflow-y:auto;box-shadow:var(--shlg);animation:slideUp .2s}
+.day-popup-inner{background:#fff;border-radius:16px;padding:22px;width:420px;max-width:100%;max-height:80vh;overflow-y:auto;box-shadow:var(--shlg);animation:slideUp .2s}
 .day-task-item{border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;margin-bottom:8px}
-.day-task-title{font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.day-task-title{font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .day-task-m{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text2);padding:3px 0}
 
-/* users panel */
 .user-panel{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:20px 22px}
 .user-panel h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px}
 .user-search-row{display:flex;gap:10px;margin-bottom:16px}
@@ -240,13 +227,8 @@ select.inp{cursor:pointer}
 .usc-body{padding:12px 16px;display:flex;flex-direction:column;gap:6px}
 .usc-task{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:6px 10px;background:var(--surf);border-radius:8px;gap:8px}
 
-/* toast */
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;z-index:400;white-space:nowrap}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
-/* ── RAG legend ── */
-.rag-legend{display:flex;gap:12px;align-items:center;background:#fff;border-radius:9px;padding:8px 14px;box-shadow:var(--sh);margin-bottom:12px;flex-wrap:wrap}
-.rag-legend span{font-size:11px;color:var(--text2)}
 
 @media(max-width:700px){
   .sum-strip{grid-template-columns:repeat(2,1fr)}
@@ -278,69 +260,36 @@ const ST={
 const DOW=['日','一','二','三','四','五','六'];
 const MONTHS=['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
 
-/* ── RAG calculation ─────────────────────────────────
-   Red:   逾期 OR 有人進度落後
-   Amber: 3天內到期且未完成 OR 多人未開始且超過一半未提交
-   Green: 全員完成
-   Gray:  未開始/其他
-────────────────────────────────────────────────── */
+/* ── RAG ── */
 function calcRag(task){
-  const allDone=task.members.every(m=>task.submissions[m]?.status==='completed');
-  if(allDone) return 'green';
-
-  const now=new Date();
-  const deadline=task.deadline?new Date(task.deadline):null;
-  const isOverdue=deadline&&deadline<now;
-  const isSoon=deadline&&!isOverdue&&(deadline-now)<3*86400000;
-  const hasDelayed=task.members.some(m=>task.submissions[m]?.status==='delayed');
-  const notStartedCount=task.members.filter(m=>!task.submissions[m]||task.submissions[m].status==='not_started').length;
-  const halfNotSubmitted=notStartedCount>task.members.length/2;
-
-  if(isOverdue||hasDelayed) return 'red';
-  if(isSoon||halfNotSubmitted) return 'amber';
-  const anyProgress=task.members.some(m=>task.submissions[m]&&task.submissions[m].status!=='not_started');
-  if(anyProgress) return 'green';
+  if(task.members.every(m=>task.submissions[m]?.status==='completed')) return 'green';
+  const now=new Date(), dl=task.deadline?new Date(task.deadline):null;
+  if(dl&&dl<now)                              return 'red';
+  if(task.members.some(m=>task.submissions[m]?.status==='delayed'))    return 'red';
+  const soon=dl&&(dl-now)<3*86400000;
+  const halfNone=task.members.filter(m=>!task.submissions[m]||task.submissions[m].status==='not_started').length > task.members.length/2;
+  if(soon||halfNone)                          return 'amber';
+  if(task.members.some(m=>task.submissions[m]&&task.submissions[m].status!=='not_started')) return 'green';
   return 'gray';
 }
-
-function ragHtml(task){
+function ragBadge(task){
   const r=calcRag(task);
-  const map={
-    green:{cls:'rag-green',dot:'#059669',lbl:'進度正常'},
-    amber:{cls:'rag-amber',dot:'#f59e0b',lbl:'需要注意'},
-    red:  {cls:'rag-red',  dot:'#ef4444',lbl:'風險'},
-    gray: {cls:'rag-gray', dot:'#94a3b8',lbl:'未開始'},
-  };
+  const map={green:{cls:'rag-green',dot:'#059669',lbl:'進度正常'},amber:{cls:'rag-amber',dot:'#f59e0b',lbl:'需注意'},red:{cls:'rag-red',dot:'#ef4444',lbl:'風險'},gray:{cls:'rag-gray',dot:'#94a3b8',lbl:'未開始'}};
   const m=map[r];
-  return `<span class="rag ${m.cls}"><span class="rag-dot" style="background:${m.dot}"></span>${m.lbl}</span>`;
+  return`<span class="rag ${m.cls}"><span class="rag-dot" style="background:${m.dot}"></span>${m.lbl}</span>`;
 }
-
-/* ── RAG for calendar events ── */
-function ragCalColor(task){
+function ragColor(task){
   const r=calcRag(task);
-  return {
-    green:{dot:'#059669',bg:'#d1fae5',txt:'#065f46'},
-    amber:{dot:'#f59e0b',bg:'#fef3c7',txt:'#92400e'},
-    red:  {dot:'#ef4444',bg:'#fee2e2',txt:'#991b1b'},
-    gray: {dot:'#94a3b8',bg:'#f1f5f9',txt:'#475569'},
-  }[r];
+  return{green:{dot:'#059669',bg:'#d1fae5',txt:'#065f46'},amber:{dot:'#f59e0b',bg:'#fef3c7',txt:'#92400e'},red:{dot:'#ef4444',bg:'#fee2e2',txt:'#991b1b'},gray:{dot:'#94a3b8',bg:'#f1f5f9',txt:'#475569'}}[r];
 }
 
 const SAMPLE=[
   {id:'t1',title:'Q2 業績總結簡報',deadline:'2025-06-10',
    members:['王小明','陳美華','林志翔'],
-   submissions:{
-     '王小明':{status:'completed',updatedAt:'2025-05-20T09:00:00Z',log:[{content:'簡報已完成並上傳雲端',at:'2025-05-20T09:00:00Z'}]},
-     '陳美華':{status:'in_progress',updatedAt:'2025-05-21T14:30:00Z',log:[{content:'圖表製作中',at:'2025-05-21T14:30:00Z'}]},
-     '林志翔':{status:'not_started',updatedAt:'',log:[]},
-   },createdAt:'2025-05-15T00:00:00Z'},
+   submissions:{'王小明':{status:'completed',updatedAt:'2025-05-20T09:00:00Z',log:[{content:'已完成並上傳',at:'2025-05-20T09:00:00Z'}]},'陳美華':{status:'in_progress',updatedAt:'2025-05-21T14:30:00Z',log:[{content:'圖表製作中',at:'2025-05-21T14:30:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]}},createdAt:'2025-05-15T00:00:00Z'},
   {id:'t2',title:'新產品發布報告',deadline:'2025-06-20',
    members:['陳美華','林志翔','張雅婷'],
-   submissions:{
-     '陳美華':{status:'pending_review',updatedAt:'2025-05-22T10:00:00Z',log:[{content:'初稿完成',at:'2025-05-22T10:00:00Z'}]},
-     '林志翔':{status:'not_started',updatedAt:'',log:[]},
-     '張雅婷':{status:'not_started',updatedAt:'',log:[]},
-   },createdAt:'2025-05-16T00:00:00Z'},
+   submissions:{'陳美華':{status:'pending_review',updatedAt:'2025-05-22T10:00:00Z',log:[{content:'初稿完成',at:'2025-05-22T10:00:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]},'張雅婷':{status:'not_started',updatedAt:'',log:[]}},createdAt:'2025-05-16T00:00:00Z'},
 ];
 
 /* ══ STATE ══ */
@@ -348,8 +297,9 @@ const S={
   screen:'loading',token:'',userName:'',nameInput:'',
   tasks:[],expanded:new Set(),
   editKey:null,editData:{},
-  editTaskId:null,
-  editTaskTitle:'',editTaskDeadline:'',editTaskMembers:[],editTaskMemberInput:'',
+  editTaskId:null,          // task being edited in modal
+  editTaskMembers:[],       // live member list for edit modal
+  editTaskMemberInput:'',
   showAdd:false,newTask:{title:'',deadline:''},newMembers:[],memberInput:'',
   tab:'tasks',filter:'all',search:'',
   userSearch:'',
@@ -358,7 +308,7 @@ const S={
   lastEtag:'',syncTime:null,syncError:false,saving:false,
 };
 
-/* ══ GIST API ══ */
+/* ══ GIST ══ */
 async function gistGet(){
   const h={Authorization:`token ${S.token}`,Accept:'application/vnd.github.v3+json'};
   if(S.lastEtag)h['If-None-Match']=S.lastEtag;
@@ -370,11 +320,7 @@ async function gistGet(){
   return JSON.parse(g.files?.[GIST_FILE]?.content||'{"tasks":[]}');
 }
 async function gistSet(data){
-  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{
-    method:'PATCH',
-    headers:{Authorization:`token ${S.token}`,'Content-Type':'application/json',Accept:'application/vnd.github.v3+json'},
-    body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data,null,2)}}}),
-  });
+  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{method:'PATCH',headers:{Authorization:`token ${S.token}`,'Content-Type':'application/json',Accept:'application/vnd.github.v3+json'},body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data,null,2)}}})});
   if(!r.ok)throw new Error(`HTTP ${r.status}`);
   S.lastEtag='';
 }
@@ -391,21 +337,16 @@ async function init(){
   hideLoading();render();startSync();
 }
 function hideLoading(){
-  const el=document.getElementById('loading');
-  el.style.opacity='0';
+  const el=document.getElementById('loading');el.style.opacity='0';
   setTimeout(()=>{el.style.display='none';document.getElementById('app').style.display='';},400);
 }
-
 let syncTimer=null;
 function startSync(){
   clearInterval(syncTimer);
   syncTimer=setInterval(async()=>{
     if(S.screen!=='main'||S.editKey||S.saving)return;
-    try{
-      const d=await gistGet();
-      if(d&&JSON.stringify(d.tasks)!==JSON.stringify(S.tasks)){S.tasks=d.tasks;render();}
-      S.syncTime=new Date();S.syncError=false;updSync();
-    }catch{S.syncError=true;updSync();}
+    try{const d=await gistGet();if(d&&JSON.stringify(d.tasks)!==JSON.stringify(S.tasks)){S.tasks=d.tasks;render();}S.syncTime=new Date();S.syncError=false;updSync();}
+    catch{S.syncError=true;updSync();}
   },SYNC_MS);
 }
 function updSync(){
@@ -424,11 +365,7 @@ async function saveData(){
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
 function isOver(d){return d&&new Date(d)<new Date();}
 function isSoon(d){if(!d)return false;const v=new Date(d)-new Date();return v>0&&v<3*86400000;}
-function fmtTs(iso){
-  if(!iso)return '';
-  const d=new Date(iso);
-  return d.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-}
+function fmtTs(iso){if(!iso)return '';const d=new Date(iso);return d.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});}
 function taskAllDone(t){return t.members.every(m=>t.submissions[m]?.status==='completed');}
 function taskPending(t){return t.members.filter(m=>t.submissions[m]?.status!=='completed').length;}
 function isMine(t){return t.members.includes(S.userName);}
@@ -436,13 +373,9 @@ function myStatus(t){return t.submissions[S.userName]?.status||null;}
 function tasksOnDate(ds){return S.tasks.filter(t=>t.deadline===ds);}
 function dStr(y,m,d){return`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}
 function allMembers(){const s=new Set();S.tasks.forEach(t=>t.members.forEach(m=>s.add(m)));return[...s].sort();}
-
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 let toastT;
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600);
-}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600);}
 
 /* ══ RENDER ══ */
 function render(){
@@ -455,16 +388,14 @@ function render(){
 function rSetup(){return`<div class="overlay"><div class="modal">
   <div class="modal-icon">🔑</div><h2>設定 GitHub Token</h2>
   <p>前往 <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> 建立 Personal Access Token (Classic)，勾選 <strong>gist</strong> 權限後貼到下方。Token 僅儲存在您的瀏覽器。</p>
-  <div class="field"><label class="lbl">Personal Access Token</label>
-  <input class="inp" type="password" id="tokIn" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/></div>
+  <div class="field"><label class="lbl">Personal Access Token</label><input class="inp" type="password" id="tokIn" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/></div>
   <button class="btn btn-primary" id="saveTokenBtn" disabled>儲存並進入系統</button>
 </div></div>`;}
 
 function rLogin(){return`<div class="overlay"><div class="modal">
   <div class="modal-icon">📊</div><h2>簡報進度追蹤</h2>
   <p>輸入您的姓名後進入系統。</p>
-  <div class="field"><label class="lbl">您的姓名</label>
-  <input class="inp" id="nameIn" placeholder="王小明" value="${S.nameInput||''}"/></div>
+  <div class="field"><label class="lbl">您的姓名</label><input class="inp" id="nameIn" placeholder="王小明" value="${esc(S.nameInput||'')}"/></div>
   <button class="btn btn-primary" id="loginBtn" ${!(S.nameInput||'').trim()?'disabled':''}>進入系統 →</button>
   <div style="text-align:center;margin-top:10px"><button class="btn btn-ghost btn-sm" id="resetTokBtn">更換 Token</button></div>
 </div></div>`;}
@@ -476,24 +407,19 @@ function rMain(){
   const overdue=S.tasks.filter(t=>isOver(t.deadline)&&!taskAllDone(t)).length;
   const myPend=S.tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed').length;
   const ts=S.syncTime?S.syncTime.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
-
-  let tabContent='';
-  if(S.tab==='tasks')     tabContent=rTasksTab();
-  else if(S.tab==='cal')  tabContent=rCalTab();
-  else                    tabContent=rUsersTab();
-
+  let body='';
+  if(S.tab==='tasks')    body=rTasksTab();
+  else if(S.tab==='cal') body=rCalTab();
+  else                   body=rUsersTab();
   return`<div>
 <div class="header"><div class="hdr">
   <div class="hdr-top">
     <div>
       <div class="hdr-title">📊 簡報進度追蹤系統</div>
-      <div class="hdr-sub">👤 ${S.userName} · ${S.tasks.length} 個任務</div>
+      <div class="hdr-sub">👤 ${esc(S.userName)} · ${S.tasks.length} 個任務</div>
       <div class="sync-pill" id="syncPill"><span class="sdot"></span> 同步中 · 上次 ${ts}</div>
     </div>
-    <div>
-      <div class="stat-pct">${pct}<span style="font-size:13px;opacity:.6">%</span></div>
-      <div class="stat-lbl">${doneSubs} / ${totalSubs} 已繳交</div>
-    </div>
+    <div><div class="stat-pct">${pct}<span style="font-size:13px;opacity:.6">%</span></div><div class="stat-lbl">${doneSubs} / ${totalSubs} 已繳交</div></div>
   </div>
   <div class="prog-wrap"><div class="prog-fill" style="width:${pct}%"></div></div>
   <div class="nav-tabs">
@@ -502,7 +428,6 @@ function rMain(){
     <button class="nav-tab ${S.tab==='users'?'active':''}" data-tab="users">👥 成員查詢</button>
   </div>
 </div></div>
-
 <div class="content">
   <div class="sum-strip">
     <div class="sum-card" style="border-top-color:#2563eb"><div class="sum-num" style="color:#2563eb">${S.tasks.length}</div><div class="sum-lbl">總任務數</div></div>
@@ -510,9 +435,8 @@ function rMain(){
     <div class="sum-card" style="border-top-color:#d97706"><div class="sum-num" style="color:#d97706">${myPend}</div><div class="sum-lbl">我尚未完成</div></div>
     <div class="sum-card" style="border-top-color:#dc2626"><div class="sum-num" style="color:#dc2626">${overdue}</div><div class="sum-lbl">已逾期任務</div></div>
   </div>
-  ${tabContent}
+  ${body}
 </div>
-
 ${S.dayPopup?rDayPopup(S.dayPopup):''}
 ${S.editTaskId?rEditTaskModal():''}
 </div>`;
@@ -520,21 +444,21 @@ ${S.editTaskId?rEditTaskModal():''}
 
 /* ── TASKS TAB ── */
 function rTasksTab(){
-  let tasks=S.tasks;
+  let tasks=[...S.tasks];
   if(S.filter==='mine')       tasks=tasks.filter(t=>isMine(t));
-  if(S.filter==='pending')    tasks=tasks.filter(t=>!taskAllDone(t));
-  if(S.filter==='myPending')  tasks=tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed');
-  if(S.filter==='red')        tasks=tasks.filter(t=>calcRag(t)==='red');
-  if(S.filter==='amber')      tasks=tasks.filter(t=>calcRag(t)==='amber');
-  if(S.search.trim())         tasks=tasks.filter(t=>t.title.includes(S.search.trim()));
-
+  else if(S.filter==='pending')    tasks=tasks.filter(t=>!taskAllDone(t));
+  else if(S.filter==='myPending')  tasks=tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed');
+  else if(S.filter==='red')        tasks=tasks.filter(t=>calcRag(t)==='red');
+  else if(S.filter==='amber')      tasks=tasks.filter(t=>calcRag(t)==='amber');
+  else if(S.filter==='green')      tasks=tasks.filter(t=>calcRag(t)==='green');
+  if(S.search.trim())              tasks=tasks.filter(t=>t.title.includes(S.search.trim()));
   return`<div>
   <div class="rag-legend">
-    <span>紅黃綠燈：</span>
+    <span class="rag-legend-lbl">紅黃綠燈：</span>
     <span class="rag rag-green"><span class="rag-dot" style="background:#059669"></span>進度正常</span>
-    <span class="rag rag-amber"><span class="rag-dot" style="background:#f59e0b"></span>需要注意（3天內到期或半數未提交）</span>
-    <span class="rag rag-red"><span class="rag-dot" style="background:#ef4444"></span>風險（逾期或有人進度落後）</span>
-    <span class="rag rag-gray"><span class="rag-dot" style="background:#94a3b8"></span>未開始</span>
+    <span class="rag rag-amber"><span class="rag-dot" style="background:#f59e0b"></span>需注意（3天內到期 / 半數未提交）</span>
+    <span class="rag rag-red"  ><span class="rag-dot" style="background:#ef4444"></span>風險（逾期 / 有人落後）</span>
+    <span class="rag rag-gray" ><span class="rag-dot" style="background:#94a3b8"></span>未開始</span>
   </div>
   <div class="toolbar">
     <div class="tl">
@@ -542,32 +466,33 @@ function rTasksTab(){
       <button class="btn btn-ghost btn-sm" id="switchUserBtn">↩ 切換使用者</button>
     </div>
     <div class="tr">
-      <input class="srch" id="searchIn" placeholder="搜尋任務…" value="${S.search}"/>
+      <input class="srch" id="searchIn" placeholder="搜尋任務…" value="${esc(S.search)}"/>
       <button class="fbtn ${S.filter==='all'?'active':''}"       data-f="all">全部</button>
       <button class="fbtn ${S.filter==='red'?'active':''}"       data-f="red">🔴 風險</button>
       <button class="fbtn ${S.filter==='amber'?'active':''}"     data-f="amber">🟡 注意</button>
+      <button class="fbtn ${S.filter==='green'?'active':''}"     data-f="green">🟢 正常</button>
       <button class="fbtn ${S.filter==='myPending'?'active':''}" data-f="myPending">我未完成</button>
       <button class="fbtn ${S.filter==='pending'?'active':''}"   data-f="pending">未全員繳交</button>
     </div>
   </div>
-  ${S.showAdd?rAddTaskForm():''}
+  ${S.showAdd?rAddForm():''}
   <div class="tasks-list" id="tasksList">
-    ${tasks.length?tasks.map(rTask).join(''):`<div class="empty" style="text-align:center;padding:52px 24px;background:#fff;border-radius:var(--r);color:var(--text2)"><div style="font-size:32px;margin-bottom:8px">📋</div><div>沒有符合條件的任務</div></div>`}
+    ${tasks.length?tasks.map(rTask).join(''):`<div class="empty"><div style="font-size:32px;margin-bottom:8px">📋</div><div>沒有符合條件的任務</div></div>`}
   </div>
-  <div style="font-size:12px;color:#94a3b8;text-align:center;margin-top:10px">☰ 拖曳左側把手可排列任務順序</div>
+  <div class="drag-hint">☰ 拖曳左側把手可調整任務順序</div>
 </div>`;
 }
 
-function rAddTaskForm(){
-  const tags=S.newMembers.map(m=>`<span class="mtag">${m}<button data-rm="${m}">×</button></span>`).join('');
+function rAddForm(){
+  const tags=S.newMembers.map(m=>`<span class="mtag">${esc(m)}<button data-rm="${esc(m)}">×</button></span>`).join('');
   return`<div class="task-form">
   <h3>＋ 新增任務</h3>
   <div class="form-2">
-    <div class="field"><label class="lbl">任務名稱 *</label><input class="inp" id="nTitle" placeholder="例：Q3 業績報告" value="${S.newTask.title}"/></div>
+    <div class="field"><label class="lbl">任務名稱 *</label><input class="inp" id="nTitle" placeholder="例：Q3 業績報告" value="${esc(S.newTask.title)}"/></div>
     <div class="field"><label class="lbl">截止日期</label><input class="inp" type="date" id="nDeadline" value="${S.newTask.deadline}"/></div>
   </div>
   <div class="field" style="margin-top:8px"><label class="lbl">需繳交成員</label>
-    <div class="madd"><input class="inp" id="memberIn" placeholder="輸入成員姓名，按 Enter 新增" value="${S.memberInput}"/><button class="btn btn-ghost btn-sm" id="addMemberBtn">新增</button></div>
+    <div class="madd"><input class="inp" id="memberIn" placeholder="輸入成員姓名，按 Enter 新增" value="${esc(S.memberInput)}"/><button class="btn btn-ghost btn-sm" id="addMemberBtn">新增</button></div>
     <div class="mtags">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
   </div>
   <div class="form-actions">
@@ -588,18 +513,15 @@ function rTask(task){
   const pills=task.members.map(m=>{
     const sub=task.submissions[m]||{status:'not_started'};
     const st=ST[sub.status]||ST.not_started;
-    return`<span class="mpill ${st.pcls}"><span class="pdot" style="background:${dotMap[st.pcls]}"></span>${m}</span>`;
+    return`<span class="mpill ${st.pcls}"><span class="pdot" style="background:${dotMap[st.pcls]}"></span>${esc(m)}</span>`;
   }).join('');
-
   return`<div class="task-card ${od?'overdue':''}" data-taskid="${task.id}" draggable="true">
   <div class="task-head" id="hd_${task.id}">
     <div class="drag-handle" title="拖曳排序">☰</div>
     <div class="th-inner">
       <div class="th-row">
         <div class="th-left">
-          <div class="ttl">
-            ${ragHtml(task)}
-            ${task.title}
+          <div class="ttl">${ragBadge(task)} ${esc(task.title)}
             ${taskAllDone(task)?`<span class="badge bg-g">✓ 全員完成</span>`:`<span class="badge bg-a">${pending} 人未繳</span>`}
             ${od?`<span class="badge bg-r">⚠ 已逾期</span>`:''}
             ${sn?`<span class="badge bg-a">⏰ 即將到期</span>`:''}
@@ -612,8 +534,8 @@ function rTask(task){
           <div class="mbar">${pills}</div>
         </div>
         <div class="th-actions">
-          <button class="btn btn-amber btn-icon" data-editTask="${task.id}" title="編輯任務">✏️</button>
-          <button class="btn btn-danger btn-icon" data-del="${task.id}" title="刪除任務">🗑</button>
+          <button class="btn btn-amber btn-icon" id="editTaskBtn_${task.id}" title="編輯任務">✏️</button>
+          <button class="btn btn-danger btn-icon" id="delTaskBtn_${task.id}" title="刪除任務">🗑</button>
           <span class="exp-icon ${exp?'open':''}">▼</span>
         </div>
       </div>
@@ -629,23 +551,16 @@ function rMemberRow(task,member){
   const key=`${task.id}|${member}`;
   const isEditing=S.editKey===key;
   const log=[...(sub.log||[])].reverse();
-  const logHtml=log.length
-    ?log.map((e,i)=>`<div class="log-e ${i===0?'latest':''}"><div class="lm">${fmtTs(e.at)}</div>${e.content}</div>`).join('')
-    :`<div class="no-log">尚無更新記錄</div>`;
-  return`<div>
-  <div class="mr">
+  const logHtml=log.length?log.map((e,i)=>`<div class="log-e ${i===0?'latest':''}"><div class="lm">${fmtTs(e.at)}</div>${esc(e.content)}</div>`).join(''):`<div class="no-log">尚無更新記錄</div>`;
+  return`<div><div class="mr">
     <div class="mr-l">
-      <div class="mr-name">${member}${member===S.userName?' <span style="font-size:10px;color:#94a3b8">（我）</span>':''}</div>
+      <div class="mr-name">${esc(member)}${member===S.userName?' <span style="font-size:10px;color:#94a3b8">（我）</span>':''}</div>
       <span class="badge ${st.bdg}">${st.lbl}</span>
       ${sub.updatedAt?`<div style="font-size:10px;color:#94a3b8;margin-top:3px">${fmtTs(sub.updatedAt)}</div>`:''}
     </div>
     <div class="mr-m"><div class="log-list">${logHtml}</div></div>
-    <div class="mr-r">
-      <button class="btn ${isEditing?'btn-ghost':'btn-navy'} btn-sm" data-edit="${key}">${isEditing?'取消':'✏️ 更新'}</button>
-    </div>
-  </div>
-  ${isEditing?rInlineEdit(sub):''}
-</div>`;
+    <div class="mr-r"><button class="btn ${isEditing?'btn-ghost':'btn-navy'} btn-sm" data-edit="${key}">${isEditing?'取消':'✏️ 更新'}</button></div>
+  </div>${isEditing?rInlineEdit(sub):''}</div>`;
 }
 
 function rInlineEdit(sub){
@@ -653,16 +568,12 @@ function rInlineEdit(sub){
   return`<div class="ied">
   <div class="ied-g">
     <div class="field"><label class="lbl">進度狀態</label>
-      <select class="inp" id="eStatus">
-        ${Object.entries(ST).map(([v,s])=>`<option value="${v}" ${(ed.status||sub.status)===v?'selected':''}>${s.lbl}</option>`).join('')}
-      </select>
+      <select class="inp" id="eStatus">${Object.entries(ST).map(([v,s])=>`<option value="${v}" ${(ed.status||sub.status)===v?'selected':''}>${s.lbl}</option>`).join('')}</select>
     </div>
-    <div class="field"><label class="lbl">更新日期</label>
-      <input class="inp" type="date" id="eDate" value="${ed.date||new Date().toISOString().split('T')[0]}"/>
-    </div>
+    <div class="field"><label class="lbl">更新日期</label><input class="inp" type="date" id="eDate" value="${ed.date||new Date().toISOString().split('T')[0]}"/></div>
   </div>
   <div class="ied-f"><div class="field"><label class="lbl">本次更新內容 *</label>
-    <textarea class="inp" id="eContent" placeholder="說明這次完成了什麼、目前進度、或遇到的問題…">${ed.content||''}</textarea>
+    <textarea class="inp" id="eContent" placeholder="說明這次完成了什麼、目前進度、或遇到的問題…">${esc(ed.content||'')}</textarea>
   </div></div>
   <div class="ied-a">
     <button class="btn btn-navy btn-sm" id="saveEditBtn" ${S.saving?'disabled':''}>${S.saving?'儲存中…':'💾 儲存更新'}</button>
@@ -671,48 +582,54 @@ function rInlineEdit(sub){
 </div>`;
 }
 
-/* ── EDIT TASK MODAL ── */
+/* ── EDIT TASK MODAL ──
+   Key fix: inputs use plain HTML value attributes.
+   We do NOT bind live input events to state.
+   doSaveEditTask() reads directly from DOM on save.
+   S.editTaskMembers tracks the member list (add/remove triggers re-render).
+── */
 function rEditTaskModal(){
-  const tags=(S.editTaskMembers||[]).map(m=>`<span class="mtag">${m}<button data-rmEdit="${m}">×</button></span>`).join('');
-  return`<div class="overlay" id="editTaskOverlay"><div class="modal">
-  <div class="modal-icon">✏️</div><h2>編輯任務</h2>
-  <div class="field"><label class="lbl">任務名稱 *</label>
-    <input class="inp" id="etTitle" value="${esc(S.editTaskTitle)}"/>
+  const task=S.tasks.find(t=>t.id===S.editTaskId);
+  if(!task)return'';
+  const tags=S.editTaskMembers.map(m=>`<span class="mtag">${esc(m)}<button class="rmEditMember" data-m="${esc(m)}">×</button></span>`).join('');
+  return`<div class="overlay" id="editOverlay"><div class="modal">
+  <div class="modal-icon">✏️</div>
+  <h2>編輯任務</h2>
+  <div class="field">
+    <label class="lbl">任務名稱 *</label>
+    <input class="inp" id="etTitle" value="${esc(task.title)}" placeholder="任務名稱"/>
   </div>
-  <div class="field"><label class="lbl">截止日期</label>
-    <input class="inp" type="date" id="etDeadline" value="${S.editTaskDeadline||''}"/>
+  <div class="field">
+    <label class="lbl">截止日期</label>
+    <input class="inp" type="date" id="etDeadline" value="${task.deadline||''}"/>
   </div>
-  <div class="field"><label class="lbl">成員</label>
+  <div class="field">
+    <label class="lbl">成員（移除後原有紀錄不影響）</label>
     <div class="madd">
-      <input class="inp" id="etMemberIn" placeholder="輸入成員姓名，按 Enter 新增" value="${esc(S.editTaskMemberInput||'')}"/>
-      <button class="btn btn-ghost btn-sm" id="etAddMemberBtn">新增</button>
+      <input class="inp" id="etMemberIn" placeholder="輸入成員姓名，按 Enter 新增"/>
+      <button class="btn btn-ghost btn-sm" id="etAddBtn">新增</button>
     </div>
     <div class="mtags" style="margin-top:7px">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
   </div>
   <div class="form-actions">
-    <button class="btn btn-navy btn-sm" id="saveEditTaskBtn" ${S.saving?'disabled':''}>${S.saving?'儲存中…':'💾 儲存'}</button>
+    <button class="btn btn-navy btn-sm" id="saveEditTaskBtn" ${S.saving?'disabled':''}>${S.saving?'儲存中…':'💾 儲存變更'}</button>
     <button class="btn btn-ghost btn-sm" id="cancelEditTaskBtn">取消</button>
   </div>
 </div></div>`;
 }
 
-function esc(s){return String(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
 /* ── CALENDAR TAB ── */
 function rCalTab(){
   const d=S.calDate,y=d.getFullYear(),m=d.getMonth();
-  let title='';
-  if(S.calView==='year')       title=`${y} 年`;
-  else if(S.calView==='month') title=`${y} 年 ${MONTHS[m]}`;
+  let title='',body='';
+  if(S.calView==='year'){title=`${y} 年`;body=rCalYear(y);}
+  else if(S.calView==='month'){title=`${y} 年 ${MONTHS[m]}`;body=rCalMonth(y,m);}
   else{
     const dow=d.getDay(),mon=new Date(d);mon.setDate(d.getDate()-dow+1);
     const sun=new Date(mon);sun.setDate(mon.getDate()+6);
     title=`${mon.getMonth()+1}/${mon.getDate()} – ${sun.getMonth()+1}/${sun.getDate()}`;
+    body=rCalWeek(d);
   }
-  let body='';
-  if(S.calView==='year')       body=rCalYear(y);
-  else if(S.calView==='month') body=rCalMonth(y,m);
-  else                         body=rCalWeek(d);
   return`<div class="cal-wrap">
   <div class="cal-header">
     <div class="cal-nav">
@@ -732,133 +649,73 @@ function rCalTab(){
 }
 
 function rCalMonth(y,m){
-  const today=new Date();
-  const firstDay=new Date(y,m,1).getDay();
-  const dim=new Date(y,m+1,0).getDate();
-  const diPrev=new Date(y,m,0).getDate();
+  const today=new Date(),firstDay=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),diPrev=new Date(y,m,0).getDate();
   let cells='';
-  for(let i=firstDay-1;i>=0;i--){cells+=rCalCell(y,m-1,diPrev-i,true,today);}
-  for(let d=1;d<=dim;d++){cells+=rCalCell(y,m,d,false,today);}
-  const nextDays=(7-(firstDay+dim)%7)%7;
-  for(let d=1;d<=nextDays;d++){cells+=rCalCell(y,m+1,d,true,today);}
-  const dows=DOW.map(d=>`<div class="cal-dow-lbl">${d}</div>`).join('');
-  return`<div class="cal-dow">${dows}</div><div class="cal-grid">${cells}</div>`;
+  for(let i=firstDay-1;i>=0;i--)cells+=rCalCell(y,m-1,diPrev-i,true,today);
+  for(let d=1;d<=dim;d++)cells+=rCalCell(y,m,d,false,today);
+  const next=(7-(firstDay+dim)%7)%7;
+  for(let d=1;d<=next;d++)cells+=rCalCell(y,m+1,d,true,today);
+  return`<div class="cal-dow">${DOW.map(d=>`<div class="cal-dow-lbl">${d}</div>`).join('')}</div><div class="cal-grid">${cells}</div>`;
 }
 
-function rCalCell(y,m,day,otherMonth,today){
-  const ds=dStr(y,m,day);
-  const isToday=today.getFullYear()===y&&today.getMonth()===m&&today.getDate()===day;
+function rCalCell(y,m,day,other,today){
+  const ds=dStr(y,m,day),isToday=today.getFullYear()===y&&today.getMonth()===m&&today.getDate()===day;
   const tasks=tasksOnDate(ds);
-  const evs=tasks.slice(0,3).map(t=>{
-    const c=ragCalColor(t);
-    return`<div class="cal-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="cal-ev-dot" style="background:${c.dot}"></span>${t.title}</div>`;
-  }).join('');
+  const evs=tasks.slice(0,3).map(t=>{const c=ragColor(t);return`<div class="cal-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="cal-ev-dot" style="background:${c.dot}"></span>${esc(t.title)}</div>`;}).join('');
   const more=tasks.length>3?`<div class="cal-more" data-dayClick="${ds}">+${tasks.length-3} 更多</div>`:'';
-  const dayNum=isToday?`<span class="cal-day-num">${day}</span>`:day;
-  return`<div class="cal-cell ${isToday?'today':''} ${otherMonth?'other-month':''}" data-dayClick="${ds}">
-  <div class="cal-day">${dayNum}</div><div class="cal-events">${evs}${more}</div>
-</div>`;
+  const dayLbl=isToday?`<span class="today-num">${day}</span>`:day;
+  return`<div class="cal-cell ${isToday?'today':''} ${other?'other-month':''}" data-dayClick="${ds}"><div class="cal-day">${dayLbl}</div><div class="cal-events">${evs}${more}</div></div>`;
 }
 
 function rCalWeek(date){
-  const dow=date.getDay(),monday=new Date(date);monday.setDate(date.getDate()-dow+1);
+  const dow=date.getDay(),mon=new Date(date);mon.setDate(date.getDate()-dow+1);
   const today=new Date();
   return`<div class="week-grid">${Array.from({length:7},(_,i)=>{
-    const d=new Date(monday);d.setDate(monday.getDate()+i);
+    const d=new Date(mon);d.setDate(mon.getDate()+i);
     const ds=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    const isToday=d.toDateString()===today.toDateString();
-    const evs=tasksOnDate(ds).map(t=>{
-      const c=ragCalColor(t);
-      return`<div class="week-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="week-ev-dot" style="background:${c.dot}"></span>${t.title}</div>`;
-    }).join('');
-    return`<div class="week-col ${isToday?'today':''}">
-      <div class="week-col-head"><div class="week-dow">${DOW[d.getDay()]}</div><div class="week-day">${d.getDate()}</div></div>
-      <div class="week-col-body">${evs}</div>
-    </div>`;
+    const isT=d.toDateString()===today.toDateString();
+    const evs=tasksOnDate(ds).map(t=>{const c=ragColor(t);return`<div class="week-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="week-ev-dot" style="background:${c.dot}"></span>${esc(t.title)}</div>`;}).join('');
+    return`<div class="week-col ${isT?'today':''}"><div class="week-col-head"><div class="week-dow">${DOW[d.getDay()]}</div><div class="week-day">${d.getDate()}</div></div><div class="week-col-body">${evs}</div></div>`;
   }).join('')}</div>`;
 }
 
 function rCalYear(y){
   const today=new Date();
   return`<div class="year-grid">${Array.from({length:12},(_,mi)=>{
-    const firstDay=new Date(y,mi,1).getDay();
-    const dim=new Date(y,mi+1,0).getDate();
-    let cells='';
-    for(let i=0;i<firstDay;i++)cells+=`<div class="yr-cell other-m"></div>`;
-    for(let d=1;d<=dim;d++){
-      const ds=dStr(y,mi,d);
-      const isToday=today.getFullYear()===y&&today.getMonth()===mi&&today.getDate()===d;
-      const ht=tasksOnDate(ds).length>0;
-      cells+=`<div class="yr-cell ${isToday?'today':''} ${ht?'has-tasks':''}" data-dayClick="${ds}">${d}</div>`;
-    }
-    return`<div class="yr-month">
-      <div class="yr-month-head">${MONTHS[mi]}</div>
-      <div class="yr-dow">${DOW.map(d=>`<div class="yr-dow-lbl">${d}</div>`).join('')}</div>
-      <div class="yr-grid-inner">${cells}</div>
-    </div>`;
+    const fd=new Date(y,mi,1).getDay(),dim=new Date(y,mi+1,0).getDate();
+    let c='';for(let i=0;i<fd;i++)c+=`<div class="yr-cell other-m"></div>`;
+    for(let d=1;d<=dim;d++){const ds=dStr(y,mi,d);const isT=today.getFullYear()===y&&today.getMonth()===mi&&today.getDate()===d;const ht=tasksOnDate(ds).length>0;c+=`<div class="yr-cell ${isT?'today':''} ${ht?'has-tasks':''}" data-dayClick="${ds}">${d}</div>`;}
+    return`<div class="yr-month"><div class="yr-month-head">${MONTHS[mi]}</div><div class="yr-dow">${DOW.map(d=>`<div class="yr-dow-lbl">${d}</div>`).join('')}</div><div class="yr-grid-inner">${c}</div></div>`;
   }).join('')}</div>`;
 }
 
 function rDayPopup(ds){
-  const tasks=tasksOnDate(ds);
-  const dateObj=new Date(ds);
+  const tasks=tasksOnDate(ds),dateObj=new Date(ds);
   const items=tasks.length?tasks.map(t=>{
-    const mRows=t.members.map(m=>{
-      const sub=t.submissions[m]||{status:'not_started'};
-      const st=ST[sub.status]||ST.not_started;
-      return`<div class="day-task-m"><span>${m}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;
-    }).join('');
-    return`<div class="day-task-item">
-      <div class="day-task-title">${ragHtml(t)} ${t.title}</div>
-      <div>${mRows}</div>
-    </div>`;
+    const mRows=t.members.map(m=>{const sub=t.submissions[m]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="day-task-m"><span>${esc(m)}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join('');
+    return`<div class="day-task-item"><div class="day-task-title">${ragBadge(t)} ${esc(t.title)}</div><div>${mRows}</div></div>`;
   }).join(''):`<div style="font-size:13px;color:#94a3b8;text-align:center;padding:20px">這天沒有截止任務</div>`;
-  return`<div class="day-popup" id="dayPopup">
-  <div class="day-popup-inner">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-      <h3 style="font-size:15px;font-weight:700;color:var(--navy)">📅 ${dateObj.getMonth()+1}月${dateObj.getDate()}日 截止任務</h3>
-      <button class="btn btn-ghost btn-sm" id="closeDayPopup">✕</button>
-    </div>
-    ${items}
-  </div>
-</div>`;
+  return`<div class="day-popup" id="dayPopup"><div class="day-popup-inner">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div style="font-size:15px;font-weight:700;color:var(--navy)">📅 ${dateObj.getMonth()+1}月${dateObj.getDate()}日 截止任務</div>
+    <button class="btn btn-ghost btn-sm" id="closeDayPopup">✕</button>
+  </div>${items}
+</div></div>`;
 }
 
 /* ── USERS TAB ── */
 function rUsersTab(){
-  const members=allMembers();
-  const q=S.userSearch.trim();
+  const members=allMembers(),q=S.userSearch.trim();
   const show=q?members.filter(m=>m.includes(q)):members;
   const cards=show.length?show.map(member=>{
     const myTasks=S.tasks.filter(t=>t.members.includes(member));
     const pending=myTasks.filter(t=>t.submissions[member]?.status!=='completed').length;
     const done=myTasks.filter(t=>t.submissions[member]?.status==='completed').length;
-    const taskRows=q?myTasks.map(t=>{
-      const sub=t.submissions[member]||{status:'not_started'};
-      const st=ST[sub.status]||ST.not_started;
-      return`<div class="usc-task">
-        <span>${t.title}${t.deadline?` <span style="font-size:11px;color:#94a3b8">· 截止 ${t.deadline}</span>`:''}</span>
-        <span class="badge ${st.bdg}">${st.lbl}</span>
-      </div>`;
-    }).join(''):'';
-    return`<div class="user-stat-card">
-      <div class="usc-head">
-        <div class="usc-name">👤 ${member}</div>
-        <div style="display:flex;gap:7px;flex-wrap:wrap">
-          <span class="badge bg-r">未完成 ${pending}</span>
-          <span class="badge bg-g">已完成 ${done}</span>
-          <span class="badge bg-gr">共 ${myTasks.length} 項</span>
-        </div>
-      </div>
-      ${taskRows?`<div class="usc-body">${taskRows}</div>`:''}
-    </div>`;
+    const rows=q?myTasks.map(t=>{const sub=t.submissions[member]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="usc-task"><span>${esc(t.title)}${t.deadline?` <span style="font-size:11px;color:#94a3b8">· 截止 ${t.deadline}</span>`:''}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join(''):'';
+    return`<div class="user-stat-card"><div class="usc-head"><div class="usc-name">👤 ${esc(member)}</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span class="badge bg-r">未完成 ${pending}</span><span class="badge bg-g">已完成 ${done}</span><span class="badge bg-gr">共 ${myTasks.length} 項</span></div></div>${rows?`<div class="usc-body">${rows}</div>`:''}</div>`;
   }).join(''):`<div style="font-size:13px;color:#94a3b8;text-align:center;padding:24px">找不到符合的成員</div>`;
-  return`<div class="user-panel">
-  <h3>成員進度查詢</h3>
-  <div class="user-search-row">
-    <input class="inp" id="userSearchIn" placeholder="輸入成員姓名搜尋…" value="${S.userSearch}"/>
-    ${S.userSearch?`<button class="btn btn-ghost btn-sm" id="clearUserSearch">清除</button>`:''}
-  </div>
+  return`<div class="user-panel"><h3>成員進度查詢</h3>
+  <div class="user-search-row"><input class="inp" id="userSearchIn" placeholder="輸入成員姓名搜尋…" value="${esc(S.userSearch)}"/>${S.userSearch?`<button class="btn btn-ghost btn-sm" id="clearUserSearch">清除</button>`:''}</div>
   <div>${cards}</div>
 </div>`;
 }
@@ -869,22 +726,13 @@ function bind(){
 
   // setup
   const tI=$('tokIn');
-  if(tI){
-    tI.addEventListener('input',e=>{$('saveTokenBtn').disabled=!e.target.value.trim();});
-    tI.addEventListener('keydown',e=>{if(e.key==='Enter'&&tI.value.trim())doSaveToken();});
-    $('saveTokenBtn').addEventListener('click',doSaveToken);
-  }
+  if(tI){tI.addEventListener('input',e=>{$('saveTokenBtn').disabled=!e.target.value.trim();});tI.addEventListener('keydown',e=>{if(e.key==='Enter'&&tI.value.trim())doSaveToken();});$('saveTokenBtn').addEventListener('click',doSaveToken);}
 
   // login
   const nI=$('nameIn');
-  if(nI){
-    nI.addEventListener('input',e=>{S.nameInput=e.target.value;$('loginBtn').disabled=!e.target.value.trim();});
-    nI.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.nameInput?.trim())doLogin();});
-    $('loginBtn').addEventListener('click',doLogin);
-    $('resetTokBtn').addEventListener('click',()=>{localStorage.removeItem(TOKEN_KEY);S.token='';S.screen='setup';render();});
-  }
+  if(nI){nI.addEventListener('input',e=>{S.nameInput=e.target.value;$('loginBtn').disabled=!e.target.value.trim();});nI.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.nameInput?.trim())doLogin();});$('loginBtn').addEventListener('click',doLogin);$('resetTokBtn').addEventListener('click',()=>{localStorage.removeItem(TOKEN_KEY);S.token='';S.screen='setup';render();});}
 
-  // nav
+  // tabs
   document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{S.tab=b.dataset.tab;render();}));
 
   // tasks toolbar
@@ -898,75 +746,45 @@ function bind(){
   const nT=$('nTitle'),nD=$('nDeadline'),mI=$('memberIn');
   if(nT)nT.addEventListener('input',e=>S.newTask.title=e.target.value);
   if(nD)nD.addEventListener('change',e=>S.newTask.deadline=e.target.value);
-  if(mI){
-    mI.addEventListener('input',e=>S.memberInput=e.target.value);
-    mI.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMember();}});
-    $('addMemberBtn').addEventListener('click',addMember);
-  }
+  if(mI){mI.addEventListener('input',e=>S.memberInput=e.target.value);mI.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMember();}});$('addMemberBtn').addEventListener('click',addMember);}
   document.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{S.newMembers=S.newMembers.filter(m=>m!==b.dataset.rm);render();}));
   const dA=$('doAddTaskBtn');if(dA)dA.addEventListener('click',addTask);
 
-  // task card heads
+  // task card heads (expand/collapse)
   S.tasks.forEach(task=>{
     const h=$(`hd_${task.id}`);
     if(h)h.addEventListener('click',e=>{
-      if(e.target.closest('[data-del]')||e.target.closest('[data-edit]')||e.target.closest('[data-editTask]')||e.target.closest('.drag-handle'))return;
-      S.expanded.has(task.id)?S.expanded.delete(task.id):S.expanded.add(task.id);
+      if(e.target.closest('.drag-handle')||e.target.id===`editTaskBtn_${task.id}`||e.target.id===`delTaskBtn_${task.id}`||e.target.closest('[data-edit]'))return;
+      S.expanded.has(task.id)?S.expanded.delete(task.id):S.expanded.add(task.id);render();
+    });
+
+    // edit task button — open modal
+    const eBtn=$(`editTaskBtn_${task.id}`);
+    if(eBtn)eBtn.addEventListener('click',e=>{
+      e.stopPropagation();
+      S.editTaskId=task.id;
+      S.editTaskMembers=[...task.members];
+      S.editTaskMemberInput='';
       render();
     });
+
+    // delete task button
+    const dBtn=$(`delTaskBtn_${task.id}`);
+    if(dBtn)dBtn.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(confirm(`確定要刪除「${task.title}」嗎？`)){
+        S.tasks=S.tasks.filter(x=>x.id!==task.id);S.expanded.delete(task.id);
+        saveData();render();toast('已刪除任務');
+      }
+    });
   });
-
-  // delete
-  document.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',e=>{
-    e.stopPropagation();
-    const id=b.dataset.del;
-    if(confirm(`確定要刪除「${S.tasks.find(x=>x.id===id)?.title}」嗎？`)){
-      S.tasks=S.tasks.filter(x=>x.id!==id);S.expanded.delete(id);
-      saveData();render();toast('已刪除任務');
-    }
-  }));
-
-  // edit task button → open modal
-  document.querySelectorAll('[data-editTask]').forEach(b=>b.addEventListener('click',e=>{
-    e.stopPropagation();
-    const id=b.dataset.editTask;
-    const task=S.tasks.find(t=>t.id===id);
-    if(!task)return;
-    S.editTaskId=id;
-    S.editTaskTitle=task.title;
-    S.editTaskDeadline=task.deadline||'';
-    S.editTaskMembers=[...task.members];
-    S.editTaskMemberInput='';
-    render();
-  }));
-
-  // edit task modal fields
-  const etT=$('etTitle'),etD=$('etDeadline'),etM=$('etMemberIn');
-  if(etT)etT.addEventListener('input',e=>{S.editTaskTitle=e.target.value;});
-  if(etD)etD.addEventListener('change',e=>{S.editTaskDeadline=e.target.value;});
-  if(etM){
-    etM.addEventListener('input',e=>{S.editTaskMemberInput=e.target.value;});
-    etM.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMemberToEdit();}});
-    const etAddBtn=$('etAddMemberBtn');if(etAddBtn)etAddBtn.addEventListener('click',addMemberToEdit);
-  }
-  document.querySelectorAll('[data-rmEdit]').forEach(b=>b.addEventListener('click',()=>{
-    S.editTaskMembers=S.editTaskMembers.filter(m=>m!==b.dataset.rmEdit);render();
-  }));
-  const setBtn=$('saveEditTaskBtn');if(setBtn)setBtn.addEventListener('click',doSaveEditTask);
-  const cetBtn=$('cancelEditTaskBtn');if(cetBtn)cetBtn.addEventListener('click',()=>{S.editTaskId=null;render();});
-  const etOv=$('editTaskOverlay');if(etOv)etOv.addEventListener('click',e=>{if(e.target===etOv){S.editTaskId=null;render();}});
 
   // member edit
   document.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',e=>{
     e.stopPropagation();
     const key=b.dataset.edit;
     if(S.editKey===key){S.editKey=null;S.editData={};}
-    else{
-      const[tid,member]=key.split('|');
-      const sub=S.tasks.find(t=>t.id===tid)?.submissions[member]||{};
-      S.editKey=key;
-      S.editData={status:sub.status||'not_started',content:'',date:new Date().toISOString().split('T')[0]};
-    }
+    else{const[tid,member]=key.split('|');const sub=S.tasks.find(t=>t.id===tid)?.submissions[member]||{};S.editKey=key;S.editData={status:sub.status||'not_started',content:'',date:new Date().toISOString().split('T')[0]};}
     render();
   }));
   const eS=$('eStatus'),eD=$('eDate'),eC=$('eContent');
@@ -976,73 +794,69 @@ function bind(){
   const sv=$('saveEditBtn');if(sv)sv.addEventListener('click',doSaveEdit);
   const cv=$('cancelEditBtn');if(cv)cv.addEventListener('click',()=>{S.editKey=null;S.editData={};render();});
 
+  // ── EDIT TASK MODAL ──
+  // Members list changes trigger render; title/deadline are read from DOM on save only
+  document.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{
+    e.stopPropagation();
+    S.editTaskMembers=S.editTaskMembers.filter(m=>m!==b.dataset.m);render();
+  }));
+  const etM=$('etMemberIn');
+  if(etM){
+    etM.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMemberToEdit();}});
+    $('etAddBtn').addEventListener('click',addMemberToEdit);
+  }
+  const setBtn=$('saveEditTaskBtn');if(setBtn)setBtn.addEventListener('click',doSaveEditTask);
+  const cetBtn=$('cancelEditTaskBtn');if(cetBtn)cetBtn.addEventListener('click',()=>{S.editTaskId=null;render();});
+  const etOv=$('editOverlay');if(etOv)etOv.addEventListener('click',e=>{if(e.target===etOv){S.editTaskId=null;render();}});
+
   // calendar
   const cp=$('calPrev'),cn=$('calNext'),ct=$('calToday');
   if(cp)cp.addEventListener('click',()=>calNav(-1));
   if(cn)cn.addEventListener('click',()=>calNav(1));
   if(ct)ct.addEventListener('click',()=>{S.calDate=new Date();render();});
   document.querySelectorAll('[data-cv]').forEach(b=>b.addEventListener('click',()=>{S.calView=b.dataset.cv;render();}));
-  document.querySelectorAll('[data-dayClick]').forEach(el=>el.addEventListener('click',e=>{
-    e.stopPropagation();S.dayPopup=el.dataset.dayClick;render();
-  }));
+  document.querySelectorAll('[data-dayClick]').forEach(el=>el.addEventListener('click',e=>{e.stopPropagation();S.dayPopup=el.dataset.dayClick;render();}));
   const cdp=$('closeDayPopup');if(cdp)cdp.addEventListener('click',()=>{S.dayPopup=null;render();});
   const dpEl=$('dayPopup');if(dpEl)dpEl.addEventListener('click',e=>{if(e.target===dpEl){S.dayPopup=null;render();}});
 
-  // user search
-  const usI=$('userSearchIn');
-  if(usI){
-    usI.addEventListener('input',e=>{S.userSearch=e.target.value;render();});
-    usI.addEventListener('keydown',e=>{if(e.key==='Enter')render();});
-  }
+  // users
+  const usI=$('userSearchIn');if(usI){usI.addEventListener('input',e=>{S.userSearch=e.target.value;render();});}
   const cuS=$('clearUserSearch');if(cuS)cuS.addEventListener('click',()=>{S.userSearch='';render();});
 
-  // ── DRAG & DROP ──
-  bindDragDrop();
+  // drag & drop
+  bindDrag();
 }
 
-/* ── DRAG & DROP ── */
-function bindDragDrop(){
-  const cards=document.querySelectorAll('.task-card[data-taskid]');
-  cards.forEach(card=>{
+/* ── DRAG ── */
+function bindDrag(){
+  document.querySelectorAll('.task-card[data-taskid]').forEach(card=>{
     card.addEventListener('dragstart',e=>{
-      S.dragSrcId=card.dataset.taskid;
-      card.classList.add('dragging');
-      e.dataTransfer.effectAllowed='move';
+      S.dragSrcId=card.dataset.taskid;card.classList.add('dragging');e.dataTransfer.effectAllowed='move';
     });
     card.addEventListener('dragend',()=>{
-      card.classList.remove('dragging');
-      document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));
+      card.classList.remove('dragging');document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));
     });
     card.addEventListener('dragover',e=>{
       e.preventDefault();e.dataTransfer.dropEffect='move';
-      if(card.dataset.taskid!==S.dragSrcId){
-        document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));
-        card.classList.add('drag-over');
-      }
+      if(card.dataset.taskid!==S.dragSrcId){document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));card.classList.add('drag-over');}
     });
     card.addEventListener('dragleave',()=>card.classList.remove('drag-over'));
     card.addEventListener('drop',e=>{
-      e.preventDefault();
-      card.classList.remove('drag-over');
-      const toId=card.dataset.taskid;
-      if(!S.dragSrcId||S.dragSrcId===toId)return;
-      const fromIdx=S.tasks.findIndex(t=>t.id===S.dragSrcId);
-      const toIdx  =S.tasks.findIndex(t=>t.id===toId);
-      if(fromIdx<0||toIdx<0)return;
-      const arr=[...S.tasks];
-      const[item]=arr.splice(fromIdx,1);
-      arr.splice(toIdx,0,item);
-      S.tasks=arr;S.dragSrcId=null;
-      saveData();render();toast('✅ 順序已更新');
+      e.preventDefault();card.classList.remove('drag-over');
+      const toId=card.dataset.taskid;if(!S.dragSrcId||S.dragSrcId===toId)return;
+      const fi=S.tasks.findIndex(t=>t.id===S.dragSrcId),ti=S.tasks.findIndex(t=>t.id===toId);
+      if(fi<0||ti<0)return;
+      const arr=[...S.tasks];const[item]=arr.splice(fi,1);arr.splice(ti,0,item);
+      S.tasks=arr;S.dragSrcId=null;saveData();render();toast('✅ 順序已更新');
     });
   });
 }
 
 function calNav(dir){
   const d=new Date(S.calDate);
-  if(S.calView==='year')       d.setFullYear(d.getFullYear()+dir);
-  else if(S.calView==='month') d.setMonth(d.getMonth()+dir);
-  else                         d.setDate(d.getDate()+dir*7);
+  if(S.calView==='year')d.setFullYear(d.getFullYear()+dir);
+  else if(S.calView==='month')d.setMonth(d.getMonth()+dir);
+  else d.setDate(d.getDate()+dir*7);
   S.calDate=d;render();
 }
 
@@ -1050,8 +864,7 @@ function calNav(dir){
 async function doSaveToken(){
   const val=document.getElementById('tokIn')?.value?.trim();if(!val)return;
   S.token=val;localStorage.setItem(TOKEN_KEY,val);
-  const btn=document.getElementById('saveTokenBtn');
-  if(btn){btn.disabled=true;btn.textContent='驗證中…';}
+  const btn=document.getElementById('saveTokenBtn');if(btn){btn.disabled=true;btn.textContent='驗證中…';}
   try{
     const d=await gistGet();
     S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks;
@@ -1076,9 +889,17 @@ function addMember(){
 }
 
 function addMemberToEdit(){
-  const m=(S.editTaskMemberInput||'').trim();if(!m)return;
+  const etM=document.getElementById('etMemberIn');
+  const m=(etM?.value||'').trim();if(!m)return;
   if(S.editTaskMembers.includes(m)){toast('已新增過此成員');return;}
-  S.editTaskMembers.push(m);S.editTaskMemberInput='';render();
+  S.editTaskMembers.push(m);
+  if(etM)etM.value='';
+  // re-render just the member tags area without full render
+  const tagsEl=document.querySelector('#editOverlay .mtags');
+  if(tagsEl){
+    tagsEl.innerHTML=S.editTaskMembers.map(mm=>`<span class="mtag">${esc(mm)}<button class="rmEditMember" data-m="${esc(mm)}">×</button></span>`).join('');
+    tagsEl.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();S.editTaskMembers=S.editTaskMembers.filter(x=>x!==b.dataset.m);const tagsEl2=document.querySelector('#editOverlay .mtags');if(tagsEl2){tagsEl2.innerHTML=S.editTaskMembers.map(mm=>`<span class="mtag">${esc(mm)}<button class="rmEditMember" data-m="${esc(mm)}">×</button></span>`).join('');tagsEl2.querySelectorAll('.rmEditMember').forEach(b2=>b2.addEventListener('click',arguments.callee));}}));
+  }
 }
 
 async function addTask(){
@@ -1087,57 +908,37 @@ async function addTask(){
   const subs={};S.newMembers.forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
   const t={id:uid(),title:S.newTask.title.trim(),deadline:S.newTask.deadline,members:[...S.newMembers],submissions:subs,createdAt:new Date().toISOString()};
   S.tasks.push(t);S.showAdd=false;S.newTask={title:'',deadline:''};S.newMembers=[];S.memberInput='';
-  S.expanded.add(t.id);
-  await saveData();render();toast('✅ 已新增任務');
+  S.expanded.add(t.id);await saveData();render();toast('✅ 已新增任務');
 }
 
 async function doSaveEditTask(){
-  if(!S.editTaskTitle.trim()){toast('請輸入任務名稱');return;}
+  /* Read title and deadline directly from DOM – avoids stale state issue */
+  const titleEl=document.getElementById('etTitle');
+  const deadlineEl=document.getElementById('etDeadline');
+  const newTitle=(titleEl?.value||'').trim();
+  const newDeadline=deadlineEl?.value||'';
+  if(!newTitle){toast('請輸入任務名稱');return;}
   if(!S.editTaskMembers.length){toast('請至少保留一位成員');return;}
-
-  // read latest values from DOM
-  const etT=document.getElementById('etTitle');
-  const etD=document.getElementById('etDeadline');
-  if(etT)S.editTaskTitle=etT.value;
-  if(etD)S.editTaskDeadline=etD.value;
-
+  const task=S.tasks.find(t=>t.id===S.editTaskId);
+  if(!task)return;
   const newSubs={};
-  S.editTaskMembers.forEach(m=>{
-    const task=S.tasks.find(t=>t.id===S.editTaskId);
-    newSubs[m]=task?.submissions[m]||{status:'not_started',updatedAt:'',log:[]};
-  });
-  S.tasks=S.tasks.map(t=>t.id!==S.editTaskId?t:{
-    ...t,
-    title:S.editTaskTitle.trim(),
-    deadline:S.editTaskDeadline||'',
-    members:[...S.editTaskMembers],
-    submissions:newSubs,
-  });
+  S.editTaskMembers.forEach(m=>{newSubs[m]=task.submissions[m]||{status:'not_started',updatedAt:'',log:[]};});
+  S.tasks=S.tasks.map(t=>t.id!==S.editTaskId?t:{...t,title:newTitle,deadline:newDeadline,members:[...S.editTaskMembers],submissions:newSubs});
   S.editTaskId=null;
   await saveData();render();toast('✅ 任務已更新');
 }
 
 async function doSaveEdit(){
-  const eS=document.getElementById('eStatus');
-  const eC=document.getElementById('eContent');
-  const eD=document.getElementById('eDate');
-  if(eS)S.editData.status=eS.value;
-  if(eC)S.editData.content=eC.value;
-  if(eD)S.editData.date=eD.value;
-  const content=(S.editData.content||'').trim();
-  if(!content){toast('請填寫本次更新內容');return;}
+  const eS=document.getElementById('eStatus'),eD=document.getElementById('eDate'),eC=document.getElementById('eContent');
+  if(eS)S.editData.status=eS.value;if(eD)S.editData.date=eD.value;if(eC)S.editData.content=eC.value;
+  const content=(S.editData.content||'').trim();if(!content){toast('請填寫本次更新內容');return;}
   const[tid,member]=S.editKey.split('|');
   S.tasks=S.tasks.map(task=>{
     if(task.id!==tid)return task;
     const ex=task.submissions[member]||{log:[]};
-    return{...task,submissions:{...task.submissions,[member]:{
-      status:S.editData.status,
-      updatedAt:new Date().toISOString(),
-      log:[...(ex.log||[]),{content,at:new Date().toISOString()}],
-    }}};
+    return{...task,submissions:{...task.submissions,[member]:{status:S.editData.status,updatedAt:new Date().toISOString(),log:[...(ex.log||[]),{content,at:new Date().toISOString()}]}}};
   });
-  S.editKey=null;S.editData={};
-  await saveData();render();toast('✅ 已儲存更新');
+  S.editKey=null;S.editData={};await saveData();render();toast('✅ 已儲存更新');
 }
 
 init();
