@@ -13,6 +13,7 @@
   --blue:#2563eb;--bbg:#dbeafe;--btxt:#1e40af;
   --amber:#d97706;--abg:#fef3c7;--atxt:#92400e;
   --red:#dc2626;--rbg:#fee2e2;--rtxt:#991b1b;
+  --purple:#7c3aed;--pbg:#ede9fe;--ptxt:#4c1d95;
   --gray:#64748b;--gbg2:#f1f5f9;--gtxt2:#334155;
   --border:#e2e8f0;--surf:#f8fafc;
   --text:#0f172a;--text2:#475569;
@@ -21,54 +22,48 @@
   --r:12px;
 }
 body{font-family:'IBM Plex Sans TC',sans-serif;background:var(--gbg2);color:var(--text);font-size:14px;min-height:100vh}
-
 #loading{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:14px;z-index:300;transition:opacity .4s}
 .spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
 .overlay{position:fixed;inset:0;background:rgba(15,39,68,.5);display:flex;align-items:center;justify-content:center;z-index:200;animation:fadeIn .18s;padding:16px;overflow-y:auto}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.modal{background:#fff;border-radius:20px;padding:32px 28px;width:500px;max-width:100%;box-shadow:var(--shlg);animation:slideUp .2s;max-height:90vh;overflow-y:auto}
+.modal{background:#fff;border-radius:20px;padding:32px 28px;width:520px;max-width:100%;box-shadow:var(--shlg);animation:slideUp .2s;max-height:92vh;overflow-y:auto}
 .modal-icon{font-size:22px;margin-bottom:10px}
 .modal h2{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .modal p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:16px}
 .modal a{color:var(--navy3)}
-
 .field{margin-bottom:11px}
 .lbl{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:4px}
 .inp{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s;background:#fff}
 .inp:focus{border-color:var(--navy3)}
 textarea.inp{resize:vertical;min-height:76px}
 select.inp{cursor:pointer}
-
+.check-row{display:flex;align-items:center;gap:8px;cursor:pointer;margin:8px 0}
+.check-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer}
+.check-row span{font-size:13px;color:var(--text2)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 18px;border-radius:9px;border:none;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .1s;white-space:nowrap}
-.btn:hover{opacity:.86}
-.btn:active{transform:scale(.97)}
-.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn:hover{opacity:.86}.btn:active{transform:scale(.97)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn-primary{background:linear-gradient(135deg,var(--navy),var(--navy3));color:#fff;width:100%;padding:11px;font-size:14px}
-.btn-navy{background:var(--navy);color:#fff}
-.btn-navy:hover{background:var(--navy3);opacity:1}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy3);opacity:1}
 .btn-ghost{background:var(--gbg2);color:var(--text2)}
 .btn-danger{background:var(--rbg);color:var(--rtxt)}
 .btn-amber{background:var(--abg);color:var(--atxt)}
+.btn-purple{background:var(--pbg);color:var(--ptxt)}
 .btn-sm{padding:4px 11px;font-size:12px}
 .btn-icon{padding:5px 8px;font-size:13px;border-radius:7px}
-
 /* RAG */
 .rag{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700}
 .rag-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .rag-green{background:#d1fae5;color:#065f46}.rag-green .rag-dot{background:#059669;box-shadow:0 0 0 2px rgba(5,150,105,.2)}
 .rag-amber{background:#fef3c7;color:#92400e}.rag-amber .rag-dot{background:#f59e0b;box-shadow:0 0 0 2px rgba(245,158,11,.2)}
-.rag-red  {background:#fee2e2;color:#991b1b}.rag-red   .rag-dot{background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.2)}
-.rag-gray {background:#f1f5f9;color:#475569}.rag-gray  .rag-dot{background:#94a3b8}
-
+.rag-red{background:#fee2e2;color:#991b1b}.rag-red .rag-dot{background:#ef4444;box-shadow:0 0 0 2px rgba(239,68,68,.2)}
+.rag-gray{background:#f1f5f9;color:#475569}.rag-gray .rag-dot{background:#94a3b8}
 /* header */
 .header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}
 .hdr{max-width:1060px;margin:0 auto;padding:18px 24px 0}
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:12px}
-.hdr-title{font-size:17px;font-weight:700}
-.hdr-sub{font-size:12px;opacity:.7;margin-top:3px}
+.hdr-title{font-size:17px;font-weight:700}.hdr-sub{font-size:12px;opacity:.7;margin-top:3px}
 .stat-pct{font-size:26px;font-weight:700;font-family:'IBM Plex Mono';line-height:1}
 .stat-lbl{font-size:11px;opacity:.65;margin-top:2px;text-align:right}
 .prog-wrap{background:rgba(255,255,255,.15);border-radius:100px;height:5px;overflow:hidden;margin-bottom:12px}
@@ -80,109 +75,107 @@ select.inp{cursor:pointer}
 .nav-tabs{display:flex;gap:2px}
 .nav-tab{padding:8px 18px;border-radius:8px 8px 0 0;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);transition:all .15s}
 .nav-tab.active{background:#fff;color:var(--navy)}
-
+/* content */
 .content{max-width:1060px;margin:0 auto;padding:20px 24px}
-
 .sum-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
 .sum-card{background:#fff;border-radius:var(--r);padding:12px 15px;box-shadow:var(--sh);border-top:3px solid transparent}
-.sum-num{font-size:21px;font-weight:700;font-family:'IBM Plex Mono'}
-.sum-lbl{font-size:11px;color:var(--text2);margin-top:2px}
-
+.sum-num{font-size:21px;font-weight:700;font-family:'IBM Plex Mono'}.sum-lbl{font-size:11px;color:var(--text2);margin-top:2px}
 .rag-legend{display:flex;gap:10px;align-items:center;background:#fff;border-radius:9px;padding:8px 14px;box-shadow:var(--sh);margin-bottom:12px;flex-wrap:wrap}
-.rag-legend-lbl{font-size:11px;color:var(--text2);font-weight:600}
-
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .tl,.tr{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .fbtn{padding:5px 12px;border-radius:100px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s;color:var(--text2)}
 .fbtn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .srch{padding:6px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:160px;color:var(--text);transition:border-color .15s}
 .srch:focus{border-color:var(--navy3)}
-
+/* task cards */
 .tasks-list{display:flex;flex-direction:column;gap:10px}
-.task-card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);border:1.5px solid transparent;transition:box-shadow .15s,opacity .15s;position:relative}
+.task-card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);border:1.5px solid transparent;transition:box-shadow .15s,opacity .15s}
 .task-card:hover{box-shadow:0 4px 20px rgba(15,39,68,.1)}
 .task-card.overdue{border-color:#fca5a5}
 .task-card.dragging{opacity:.35;box-shadow:none}
 .task-card.drag-over{box-shadow:0 0 0 2px var(--navy3),0 4px 20px rgba(37,99,168,.18)}
-.drag-hint{font-size:12px;color:#94a3b8;text-align:center;margin-top:8px}
-
 .task-head{padding:14px 16px 14px 4px;cursor:pointer;user-select:none;display:flex;align-items:flex-start}
-.drag-handle{width:26px;display:flex;align-items:center;justify-content:center;cursor:grab;color:#cbd5e1;font-size:13px;flex-shrink:0;padding:2px 0;user-select:none}
-.drag-handle:hover{color:var(--gray)}
-.drag-handle:active{cursor:grabbing}
+.drag-handle{width:26px;display:flex;align-items:center;justify-content:center;cursor:grab;color:#cbd5e1;font-size:13px;flex-shrink:0;user-select:none}
+.drag-handle:hover{color:var(--gray)}.drag-handle:active{cursor:grabbing}
 .th-inner{flex:1;min-width:0}
 .th-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .th-left{flex:1;min-width:0}
-.ttl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.4}
-.tmeta{display:flex;gap:12px;margin-top:5px;flex-wrap:wrap}
-.tm{font-size:12px;color:var(--text2)}
-.tm.red{color:var(--red)}
-.th-actions{display:flex;gap:5px;flex-shrink:0;align-items:center}
+.ttl{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.5}
+.tmeta{display:flex;gap:12px;margin-top:5px;flex-wrap:wrap;align-items:center}
+.tm{font-size:12px;color:var(--text2)}.tm.red{color:var(--red)}
+.th-actions{display:flex;gap:4px;flex-shrink:0;align-items:center}
 .exp-icon{font-size:10px;color:var(--text2);transition:transform .2s}
 .exp-icon.open{transform:rotate(180deg)}
 .mbar{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
 .mpill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:500;border:1.5px solid transparent}
-.mp-done  {background:var(--gbg);color:var(--gtxt);border-color:#a7f3d0}
-.mp-prog  {background:var(--bbg);color:var(--btxt);border-color:#bfdbfe}
+.mp-done{background:var(--gbg);color:var(--gtxt);border-color:#a7f3d0}
+.mp-prog{background:var(--bbg);color:var(--btxt);border-color:#bfdbfe}
 .mp-review{background:var(--abg);color:var(--atxt);border-color:#fde68a}
-.mp-late  {background:var(--rbg);color:var(--rtxt);border-color:#fecdd3}
-.mp-none  {background:var(--gbg2);color:var(--gray);border-color:var(--border)}
+.mp-late{background:var(--rbg);color:var(--rtxt);border-color:#fecdd3}
+.mp-none{background:var(--gbg2);color:var(--gray);border-color:var(--border)}
 .pdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-
+/* task body member rows */
 .task-body{border-top:1px solid var(--gbg2);overflow:hidden;border-radius:0 0 var(--r) var(--r)}
 .mr{display:flex;align-items:stretch;border-bottom:1px solid var(--gbg2)}
 .mr:last-child{border-bottom:none}
-.mr-l{width:185px;flex-shrink:0;padding:12px 16px;border-right:1px solid var(--gbg2);display:flex;flex-direction:column;gap:4px}
+.mr-l{width:185px;flex-shrink:0;padding:11px 15px;border-right:1px solid var(--gbg2);display:flex;flex-direction:column;gap:4px}
 .mr-name{font-size:13px;font-weight:600}
-.mr-m{flex:1;padding:12px 16px;min-width:0}
-.mr-r{padding:12px 12px;display:flex;align-items:flex-start;flex-shrink:0}
+.mr-m{flex:1;padding:11px 15px;min-width:0}
+.mr-r{padding:11px 11px;display:flex;align-items:flex-start;flex-shrink:0}
 .log-list{display:flex;flex-direction:column;gap:5px}
 .log-e{background:var(--surf);border-left:3px solid var(--border);border-radius:0 6px 6px 0;padding:7px 10px;font-size:12px;color:var(--text2);line-height:1.5}
 .log-e .lm{font-size:10px;color:var(--gray);margin-bottom:2px}
 .log-e.latest{border-left-color:var(--navy3)}
 .no-log{font-size:12px;color:#94a3b8;font-style:italic;padding:4px 0}
-.ied{background:var(--surf);border-top:1px solid var(--border);padding:14px 18px;animation:slideUp .15s}
+.ied{background:var(--surf);border-top:1px solid var(--border);padding:13px 17px;animation:slideUp .15s}
 .ied-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ied-f{margin-top:9px}
-.ied-a{display:flex;gap:7px;margin-top:10px}
-
+.ied-f{margin-top:9px}.ied-a{display:flex;gap:7px;margin-top:10px}
+/* period sections for recurring */
+.period-head{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--surf);border-bottom:1px solid var(--gbg2);flex-wrap:wrap}
+.period-head.current{background:#eff6ff;border-left:3px solid var(--navy3)}
+.period-num{font-size:12px;font-weight:700;color:var(--navy)}
+.period-dl{font-size:12px;color:var(--text2)}
+.history-btn{display:flex;align-items:center;gap:6px;padding:10px 16px;font-size:12px;color:var(--navy3);cursor:pointer;background:var(--surf);border-top:1px solid var(--gbg2);border:none;width:100%;text-align:left;font-family:inherit;font-weight:600;transition:background .15s}
+.history-btn:hover{background:#eff6ff}
+.hist-period{border-top:1px solid var(--gbg2)}
+.hist-period-head{display:flex;align-items:center;gap:8px;padding:8px 16px;background:#fafafa;cursor:pointer;user-select:none;border-bottom:1px solid var(--gbg2)}
+.hist-period-head:hover{background:var(--surf)}
+/* add/edit form */
 .task-form{background:#fff;border-radius:var(--r);padding:18px 20px;margin-bottom:12px;box-shadow:var(--sh);border:1.5px solid var(--navy3);animation:slideUp .2s}
 .task-form h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
-.form-2{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.form-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.rec-box{background:var(--surf);border:1.5px solid var(--bbg);border-radius:10px;padding:14px;margin-top:4px}
+.rec-box-title{font-size:12px;font-weight:700;color:var(--btxt);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dow-picker{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.dow-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;color:var(--text2);font-family:inherit}
+.dow-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .mtags{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px;min-height:28px;align-items:center}
 .mtag{display:inline-flex;align-items:center;gap:5px;background:var(--bbg);color:var(--btxt);border-radius:100px;padding:3px 11px;font-size:12px;font-weight:500}
 .mtag button{background:none;border:none;cursor:pointer;color:var(--btxt);font-size:14px;line-height:1;padding:0;opacity:.6}
 .mtag button:hover{opacity:1}
-.madd{display:flex;gap:7px;margin-top:7px}
-.madd .inp{flex:1}
+.madd{display:flex;gap:7px;margin-top:7px}.madd .inp{flex:1}
 .form-actions{display:flex;gap:7px;margin-top:12px}
-
+/* badge */
 .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:600}
-.bg-g {background:var(--gbg);color:var(--gtxt)}
-.bg-b {background:var(--bbg);color:var(--btxt)}
-.bg-a {background:var(--abg);color:var(--atxt)}
-.bg-r {background:var(--rbg);color:var(--rtxt)}
-.bg-gr{background:var(--gbg2);color:var(--gtxt2)}
-
-.empty{text-align:center;padding:52px 24px;background:#fff;border-radius:var(--r);color:var(--text2)}
-
+.bg-g{background:var(--gbg);color:var(--gtxt)}.bg-b{background:var(--bbg);color:var(--btxt)}
+.bg-a{background:var(--abg);color:var(--atxt)}.bg-r{background:var(--rbg);color:var(--rtxt)}
+.bg-gr{background:var(--gbg2);color:var(--gtxt2)}.bg-p{background:var(--pbg);color:var(--ptxt)}
 /* calendar */
 .cal-wrap{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
-.cal-header{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.cal-nav{display:flex;align-items:center;gap:10px}
+.cal-header{padding:13px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.cal-nav{display:flex;align-items:center;gap:8px}
 .cal-title{font-size:15px;font-weight:700;color:var(--navy);min-width:160px;text-align:center}
 .cal-vt{display:flex;gap:4px}
-.cvt{padding:4px 13px;border-radius:7px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--text2);transition:all .15s}
+.cvt{padding:4px 12px;border-radius:7px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--text2);transition:all .15s}
 .cvt.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.cal-body{padding:16px}
+.cal-body{padding:14px}
 .cal-dow{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
-.cal-dow-lbl{text-align:center;font-size:11px;font-weight:600;color:var(--text2);padding:4px 0}
+.cal-dow-lbl{text-align:center;font-size:11px;font-weight:600;color:var(--text2);padding:3px 0}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
 .cal-cell{min-height:82px;border-radius:8px;padding:5px 6px;border:1.5px solid transparent;cursor:pointer;transition:background .15s}
-.cal-cell:hover{background:var(--surf)}
-.cal-cell.today{border-color:var(--navy3);background:#eff6ff}
-.cal-cell.other-month .cal-day{opacity:.3}
-.cal-cell.other-month .cal-events{opacity:.4}
+.cal-cell:hover{background:var(--surf)}.cal-cell.today{border-color:var(--navy3);background:#eff6ff}
+.cal-cell.other-month .cal-day{opacity:.3}.cal-cell.other-month .cal-events{opacity:.4}
 .cal-day{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px}
 .today-num{background:var(--navy);color:#fff;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px}
 .cal-events{display:flex;flex-direction:column;gap:2px}
@@ -192,48 +185,42 @@ select.inp{cursor:pointer}
 .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .week-col{border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
 .week-col.today{border-color:var(--navy3)}
-.week-col-head{padding:8px 10px;text-align:center;border-bottom:1px solid var(--border);background:var(--surf)}
-.week-dow{font-size:11px;color:var(--text2);font-weight:600}
-.week-day{font-size:18px;font-weight:700;color:var(--navy)}
+.week-col-head{padding:7px 9px;text-align:center;border-bottom:1px solid var(--border);background:var(--surf)}
+.week-dow{font-size:11px;color:var(--text2);font-weight:600}.week-day{font-size:17px;font-weight:700;color:var(--navy)}
 .week-col.today .week-day{color:var(--blue)}
 .week-col-body{padding:7px;display:flex;flex-direction:column;gap:4px;min-height:110px}
-.week-ev{font-size:11px;padding:4px 7px;border-radius:6px;font-weight:500;line-height:1.4;display:flex;align-items:center;gap:4px}
+.week-ev{font-size:11px;padding:4px 7px;border-radius:6px;font-weight:500;display:flex;align-items:center;gap:4px}
 .week-ev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .yr-month{border-radius:10px;border:1.5px solid var(--border);overflow:hidden}
-.yr-month-head{padding:7px 10px;background:var(--gbg2);font-size:12px;font-weight:700;color:var(--navy);text-align:center;border-bottom:1px solid var(--border)}
+.yr-month-head{padding:6px 10px;background:var(--gbg2);font-size:12px;font-weight:700;color:var(--navy);text-align:center;border-bottom:1px solid var(--border)}
 .yr-dow{display:grid;grid-template-columns:repeat(7,1fr)}
 .yr-dow-lbl{text-align:center;font-size:9px;color:var(--text2);padding:2px 0}
 .yr-grid-inner{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:3px}
 .yr-cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:10px;border-radius:3px;cursor:pointer;transition:background .1s;color:var(--text2);position:relative}
-.yr-cell:hover{background:var(--gbg2)}
-.yr-cell.today{background:var(--navy);color:#fff;font-weight:700}
+.yr-cell:hover{background:var(--gbg2)}.yr-cell.today{background:var(--navy);color:#fff;font-weight:700}
 .yr-cell.has-tasks::after{content:'';position:absolute;bottom:1px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;background:var(--amber)}
 .yr-cell.other-m{opacity:.2}
-
 .day-popup{position:fixed;inset:0;background:rgba(15,39,68,.45);display:flex;align-items:center;justify-content:center;z-index:300;padding:16px}
 .day-popup-inner{background:#fff;border-radius:16px;padding:22px;width:420px;max-width:100%;max-height:80vh;overflow-y:auto;box-shadow:var(--shlg);animation:slideUp .2s}
 .day-task-item{border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;margin-bottom:8px}
-.day-task-title{font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .day-task-m{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text2);padding:3px 0}
-
+/* users */
 .user-panel{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:20px 22px}
 .user-panel h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px}
 .user-search-row{display:flex;gap:10px;margin-bottom:16px}
 .user-search-row .inp{flex:1}
 .user-stat-card{border:1.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px}
-.usc-head{background:var(--gbg2);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.usc-head{background:var(--gbg2);padding:11px 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .usc-name{font-size:14px;font-weight:700}
-.usc-body{padding:12px 16px;display:flex;flex-direction:column;gap:6px}
+.usc-body{padding:11px 15px;display:flex;flex-direction:column;gap:6px}
 .usc-task{display:flex;align-items:center;justify-content:space-between;font-size:13px;padding:6px 10px;background:var(--surf);border-radius:8px;gap:8px}
-
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;padding:8px 20px;border-radius:100px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;z-index:400;white-space:nowrap}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-
 @media(max-width:700px){
   .sum-strip{grid-template-columns:repeat(2,1fr)}
   .mr-l{width:120px;padding:10px}
-  .form-2{grid-template-columns:1fr}
+  .form-2,.form-3{grid-template-columns:1fr}
   .ied-g{grid-template-columns:1fr}
   .year-grid{grid-template-columns:repeat(2,1fr)}
   .week-grid{grid-template-columns:repeat(4,1fr)}
@@ -245,70 +232,132 @@ select.inp{cursor:pointer}
 <div id="loading"><div class="spinner"></div><div style="font-size:13px;opacity:.65">載入中…</div></div>
 <div id="toast"></div>
 <div id="app" style="display:none"></div>
-
 <script>
 /* ══ CONFIG ══ */
 const GIST_ID='8a2ffecb915c95aae1019c8af1d8b929',GIST_FILE='data.json',TOKEN_KEY='ppt_gh_token',SYNC_MS=5000;
-
-const ST={
-  not_started:   {lbl:'未開始',  pcls:'mp-none',  bdg:'bg-gr'},
-  in_progress:   {lbl:'進行中',  pcls:'mp-prog',  bdg:'bg-b'},
-  pending_review:{lbl:'待審核',  pcls:'mp-review',bdg:'bg-a'},
-  completed:     {lbl:'已完成',  pcls:'mp-done',  bdg:'bg-g'},
-  delayed:       {lbl:'進度落後',pcls:'mp-late',  bdg:'bg-r'},
-};
+const ST={not_started:{lbl:'未開始',pcls:'mp-none',bdg:'bg-gr'},in_progress:{lbl:'進行中',pcls:'mp-prog',bdg:'bg-b'},pending_review:{lbl:'待審核',pcls:'mp-review',bdg:'bg-a'},completed:{lbl:'已完成',pcls:'mp-done',bdg:'bg-g'},delayed:{lbl:'進度落後',pcls:'mp-late',bdg:'bg-r'}};
 const DOW=['日','一','二','三','四','五','六'];
 const MONTHS=['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+const REC_LBL={daily:'每天',weekly:'每週',biweekly:'每兩週',monthly:'每月'};
+const DOTC={'mp-done':'#059669','mp-prog':'#2563eb','mp-review':'#d97706','mp-late':'#dc2626','mp-none':'#94a3b8'};
 
-/* ── RAG ── */
-function calcRag(task){
-  if(task.members.every(m=>task.submissions[m]?.status==='completed')) return 'green';
-  const now=new Date(), dl=task.deadline?new Date(task.deadline):null;
-  if(dl&&dl<now)                              return 'red';
-  if(task.members.some(m=>task.submissions[m]?.status==='delayed'))    return 'red';
-  const soon=dl&&(dl-now)<3*86400000;
-  const halfNone=task.members.filter(m=>!task.submissions[m]||task.submissions[m].status==='not_started').length > task.members.length/2;
-  if(soon||halfNone)                          return 'amber';
-  if(task.members.some(m=>task.submissions[m]&&task.submissions[m].status!=='not_started')) return 'green';
-  return 'gray';
+/* ══ RAG ══ */
+function getDeadlineDT(task,period){
+  if(task.isRecurring){
+    const p=period||getCurrentPeriod(task);
+    return p?new Date(p.deadline):null;
+  }
+  if(!task.deadline)return null;
+  const t=task.deadlineTime||'23:59';
+  return new Date(`${task.deadline}T${t}:00`);
 }
-function ragBadge(task){
-  const r=calcRag(task);
-  const map={green:{cls:'rag-green',dot:'#059669',lbl:'進度正常'},amber:{cls:'rag-amber',dot:'#f59e0b',lbl:'需注意'},red:{cls:'rag-red',dot:'#ef4444',lbl:'風險'},gray:{cls:'rag-gray',dot:'#94a3b8',lbl:'未開始'}};
-  const m=map[r];
+function getCurrentPeriod(task){
+  if(!task.periods?.length)return null;
+  const now=new Date();
+  return task.periods.find(p=>new Date(p.deadline)>=now)||task.periods[task.periods.length-1];
+}
+function getSubs(task,period){
+  if(task.isRecurring){const p=period||getCurrentPeriod(task);return p?.submissions||{};}
+  return task.submissions||{};
+}
+function calcRag(task,period){
+  const subs=getSubs(task,period);
+  const mem=task.members||[];
+  if(mem.every(m=>subs[m]?.status==='completed'))return'green';
+  const now=new Date();
+  const dl=getDeadlineDT(task,period);
+  if(dl&&dl<now)return'red';
+  if(mem.some(m=>subs[m]?.status==='delayed'))return'red';
+  const soon=dl&&(dl-now)<3*86400000;
+  const halfNone=mem.filter(m=>!subs[m]||subs[m].status==='not_started').length>mem.length/2;
+  if(soon||halfNone)return'amber';
+  if(mem.some(m=>subs[m]&&subs[m].status!=='not_started'))return'green';
+  return'gray';
+}
+function ragBadge(task,period){
+  const r=calcRag(task,period);
+  const m={green:{cls:'rag-green',dot:'#059669',lbl:'進度正常'},amber:{cls:'rag-amber',dot:'#f59e0b',lbl:'需注意'},red:{cls:'rag-red',dot:'#ef4444',lbl:'風險'},gray:{cls:'rag-gray',dot:'#94a3b8',lbl:'未開始'}}[r];
   return`<span class="rag ${m.cls}"><span class="rag-dot" style="background:${m.dot}"></span>${m.lbl}</span>`;
 }
-function ragColor(task){
-  const r=calcRag(task);
+function ragColor(task,period){
+  const r=calcRag(task,period);
   return{green:{dot:'#059669',bg:'#d1fae5',txt:'#065f46'},amber:{dot:'#f59e0b',bg:'#fef3c7',txt:'#92400e'},red:{dot:'#ef4444',bg:'#fee2e2',txt:'#991b1b'},gray:{dot:'#94a3b8',bg:'#f1f5f9',txt:'#475569'}}[r];
 }
 
-const SAMPLE=[
-  {id:'t1',title:'Q2 業績總結簡報',deadline:'2025-06-10',
-   members:['王小明','陳美華','林志翔'],
-   submissions:{'王小明':{status:'completed',updatedAt:'2025-05-20T09:00:00Z',log:[{content:'已完成並上傳',at:'2025-05-20T09:00:00Z'}]},'陳美華':{status:'in_progress',updatedAt:'2025-05-21T14:30:00Z',log:[{content:'圖表製作中',at:'2025-05-21T14:30:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]}},createdAt:'2025-05-15T00:00:00Z'},
-  {id:'t2',title:'新產品發布報告',deadline:'2025-06-20',
-   members:['陳美華','林志翔','張雅婷'],
-   submissions:{'陳美華':{status:'pending_review',updatedAt:'2025-05-22T10:00:00Z',log:[{content:'初稿完成',at:'2025-05-22T10:00:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]},'張雅婷':{status:'not_started',updatedAt:'',log:[]}},createdAt:'2025-05-16T00:00:00Z'},
-];
+/* ══ RECURRENCE ENGINE ══ */
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+
+function getRecDates(rec,startDate,maxDate){
+  const dates=[];const end=maxDate;
+  if(rec.type==='daily'){
+    let d=new Date(startDate);
+    while(d<=end){dates.push(dStr2(d));d.setDate(d.getDate()+1);}
+  } else if(rec.type==='weekly'||rec.type==='biweekly'){
+    const step=rec.type==='weekly'?7:14;
+    const days=rec.daysOfWeek?.length?rec.daysOfWeek:[5];
+    for(const dow of days){
+      let d=new Date(startDate);
+      while(d.getDay()!==dow)d.setDate(d.getDate()+1);
+      while(d<=end){dates.push(dStr2(d));d=new Date(d.getTime()+step*86400000);}
+    }
+  } else if(rec.type==='monthly'){
+    const dom=rec.dayOfMonth||1;
+    let d=new Date(startDate.getFullYear(),startDate.getMonth(),dom);
+    if(d<startDate)d.setMonth(d.getMonth()+1);
+    while(d<=end){dates.push(dStr2(d));d=new Date(d.getFullYear(),d.getMonth()+1,dom);}
+  }
+  return[...new Set(dates)].sort();
+}
+
+function ensurePeriods(task){
+  if(!task.isRecurring||!task.recurrence)return{task,changed:false};
+  const rec=task.recurrence;
+  const now=new Date();
+  const maxDate=new Date(now.getTime()+14*86400000);
+  const hardEnd=rec.endDate?new Date(rec.endDate+'T23:59:59'):null;
+  const effectiveEnd=hardEnd&&hardEnd<maxDate?hardEnd:maxDate;
+  const startDate=new Date(rec.startDate+'T00:00:00');
+  const dates=getRecDates(rec,startDate,effectiveEnd);
+  const existing=new Set((task.periods||[]).map(p=>p.deadline.slice(0,10)));
+  const toAdd=dates.filter(d=>!existing.has(d));
+  if(!toAdd.length)return{task,changed:false};
+  const time=rec.time||'23:59';
+  const newPeriods=toAdd.map(d=>{
+    const subs={};task.members.forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
+    return{id:uid(),deadline:`${d}T${time}:00`,submissions:subs};
+  });
+  const all=[...(task.periods||[]),...newPeriods].sort((a,b)=>new Date(a.deadline)-new Date(b.deadline));
+  return{task:{...task,periods:all},changed:true};
+}
+
+async function autoGenerate(){
+  let changed=false;
+  S.tasks=S.tasks.map(t=>{
+    const {task,changed:c}=ensurePeriods(t);
+    if(c)changed=true;
+    return task;
+  });
+  if(changed)await saveData();
+}
 
 /* ══ STATE ══ */
 const S={
   screen:'loading',token:'',userName:'',nameInput:'',
-  tasks:[],expanded:new Set(),
+  tasks:[],expanded:new Set(),showHistory:new Set(),expandedHistPeriods:new Set(),
   editKey:null,editData:{},
-  editTaskId:null,          // task being edited in modal
-  editTaskMembers:[],       // live member list for edit modal
-  editTaskMemberInput:'',
-  showAdd:false,newTask:{title:'',deadline:''},newMembers:[],memberInput:'',
-  tab:'tasks',filter:'all',search:'',
+  editTaskId:null,editTaskMembers:[],editTaskRecDays:[],
+  showAdd:false,
+  // add form live state (only what needs re-render)
+  addIsRec:false,addRecType:'weekly',addRecDays:[5],
+  filter:'all',search:'',
   userSearch:'',
+  tab:'tasks',
   calView:'month',calDate:new Date(),dayPopup:null,
   dragSrcId:null,
   lastEtag:'',syncTime:null,syncError:false,saving:false,
 };
 
-/* ══ GIST ══ */
+/* ══ GIST API ══ */
 async function gistGet(){
   const h={Authorization:`token ${S.token}`,Accept:'application/vnd.github.v3+json'};
   if(S.lastEtag)h['If-None-Match']=S.lastEtag;
@@ -325,17 +374,35 @@ async function gistSet(data){
   S.lastEtag='';
 }
 
+const SAMPLE=[
+  {id:'t1',title:'Q2 業績總結簡報',isRecurring:false,deadline:'2025-06-10',deadlineTime:'17:00',
+   members:['王小明','陳美華','林志翔'],
+   submissions:{'王小明':{status:'completed',updatedAt:'2025-05-20T09:00:00Z',log:[{content:'已完成並上傳',at:'2025-05-20T09:00:00Z'}]},'陳美華':{status:'in_progress',updatedAt:'2025-05-21T14:30:00Z',log:[{content:'圖表製作中',at:'2025-05-21T14:30:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]}},
+   createdAt:'2025-05-15T00:00:00Z'},
+  {id:'t2',title:'每週進度週報',isRecurring:true,
+   recurrence:{type:'weekly',daysOfWeek:[5],time:'17:00',startDate:'2025-05-23',endDate:''},
+   members:['陳美華','林志翔','張雅婷'],
+   periods:[
+     {id:'p1',deadline:'2025-05-23T17:00:00',submissions:{'陳美華':{status:'completed',updatedAt:'2025-05-23T16:00:00Z',log:[{content:'第一週週報完成',at:'2025-05-23T16:00:00Z'}]},'林志翔':{status:'completed',updatedAt:'2025-05-23T15:00:00Z',log:[{content:'已提交',at:'2025-05-23T15:00:00Z'}]},'張雅婷':{status:'delayed',updatedAt:'2025-05-24T09:00:00Z',log:[{content:'因請假延遲提交',at:'2025-05-24T09:00:00Z'}]}}},
+     {id:'p2',deadline:'2025-05-30T17:00:00',submissions:{'陳美華':{status:'completed',updatedAt:'2025-05-30T14:00:00Z',log:[{content:'第二週完成',at:'2025-05-30T14:00:00Z'}]},'林志翔':{status:'not_started',updatedAt:'',log:[]},'張雅婷':{status:'not_started',updatedAt:'',log:[]}}},
+   ],
+   createdAt:'2025-05-15T00:00:00Z'},
+];
+
+/* ══ INIT / SYNC ══ */
 async function init(){
   S.token=localStorage.getItem(TOKEN_KEY)||'';
   if(!S.token){S.screen='setup';hideLoading();render();return;}
   try{
     const d=await gistGet();
-    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks;
+    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks.map(migrateTask);
     if(!d||!d.tasks?.length)await gistSet({tasks:S.tasks});
     S.syncTime=new Date();S.screen='login';
+    await autoGenerate();
   }catch{localStorage.removeItem(TOKEN_KEY);S.token='';S.screen='setup';}
   hideLoading();render();startSync();
 }
+function migrateTask(t){return{isRecurring:false,deadlineTime:'',submissions:{},...t};}
 function hideLoading(){
   const el=document.getElementById('loading');el.style.opacity='0';
   setTimeout(()=>{el.style.display='none';document.getElementById('app').style.display='';},400);
@@ -345,8 +412,11 @@ function startSync(){
   clearInterval(syncTimer);
   syncTimer=setInterval(async()=>{
     if(S.screen!=='main'||S.editKey||S.saving)return;
-    try{const d=await gistGet();if(d&&JSON.stringify(d.tasks)!==JSON.stringify(S.tasks)){S.tasks=d.tasks;render();}S.syncTime=new Date();S.syncError=false;updSync();}
-    catch{S.syncError=true;updSync();}
+    try{
+      const d=await gistGet();
+      if(d&&JSON.stringify(d.tasks)!==JSON.stringify(S.tasks)){S.tasks=d.tasks.map(migrateTask);render();}
+      S.syncTime=new Date();S.syncError=false;updSync();
+    }catch{S.syncError=true;updSync();}
   },SYNC_MS);
 }
 function updSync(){
@@ -361,19 +431,44 @@ async function saveData(){
   S.saving=false;
 }
 
-/* helpers */
-function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
-function isOver(d){return d&&new Date(d)<new Date();}
-function isSoon(d){if(!d)return false;const v=new Date(d)-new Date();return v>0&&v<3*86400000;}
-function fmtTs(iso){if(!iso)return '';const d=new Date(iso);return d.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});}
-function taskAllDone(t){return t.members.every(m=>t.submissions[m]?.status==='completed');}
-function taskPending(t){return t.members.filter(m=>t.submissions[m]?.status!=='completed').length;}
-function isMine(t){return t.members.includes(S.userName);}
-function myStatus(t){return t.submissions[S.userName]?.status||null;}
-function tasksOnDate(ds){return S.tasks.filter(t=>t.deadline===ds);}
+/* ══ HELPERS ══ */
+function dStr2(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 function dStr(y,m,d){return`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}
-function allMembers(){const s=new Set();S.tasks.forEach(t=>t.members.forEach(m=>s.add(m)));return[...s].sort();}
+function fmtTs(iso){if(!iso)return '';const d=new Date(iso);return d.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});}
+function fmtDT(dt){if(!dt)return '';return dt.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+dt.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});}
+function fmtTaskDL(task,period){
+  if(task.isRecurring){const p=period||getCurrentPeriod(task);return p?fmtDT(new Date(p.deadline)):'';}
+  if(!task.deadline)return '';
+  return task.deadline+(task.deadlineTime?' '+task.deadlineTime:'');
+}
+function isOver(dt){return dt&&dt<new Date();}
+function isSoon(dt){if(!dt)return false;const v=dt-new Date();return v>0&&v<3*86400000;}
+function taskAllDone(t,p){return (t.members||[]).every(m=>getSubs(t,p)[m]?.status==='completed');}
+function taskPending(t,p){return (t.members||[]).filter(m=>getSubs(t,p)[m]?.status!=='completed').length;}
+function isMine(t){return(t.members||[]).includes(S.userName);}
+function myStatus(t,p){return getSubs(t,p)[S.userName]?.status||null;}
+function tasksOnDate(ds){
+  const res=[];
+  for(const t of S.tasks){
+    if(t.isRecurring){
+      const ps=(t.periods||[]).filter(p=>p.deadline.slice(0,10)===ds);
+      ps.forEach(p=>res.push({task:t,period:p}));
+    } else {
+      if(t.deadline===ds)res.push({task:t,period:null});
+    }
+  }
+  return res;
+}
+function allMembers(){const s=new Set();S.tasks.forEach(t=>(t.members||[]).forEach(m=>s.add(m)));return[...s].sort();}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function recLabel(task){
+  if(!task.isRecurring||!task.recurrence)return '';
+  const r=task.recurrence,lbl=REC_LBL[r.type]||r.type;
+  if((r.type==='weekly'||r.type==='biweekly')&&r.daysOfWeek?.length)return`${lbl}${r.daysOfWeek.map(d=>'（'+DOW[d]+'）').join('')}`;
+  if(r.type==='monthly'&&r.dayOfMonth)return`${lbl}（${r.dayOfMonth}日）`;
+  return lbl;
+}
+function periodIndex(task,period){return(task.periods||[]).findIndex(p=>p.id===period.id)+1;}
 let toastT;
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600);}
 
@@ -384,47 +479,30 @@ function render(){
   if(S.screen==='login'){app.innerHTML=rLogin();bind();return;}
   app.innerHTML=rMain();bind();
 }
-
-function rSetup(){return`<div class="overlay"><div class="modal">
-  <div class="modal-icon">🔑</div><h2>設定 GitHub Token</h2>
-  <p>前往 <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> 建立 Personal Access Token (Classic)，勾選 <strong>gist</strong> 權限後貼到下方。Token 僅儲存在您的瀏覽器。</p>
-  <div class="field"><label class="lbl">Personal Access Token</label><input class="inp" type="password" id="tokIn" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/></div>
-  <button class="btn btn-primary" id="saveTokenBtn" disabled>儲存並進入系統</button>
-</div></div>`;}
-
-function rLogin(){return`<div class="overlay"><div class="modal">
-  <div class="modal-icon">📊</div><h2>簡報進度追蹤</h2>
-  <p>輸入您的姓名後進入系統。</p>
-  <div class="field"><label class="lbl">您的姓名</label><input class="inp" id="nameIn" placeholder="王小明" value="${esc(S.nameInput||'')}"/></div>
-  <button class="btn btn-primary" id="loginBtn" ${!(S.nameInput||'').trim()?'disabled':''}>進入系統 →</button>
-  <div style="text-align:center;margin-top:10px"><button class="btn btn-ghost btn-sm" id="resetTokBtn">更換 Token</button></div>
-</div></div>`;}
+function rSetup(){return`<div class="overlay"><div class="modal"><div class="modal-icon">🔑</div><h2>設定 GitHub Token</h2><p>前往 <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> 建立 Personal Access Token (Classic)，勾選 <strong>gist</strong> 權限後貼到下方。Token 僅儲存在您的瀏覽器。</p><div class="field"><label class="lbl">Personal Access Token</label><input class="inp" type="password" id="tokIn" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/></div><button class="btn btn-primary" id="saveTokenBtn" disabled>儲存並進入系統</button></div></div>`;}
+function rLogin(){return`<div class="overlay"><div class="modal"><div class="modal-icon">📊</div><h2>簡報進度追蹤</h2><p>輸入您的姓名後進入系統。</p><div class="field"><label class="lbl">您的姓名</label><input class="inp" id="nameIn" placeholder="王小明" value="${esc(S.nameInput||'')}"/></div><button class="btn btn-primary" id="loginBtn" ${!(S.nameInput||'').trim()?'disabled':''}>進入系統 →</button><div style="text-align:center;margin-top:10px"><button class="btn btn-ghost btn-sm" id="resetTokBtn">更換 Token</button></div></div></div>`;}
 
 function rMain(){
-  const totalSubs=S.tasks.reduce((a,t)=>a+t.members.length,0);
-  const doneSubs=S.tasks.reduce((a,t)=>a+t.members.filter(m=>t.submissions[m]?.status==='completed').length,0);
+  const totalSubs=S.tasks.reduce((a,t)=>{if(t.isRecurring){const p=getCurrentPeriod(t);return a+(p?(t.members||[]).length:0);}return a+(t.members||[]).length;},0);
+  const doneSubs=S.tasks.reduce((a,t)=>{const subs=getSubs(t);return a+(t.members||[]).filter(m=>subs[m]?.status==='completed').length;},0);
   const pct=totalSubs?Math.round(doneSubs/totalSubs*100):0;
-  const overdue=S.tasks.filter(t=>isOver(t.deadline)&&!taskAllDone(t)).length;
+  const overdue=S.tasks.filter(t=>{const dl=getDeadlineDT(t);return dl&&dl<new Date()&&!taskAllDone(t);}).length;
   const myPend=S.tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed').length;
   const ts=S.syncTime?S.syncTime.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
   let body='';
-  if(S.tab==='tasks')    body=rTasksTab();
-  else if(S.tab==='cal') body=rCalTab();
-  else                   body=rUsersTab();
+  if(S.tab==='tasks')body=rTasksTab();
+  else if(S.tab==='cal')body=rCalTab();
+  else body=rUsersTab();
   return`<div>
 <div class="header"><div class="hdr">
   <div class="hdr-top">
-    <div>
-      <div class="hdr-title">📊 簡報進度追蹤系統</div>
-      <div class="hdr-sub">👤 ${esc(S.userName)} · ${S.tasks.length} 個任務</div>
-      <div class="sync-pill" id="syncPill"><span class="sdot"></span> 同步中 · 上次 ${ts}</div>
-    </div>
-    <div><div class="stat-pct">${pct}<span style="font-size:13px;opacity:.6">%</span></div><div class="stat-lbl">${doneSubs} / ${totalSubs} 已繳交</div></div>
+    <div><div class="hdr-title">📊 簡報進度追蹤系統</div><div class="hdr-sub">👤 ${esc(S.userName)} · ${S.tasks.length} 個任務</div><div class="sync-pill" id="syncPill"><span class="sdot"></span> 同步中 · 上次 ${ts}</div></div>
+    <div><div class="stat-pct">${pct}<span style="font-size:13px;opacity:.6">%</span></div><div class="stat-lbl">${doneSubs}/${totalSubs} 已繳交</div></div>
   </div>
   <div class="prog-wrap"><div class="prog-fill" style="width:${pct}%"></div></div>
   <div class="nav-tabs">
     <button class="nav-tab ${S.tab==='tasks'?'active':''}" data-tab="tasks">📋 任務列表</button>
-    <button class="nav-tab ${S.tab==='cal'?'active':''}"   data-tab="cal">📅 行事曆</button>
+    <button class="nav-tab ${S.tab==='cal'?'active':''}" data-tab="cal">📅 行事曆</button>
     <button class="nav-tab ${S.tab==='users'?'active':''}" data-tab="users">👥 成員查詢</button>
   </div>
 </div></div>
@@ -445,20 +523,21 @@ ${S.editTaskId?rEditTaskModal():''}
 /* ── TASKS TAB ── */
 function rTasksTab(){
   let tasks=[...S.tasks];
-  if(S.filter==='mine')       tasks=tasks.filter(t=>isMine(t));
-  else if(S.filter==='pending')    tasks=tasks.filter(t=>!taskAllDone(t));
-  else if(S.filter==='myPending')  tasks=tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed');
-  else if(S.filter==='red')        tasks=tasks.filter(t=>calcRag(t)==='red');
-  else if(S.filter==='amber')      tasks=tasks.filter(t=>calcRag(t)==='amber');
-  else if(S.filter==='green')      tasks=tasks.filter(t=>calcRag(t)==='green');
-  if(S.search.trim())              tasks=tasks.filter(t=>t.title.includes(S.search.trim()));
+  if(S.filter==='mine')tasks=tasks.filter(t=>isMine(t));
+  else if(S.filter==='pending')tasks=tasks.filter(t=>!taskAllDone(t));
+  else if(S.filter==='myPending')tasks=tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed');
+  else if(S.filter==='red')tasks=tasks.filter(t=>calcRag(t)==='red');
+  else if(S.filter==='amber')tasks=tasks.filter(t=>calcRag(t)==='amber');
+  else if(S.filter==='green')tasks=tasks.filter(t=>calcRag(t)==='green');
+  else if(S.filter==='recurring')tasks=tasks.filter(t=>t.isRecurring);
+  if(S.search.trim())tasks=tasks.filter(t=>t.title.includes(S.search.trim()));
   return`<div>
   <div class="rag-legend">
-    <span class="rag-legend-lbl">紅黃綠燈：</span>
+    <span style="font-size:11px;font-weight:600;color:var(--text2)">紅黃綠燈：</span>
     <span class="rag rag-green"><span class="rag-dot" style="background:#059669"></span>進度正常</span>
-    <span class="rag rag-amber"><span class="rag-dot" style="background:#f59e0b"></span>需注意（3天內到期 / 半數未提交）</span>
-    <span class="rag rag-red"  ><span class="rag-dot" style="background:#ef4444"></span>風險（逾期 / 有人落後）</span>
-    <span class="rag rag-gray" ><span class="rag-dot" style="background:#94a3b8"></span>未開始</span>
+    <span class="rag rag-amber"><span class="rag-dot" style="background:#f59e0b"></span>需注意</span>
+    <span class="rag rag-red"><span class="rag-dot" style="background:#ef4444"></span>風險/逾期</span>
+    <span class="rag rag-gray"><span class="rag-dot" style="background:#94a3b8"></span>未開始</span>
   </div>
   <div class="toolbar">
     <div class="tl">
@@ -467,32 +546,63 @@ function rTasksTab(){
     </div>
     <div class="tr">
       <input class="srch" id="searchIn" placeholder="搜尋任務…" value="${esc(S.search)}"/>
-      <button class="fbtn ${S.filter==='all'?'active':''}"       data-f="all">全部</button>
-      <button class="fbtn ${S.filter==='red'?'active':''}"       data-f="red">🔴 風險</button>
-      <button class="fbtn ${S.filter==='amber'?'active':''}"     data-f="amber">🟡 注意</button>
-      <button class="fbtn ${S.filter==='green'?'active':''}"     data-f="green">🟢 正常</button>
+      <button class="fbtn ${S.filter==='all'?'active':''}" data-f="all">全部</button>
+      <button class="fbtn ${S.filter==='red'?'active':''}" data-f="red">🔴 風險</button>
+      <button class="fbtn ${S.filter==='amber'?'active':''}" data-f="amber">🟡 注意</button>
+      <button class="fbtn ${S.filter==='green'?'active':''}" data-f="green">🟢 正常</button>
+      <button class="fbtn ${S.filter==='recurring'?'active':''}" data-f="recurring">🔁 定期</button>
       <button class="fbtn ${S.filter==='myPending'?'active':''}" data-f="myPending">我未完成</button>
-      <button class="fbtn ${S.filter==='pending'?'active':''}"   data-f="pending">未全員繳交</button>
     </div>
   </div>
   ${S.showAdd?rAddForm():''}
   <div class="tasks-list" id="tasksList">
-    ${tasks.length?tasks.map(rTask).join(''):`<div class="empty"><div style="font-size:32px;margin-bottom:8px">📋</div><div>沒有符合條件的任務</div></div>`}
+    ${tasks.length?tasks.map(rTask).join(''):`<div style="text-align:center;padding:52px 24px;background:#fff;border-radius:var(--r);color:var(--text2)"><div style="font-size:32px;margin-bottom:8px">📋</div><div>沒有符合條件的任務</div></div>`}
   </div>
-  <div class="drag-hint">☰ 拖曳左側把手可調整任務順序</div>
+  <div style="font-size:12px;color:#94a3b8;text-align:center;margin-top:8px">☰ 拖曳左側把手可調整任務順序</div>
 </div>`;
 }
 
+/* ── ADD FORM ── */
 function rAddForm(){
-  const tags=S.newMembers.map(m=>`<span class="mtag">${esc(m)}<button data-rm="${esc(m)}">×</button></span>`).join('');
+  const isRec=S.addIsRec,recType=S.addRecType,recDays=S.addRecDays;
+  const today=new Date().toISOString().split('T')[0];
+  const tags=(S.newMembers||[]).map(m=>`<span class="mtag">${esc(m)}<button data-rm="${esc(m)}">×</button></span>`).join('');
+  const dowBtns=DOW.map((d,i)=>`<button type="button" class="dow-btn addDowBtn ${recDays.includes(i)?'active':''}" data-dow="${i}">${d}</button>`).join('');
   return`<div class="task-form">
   <h3>＋ 新增任務</h3>
+  <div class="field"><label class="lbl">任務名稱 *</label><input class="inp" id="nTitle" placeholder="例：Q3 業績報告"/></div>
+  <label class="check-row"><input type="checkbox" id="nIsRec" ${isRec?'checked':''}/><span>🔁 定期任務（定期重複追蹤）</span></label>
+  ${!isRec?`
   <div class="form-2">
-    <div class="field"><label class="lbl">任務名稱 *</label><input class="inp" id="nTitle" placeholder="例：Q3 業績報告" value="${esc(S.newTask.title)}"/></div>
-    <div class="field"><label class="lbl">截止日期</label><input class="inp" type="date" id="nDeadline" value="${S.newTask.deadline}"/></div>
-  </div>
+    <div class="field"><label class="lbl">截止日期</label><input class="inp" type="date" id="nDeadline"/></div>
+    <div class="field"><label class="lbl">截止時間</label><input class="inp" type="time" id="nDeadlineTime" value="17:00"/></div>
+  </div>`:`
+  <div class="rec-box">
+    <div class="rec-box-title">🔁 定期設定</div>
+    <div class="form-2">
+      <div class="field"><label class="lbl">重複週期</label>
+        <select class="inp" id="nRecType">
+          <option value="daily" ${recType==='daily'?'selected':''}>每天</option>
+          <option value="weekly" ${recType==='weekly'?'selected':''}>每週（指定星期）</option>
+          <option value="biweekly" ${recType==='biweekly'?'selected':''}>每兩週（指定星期）</option>
+          <option value="monthly" ${recType==='monthly'?'selected':''}>每月（指定日期）</option>
+        </select>
+      </div>
+      <div class="field"><label class="lbl">截止時間</label><input class="inp" type="time" id="nRecTime" value="17:00"/></div>
+    </div>
+    ${(recType==='weekly'||recType==='biweekly')?`
+    <div class="field"><label class="lbl">重複於（可多選）</label>
+      <div class="dow-picker">${dowBtns}</div>
+    </div>`:''}
+    ${recType==='monthly'?`
+    <div class="field"><label class="lbl">每月第幾日</label><input class="inp" type="number" id="nRecDom" min="1" max="28" value="1" style="width:120px"/></div>`:''}
+    <div class="form-2">
+      <div class="field"><label class="lbl">開始日期</label><input class="inp" type="date" id="nRecStart" value="${today}"/></div>
+      <div class="field"><label class="lbl">結束日期（可留空）</label><input class="inp" type="date" id="nRecEnd"/></div>
+    </div>
+  </div>`}
   <div class="field" style="margin-top:8px"><label class="lbl">需繳交成員</label>
-    <div class="madd"><input class="inp" id="memberIn" placeholder="輸入成員姓名，按 Enter 新增" value="${esc(S.memberInput)}"/><button class="btn btn-ghost btn-sm" id="addMemberBtn">新增</button></div>
+    <div class="madd"><input class="inp" id="memberIn" placeholder="輸入成員姓名，按 Enter 新增" value=""/><button class="btn btn-ghost btn-sm" id="addMemberBtn">新增</button></div>
     <div class="mtags">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
   </div>
   <div class="form-actions">
@@ -502,38 +612,44 @@ function rAddForm(){
 </div>`;
 }
 
+/* ── TASK CARD ── */
 function rTask(task){
   const exp=S.expanded.has(task.id);
-  const od=isOver(task.deadline)&&!taskAllDone(task);
-  const sn=isSoon(task.deadline);
+  const cp=getCurrentPeriod(task);
+  const subs=getSubs(task);
+  const dl=getDeadlineDT(task);
+  const od=isOver(dl)&&!taskAllDone(task);
+  const sn=isSoon(dl);
   const pending=taskPending(task);
-  const done=task.members.length-pending;
+  const done=(task.members||[]).length-pending;
   const ms=myStatus(task);
-  const dotMap={'mp-done':'#059669','mp-prog':'#2563eb','mp-review':'#d97706','mp-late':'#dc2626','mp-none':'#94a3b8'};
-  const pills=task.members.map(m=>{
-    const sub=task.submissions[m]||{status:'not_started'};
-    const st=ST[sub.status]||ST.not_started;
-    return`<span class="mpill ${st.pcls}"><span class="pdot" style="background:${dotMap[st.pcls]}"></span>${esc(m)}</span>`;
-  }).join('');
+  const pills=(task.members||[]).map(m=>{const sub=subs[m]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<span class="mpill ${st.pcls}"><span class="pdot" style="background:${DOTC[st.pcls]}"></span>${esc(m)}</span>`;}).join('');
+  const dlStr=fmtTaskDL(task);
   return`<div class="task-card ${od?'overdue':''}" data-taskid="${task.id}" draggable="true">
   <div class="task-head" id="hd_${task.id}">
-    <div class="drag-handle" title="拖曳排序">☰</div>
+    <div class="drag-handle">☰</div>
     <div class="th-inner">
       <div class="th-row">
         <div class="th-left">
-          <div class="ttl">${ragBadge(task)} ${esc(task.title)}
-            ${taskAllDone(task)?`<span class="badge bg-g">✓ 全員完成</span>`:`<span class="badge bg-a">${pending} 人未繳</span>`}
-            ${od?`<span class="badge bg-r">⚠ 已逾期</span>`:''}
+          <div class="ttl">
+            ${task.isRecurring?'<span class="badge bg-p">🔁 定期</span>':''}
+            ${ragBadge(task)}
+            ${esc(task.title)}
+            ${task.isRecurring&&cp?`<span class="badge bg-b">第 ${periodIndex(task,cp)} 期</span>`:''}
+            ${taskAllDone(task)?`<span class="badge bg-g">✓ 完成</span>`:`<span class="badge bg-a">${pending} 人未繳</span>`}
+            ${od?`<span class="badge bg-r">⚠ 逾期</span>`:''}
             ${sn?`<span class="badge bg-a">⏰ 即將到期</span>`:''}
-            ${isMine(task)&&ms?`<span class="badge ${ST[ms].bdg}">我：${ST[ms].lbl}</span>`:''}
+            ${isMine(task)&&ms?`<span class="badge ${(ST[ms]||ST.not_started).bdg}">我：${(ST[ms]||ST.not_started).lbl}</span>`:''}
           </div>
           <div class="tmeta">
-            <span class="tm">👥 ${task.members.length} 位成員 · 已繳 ${done}</span>
-            ${task.deadline?`<span class="tm ${od?'red':''}">📅 截止 ${task.deadline}</span>`:''}
+            <span class="tm">👥 ${(task.members||[]).length} 位成員 · 已繳 ${done}</span>
+            ${dlStr?`<span class="tm ${od?'red':''}">📅 截止 ${dlStr}</span>`:''}
+            ${task.isRecurring?`<span class="tm">🔄 ${recLabel(task)}</span>`:''}
           </div>
           <div class="mbar">${pills}</div>
         </div>
         <div class="th-actions">
+          <button class="btn btn-purple btn-icon" id="copyBtn_${task.id}" title="複製任務">📋</button>
           <button class="btn btn-amber btn-icon" id="editTaskBtn_${task.id}" title="編輯任務">✏️</button>
           <button class="btn btn-danger btn-icon" id="delTaskBtn_${task.id}" title="刪除任務">🗑</button>
           <span class="exp-icon ${exp?'open':''}">▼</span>
@@ -541,36 +657,102 @@ function rTask(task){
       </div>
     </div>
   </div>
-  ${exp?`<div class="task-body">${task.members.map(m=>rMemberRow(task,m)).join('')}</div>`:''}
+  ${exp?(task.isRecurring?rRecBody(task):rNormalBody(task)):''}
 </div>`;
 }
 
-function rMemberRow(task,member){
-  const sub=task.submissions[member]||{status:'not_started',updatedAt:'',log:[]};
+function rNormalBody(task){
+  return`<div class="task-body">${(task.members||[]).map(m=>rMemberRow(task,null,m)).join('')}</div>`;
+}
+
+function rRecBody(task){
+  const now=new Date();
+  const sorted=[...(task.periods||[])].sort((a,b)=>new Date(b.deadline)-new Date(a.deadline));
+  const cp=getCurrentPeriod(task);
+  const history=sorted.filter(p=>p!==cp);
+  const showHist=S.showHistory.has(task.id);
+  let html=`<div class="task-body">`;
+  if(cp){
+    html+=`<div class="period-head current">
+      <span class="period-num">第 ${periodIndex(task,cp)} 期</span>
+      <span class="period-dl">截止 ${fmtDT(new Date(cp.deadline))}</span>
+      <span class="badge bg-b">當期</span>
+      ${ragBadge(task,cp)}
+    </div>`;
+    html+=(task.members||[]).map(m=>rMemberRow(task,cp,m)).join('');
+  }
+  if(history.length){
+    html+=`<button class="history-btn" id="histBtn_${task.id}">
+      ${showHist?'▲ 收起歷史紀錄':`▼ 顯示歷史紀錄（${history.length} 期）`}
+    </button>`;
+    if(showHist){
+      history.forEach(period=>{
+        const pid=period.id;
+        const hExp=S.expandedHistPeriods.has(pid);
+        const allDone=(task.members||[]).every(m=>period.submissions[m]?.status==='completed');
+        html+=`<div class="hist-period">
+          <div class="hist-period-head" id="histPH_${pid}">
+            <span class="period-num">第 ${periodIndex(task,period)} 期</span>
+            <span class="period-dl">截止 ${fmtDT(new Date(period.deadline))}</span>
+            ${allDone?`<span class="badge bg-g">✓ 完成</span>`:`<span class="badge bg-a">${taskPending(task,period)} 人未繳</span>`}
+            <span class="exp-icon ${hExp?'open':''}" style="margin-left:auto">▼</span>
+          </div>
+          ${hExp?(task.members||[]).map(m=>rMemberRowHistory(task,period,m)).join(''):''}
+        </div>`;
+      });
+    }
+  }
+  html+='</div>';
+  return html;
+}
+
+/* ── MEMBER ROWS ── */
+function makeKey(task,period,member){
+  return period?`${task.id}~~${period.id}~~${member}`:`${task.id}~~${member}`;
+}
+function parseKey(key){const p=key.split('~~');return p.length===3?{tid:p[0],pid:p[1],member:p[2]}:{tid:p[0],pid:null,member:p[1]};}
+
+function rMemberRow(task,period,member){
+  const subs=getSubs(task,period);
+  const sub=subs[member]||{status:'not_started',updatedAt:'',log:[]};
   const st=ST[sub.status]||ST.not_started;
-  const key=`${task.id}|${member}`;
+  const key=makeKey(task,period,member);
   const isEditing=S.editKey===key;
   const log=[...(sub.log||[])].reverse();
   const logHtml=log.length?log.map((e,i)=>`<div class="log-e ${i===0?'latest':''}"><div class="lm">${fmtTs(e.at)}</div>${esc(e.content)}</div>`).join(''):`<div class="no-log">尚無更新記錄</div>`;
-  return`<div><div class="mr">
-    <div class="mr-l">
-      <div class="mr-name">${esc(member)}${member===S.userName?' <span style="font-size:10px;color:#94a3b8">（我）</span>':''}</div>
+  return`<div>
+  <div class="mr">
+    <div class="mr-l"><div class="mr-name">${esc(member)}${member===S.userName?' <span style="font-size:10px;color:#94a3b8">（我）</span>':''}</div>
       <span class="badge ${st.bdg}">${st.lbl}</span>
       ${sub.updatedAt?`<div style="font-size:10px;color:#94a3b8;margin-top:3px">${fmtTs(sub.updatedAt)}</div>`:''}
     </div>
     <div class="mr-m"><div class="log-list">${logHtml}</div></div>
     <div class="mr-r"><button class="btn ${isEditing?'btn-ghost':'btn-navy'} btn-sm" data-edit="${key}">${isEditing?'取消':'✏️ 更新'}</button></div>
-  </div>${isEditing?rInlineEdit(sub):''}</div>`;
+  </div>
+  ${isEditing?rInlineEdit(sub,key):''}
+</div>`;
 }
 
-function rInlineEdit(sub){
+function rMemberRowHistory(task,period,member){
+  const sub=period.submissions[member]||{status:'not_started',updatedAt:'',log:[]};
+  const st=ST[sub.status]||ST.not_started;
+  const log=[...(sub.log||[])].reverse();
+  const logHtml=log.length?log.map((e,i)=>`<div class="log-e ${i===0?'latest':''}"><div class="lm">${fmtTs(e.at)}</div>${esc(e.content)}</div>`).join(''):`<div class="no-log">尚無更新記錄</div>`;
+  return`<div class="mr" style="opacity:.8">
+    <div class="mr-l"><div class="mr-name">${esc(member)}</div><span class="badge ${st.bdg}">${st.lbl}</span></div>
+    <div class="mr-m"><div class="log-list">${logHtml}</div></div>
+    <div class="mr-r"></div>
+  </div>`;
+}
+
+function rInlineEdit(sub,key){
   const ed=S.editData;
   return`<div class="ied">
   <div class="ied-g">
     <div class="field"><label class="lbl">進度狀態</label>
       <select class="inp" id="eStatus">${Object.entries(ST).map(([v,s])=>`<option value="${v}" ${(ed.status||sub.status)===v?'selected':''}>${s.lbl}</option>`).join('')}</select>
     </div>
-    <div class="field"><label class="lbl">更新日期</label><input class="inp" type="date" id="eDate" value="${ed.date||new Date().toISOString().split('T')[0]}"/></div>
+    <div class="field"><label class="lbl">更新日期時間</label><input class="inp" type="datetime-local" id="eDate" value="${ed.date||new Date().toISOString().slice(0,16)}"/></div>
   </div>
   <div class="ied-f"><div class="field"><label class="lbl">本次更新內容 *</label>
     <textarea class="inp" id="eContent" placeholder="說明這次完成了什麼、目前進度、或遇到的問題…">${esc(ed.content||'')}</textarea>
@@ -582,40 +764,67 @@ function rInlineEdit(sub){
 </div>`;
 }
 
-/* ── EDIT TASK MODAL ──
-   Key fix: inputs use plain HTML value attributes.
-   We do NOT bind live input events to state.
-   doSaveEditTask() reads directly from DOM on save.
-   S.editTaskMembers tracks the member list (add/remove triggers re-render).
-── */
+/* ── EDIT TASK MODAL ── */
 function rEditTaskModal(){
-  const task=S.tasks.find(t=>t.id===S.editTaskId);
-  if(!task)return'';
-  const tags=S.editTaskMembers.map(m=>`<span class="mtag">${esc(m)}<button class="rmEditMember" data-m="${esc(m)}">×</button></span>`).join('');
+  const task=S.tasks.find(t=>t.id===S.editTaskId);if(!task)return'';
+  const isRec=task.isRecurring;
+  const rec=task.recurrence||{};
+  const members=S.editTaskMembers;
+  const recDays=S.editTaskRecDays;
+  const tags=members.map(m=>`<span class="mtag">${esc(m)}<button class="rmEditMember" data-m="${esc(m)}">×</button></span>`).join('');
+  const dowBtns=DOW.map((d,i)=>`<button type="button" class="dow-btn editDowBtn ${recDays.includes(i)?'active':''}" data-dow="${i}">${d}</button>`).join('');
+  const recType=rec.type||'weekly';
   return`<div class="overlay" id="editOverlay"><div class="modal">
-  <div class="modal-icon">✏️</div>
-  <h2>編輯任務</h2>
-  <div class="field">
-    <label class="lbl">任務名稱 *</label>
-    <input class="inp" id="etTitle" value="${esc(task.title)}" placeholder="任務名稱"/>
-  </div>
-  <div class="field">
-    <label class="lbl">截止日期</label>
-    <input class="inp" type="date" id="etDeadline" value="${task.deadline||''}"/>
-  </div>
-  <div class="field">
-    <label class="lbl">成員（移除後原有紀錄不影響）</label>
-    <div class="madd">
-      <input class="inp" id="etMemberIn" placeholder="輸入成員姓名，按 Enter 新增"/>
-      <button class="btn btn-ghost btn-sm" id="etAddBtn">新增</button>
+  <div class="modal-icon">✏️</div><h2>編輯任務</h2>
+  <div class="field"><label class="lbl">任務名稱 *</label><input class="inp" id="etTitle" value="${esc(task.title)}"/></div>
+  ${!isRec?`
+  <div class="form-2">
+    <div class="field"><label class="lbl">截止日期</label><input class="inp" type="date" id="etDeadline" value="${task.deadline||''}"/></div>
+    <div class="field"><label class="lbl">截止時間</label><input class="inp" type="time" id="etDeadlineTime" value="${task.deadlineTime||'17:00'}"/></div>
+  </div>`:`
+  <div class="rec-box">
+    <div class="rec-box-title">🔁 定期設定</div>
+    <div class="form-2">
+      <div class="field"><label class="lbl">重複週期</label>
+        <select class="inp" id="etRecType" onchange="onEditRecTypeChange(this.value)">
+          <option value="daily" ${recType==='daily'?'selected':''}>每天</option>
+          <option value="weekly" ${recType==='weekly'?'selected':''}>每週</option>
+          <option value="biweekly" ${recType==='biweekly'?'selected':''}>每兩週</option>
+          <option value="monthly" ${recType==='monthly'?'selected':''}>每月</option>
+        </select>
+      </div>
+      <div class="field"><label class="lbl">截止時間</label><input class="inp" type="time" id="etRecTime" value="${rec.time||'17:00'}"/></div>
     </div>
-    <div class="mtags" style="margin-top:7px">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
+    ${(recType==='weekly'||recType==='biweekly')?`
+    <div class="field" id="etDowSection"><label class="lbl">重複於（可多選）</label><div class="dow-picker">${dowBtns}</div></div>`:''}
+    ${recType==='monthly'?`
+    <div class="field" id="etDomSection"><label class="lbl">每月第幾日</label><input class="inp" type="number" id="etRecDom" min="1" max="28" value="${rec.dayOfMonth||1}" style="width:120px"/></div>`:''}
+    <div class="form-2">
+      <div class="field"><label class="lbl">開始日期</label><input class="inp" type="date" id="etRecStart" value="${rec.startDate||''}"/></div>
+      <div class="field"><label class="lbl">結束日期（可留空）</label><input class="inp" type="date" id="etRecEnd" value="${rec.endDate||''}"/></div>
+    </div>
+  </div>`}
+  <div class="field"><label class="lbl">成員</label>
+    <div class="madd"><input class="inp" id="etMemberIn" placeholder="新增成員姓名"/><button class="btn btn-ghost btn-sm" id="etAddBtn">新增</button></div>
+    <div class="mtags" id="etMemberTags">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
   </div>
   <div class="form-actions">
     <button class="btn btn-navy btn-sm" id="saveEditTaskBtn" ${S.saving?'disabled':''}>${S.saving?'儲存中…':'💾 儲存變更'}</button>
     <button class="btn btn-ghost btn-sm" id="cancelEditTaskBtn">取消</button>
   </div>
 </div></div>`;
+}
+function onEditRecTypeChange(val){
+  // Used by inline onchange - just re-render modal
+  const task=S.tasks.find(t=>t.id===S.editTaskId);if(!task)return;
+  // Peek at current DOM values before re-render
+  const title=document.getElementById('etTitle')?.value||task.title;
+  const start=document.getElementById('etRecStart')?.value||task.recurrence?.startDate||'';
+  const end=document.getElementById('etRecEnd')?.value||task.recurrence?.endDate||'';
+  const time=document.getElementById('etRecTime')?.value||task.recurrence?.time||'17:00';
+  // Store temporarily
+  S._etCache={title,start,end,time,recType:val};
+  render();
 }
 
 /* ── CALENDAR TAB ── */
@@ -624,12 +833,7 @@ function rCalTab(){
   let title='',body='';
   if(S.calView==='year'){title=`${y} 年`;body=rCalYear(y);}
   else if(S.calView==='month'){title=`${y} 年 ${MONTHS[m]}`;body=rCalMonth(y,m);}
-  else{
-    const dow=d.getDay(),mon=new Date(d);mon.setDate(d.getDate()-dow+1);
-    const sun=new Date(mon);sun.setDate(mon.getDate()+6);
-    title=`${mon.getMonth()+1}/${mon.getDate()} – ${sun.getMonth()+1}/${sun.getDate()}`;
-    body=rCalWeek(d);
-  }
+  else{const dow=d.getDay(),mon=new Date(d);mon.setDate(d.getDate()-dow+1);const sun=new Date(mon);sun.setDate(mon.getDate()+6);title=`${mon.getMonth()+1}/${mon.getDate()} – ${sun.getMonth()+1}/${sun.getDate()}`;body=rCalWeek(d);}
   return`<div class="cal-wrap">
   <div class="cal-header">
     <div class="cal-nav">
@@ -639,46 +843,40 @@ function rCalTab(){
       <button class="btn btn-ghost btn-sm" id="calToday">今天</button>
     </div>
     <div class="cal-vt">
-      <button class="cvt ${S.calView==='year'?'active':''}"  data-cv="year">年</button>
+      <button class="cvt ${S.calView==='year'?'active':''}" data-cv="year">年</button>
       <button class="cvt ${S.calView==='month'?'active':''}" data-cv="month">月</button>
-      <button class="cvt ${S.calView==='week'?'active':''}"  data-cv="week">週</button>
+      <button class="cvt ${S.calView==='week'?'active':''}" data-cv="week">週</button>
     </div>
   </div>
   <div class="cal-body">${body}</div>
 </div>`;
 }
-
 function rCalMonth(y,m){
-  const today=new Date(),firstDay=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),diPrev=new Date(y,m,0).getDate();
+  const today=new Date(),fd=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate(),diP=new Date(y,m,0).getDate();
   let cells='';
-  for(let i=firstDay-1;i>=0;i--)cells+=rCalCell(y,m-1,diPrev-i,true,today);
+  for(let i=fd-1;i>=0;i--)cells+=rCalCell(y,m-1,diP-i,true,today);
   for(let d=1;d<=dim;d++)cells+=rCalCell(y,m,d,false,today);
-  const next=(7-(firstDay+dim)%7)%7;
+  const next=(7-(fd+dim)%7)%7;
   for(let d=1;d<=next;d++)cells+=rCalCell(y,m+1,d,true,today);
   return`<div class="cal-dow">${DOW.map(d=>`<div class="cal-dow-lbl">${d}</div>`).join('')}</div><div class="cal-grid">${cells}</div>`;
 }
-
 function rCalCell(y,m,day,other,today){
-  const ds=dStr(y,m,day),isToday=today.getFullYear()===y&&today.getMonth()===m&&today.getDate()===day;
-  const tasks=tasksOnDate(ds);
-  const evs=tasks.slice(0,3).map(t=>{const c=ragColor(t);return`<div class="cal-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="cal-ev-dot" style="background:${c.dot}"></span>${esc(t.title)}</div>`;}).join('');
-  const more=tasks.length>3?`<div class="cal-more" data-dayClick="${ds}">+${tasks.length-3} 更多</div>`:'';
-  const dayLbl=isToday?`<span class="today-num">${day}</span>`:day;
-  return`<div class="cal-cell ${isToday?'today':''} ${other?'other-month':''}" data-dayClick="${ds}"><div class="cal-day">${dayLbl}</div><div class="cal-events">${evs}${more}</div></div>`;
+  const ds=dStr(y,m,day),isT=today.getFullYear()===y&&today.getMonth()===m&&today.getDate()===day;
+  const entries=tasksOnDate(ds);
+  const evs=entries.slice(0,3).map(({task,period})=>{const c=ragColor(task,period);return`<div class="cal-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="cal-ev-dot" style="background:${c.dot}"></span>${esc(task.title)}</div>`;}).join('');
+  const more=entries.length>3?`<div class="cal-more" data-dayClick="${ds}">+${entries.length-3} 更多</div>`:'';
+  return`<div class="cal-cell ${isT?'today':''} ${other?'other-month':''}" data-dayClick="${ds}"><div class="cal-day">${isT?`<span class="today-num">${day}</span>`:day}</div><div class="cal-events">${evs}${more}</div></div>`;
 }
-
 function rCalWeek(date){
   const dow=date.getDay(),mon=new Date(date);mon.setDate(date.getDate()-dow+1);
   const today=new Date();
   return`<div class="week-grid">${Array.from({length:7},(_,i)=>{
     const d=new Date(mon);d.setDate(mon.getDate()+i);
-    const ds=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    const isT=d.toDateString()===today.toDateString();
-    const evs=tasksOnDate(ds).map(t=>{const c=ragColor(t);return`<div class="week-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="week-ev-dot" style="background:${c.dot}"></span>${esc(t.title)}</div>`;}).join('');
+    const ds=dStr2(d);const isT=d.toDateString()===today.toDateString();
+    const evs=tasksOnDate(ds).map(({task,period})=>{const c=ragColor(task,period);return`<div class="week-ev" style="background:${c.bg};color:${c.txt}" data-dayClick="${ds}"><span class="week-ev-dot" style="background:${c.dot}"></span>${esc(task.title)}</div>`;}).join('');
     return`<div class="week-col ${isT?'today':''}"><div class="week-col-head"><div class="week-dow">${DOW[d.getDay()]}</div><div class="week-day">${d.getDate()}</div></div><div class="week-col-body">${evs}</div></div>`;
   }).join('')}</div>`;
 }
-
 function rCalYear(y){
   const today=new Date();
   return`<div class="year-grid">${Array.from({length:12},(_,mi)=>{
@@ -688,19 +886,19 @@ function rCalYear(y){
     return`<div class="yr-month"><div class="yr-month-head">${MONTHS[mi]}</div><div class="yr-dow">${DOW.map(d=>`<div class="yr-dow-lbl">${d}</div>`).join('')}</div><div class="yr-grid-inner">${c}</div></div>`;
   }).join('')}</div>`;
 }
-
 function rDayPopup(ds){
-  const tasks=tasksOnDate(ds),dateObj=new Date(ds);
-  const items=tasks.length?tasks.map(t=>{
-    const mRows=t.members.map(m=>{const sub=t.submissions[m]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="day-task-m"><span>${esc(m)}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join('');
-    return`<div class="day-task-item"><div class="day-task-title">${ragBadge(t)} ${esc(t.title)}</div><div>${mRows}</div></div>`;
+  const entries=tasksOnDate(ds);const dateObj=new Date(ds);
+  const items=entries.length?entries.map(({task,period})=>{
+    const subs=getSubs(task,period);
+    const mRows=(task.members||[]).map(m=>{const sub=subs[m]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="day-task-m"><span>${esc(m)}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join('');
+    const dl=period?fmtDT(new Date(period.deadline)):(task.deadline+(task.deadlineTime?' '+task.deadlineTime:''));
+    return`<div class="day-task-item"><div style="font-size:13px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px;flex-wrap:wrap">${ragBadge(task,period)} ${esc(task.title)} ${period?`<span class="badge bg-b">第${periodIndex(task,period)}期</span>`:''}<span style="font-size:11px;color:#94a3b8">${dl}</span></div><div>${mRows}</div></div>`;
   }).join(''):`<div style="font-size:13px;color:#94a3b8;text-align:center;padding:20px">這天沒有截止任務</div>`;
   return`<div class="day-popup" id="dayPopup"><div class="day-popup-inner">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-    <div style="font-size:15px;font-weight:700;color:var(--navy)">📅 ${dateObj.getMonth()+1}月${dateObj.getDate()}日 截止任務</div>
+    <div style="font-size:15px;font-weight:700;color:var(--navy)">📅 ${dateObj.getMonth()+1}月${dateObj.getDate()}日</div>
     <button class="btn btn-ghost btn-sm" id="closeDayPopup">✕</button>
-  </div>${items}
-</div></div>`;
+  </div>${items}</div></div>`;
 }
 
 /* ── USERS TAB ── */
@@ -708,16 +906,15 @@ function rUsersTab(){
   const members=allMembers(),q=S.userSearch.trim();
   const show=q?members.filter(m=>m.includes(q)):members;
   const cards=show.length?show.map(member=>{
-    const myTasks=S.tasks.filter(t=>t.members.includes(member));
-    const pending=myTasks.filter(t=>t.submissions[member]?.status!=='completed').length;
-    const done=myTasks.filter(t=>t.submissions[member]?.status==='completed').length;
-    const rows=q?myTasks.map(t=>{const sub=t.submissions[member]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="usc-task"><span>${esc(t.title)}${t.deadline?` <span style="font-size:11px;color:#94a3b8">· 截止 ${t.deadline}</span>`:''}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join(''):'';
+    const myTasks=S.tasks.filter(t=>(t.members||[]).includes(member));
+    const pending=myTasks.filter(t=>getSubs(t)[member]?.status!=='completed').length;
+    const done=myTasks.filter(t=>getSubs(t)[member]?.status==='completed').length;
+    const rows=q?myTasks.map(t=>{const sub=getSubs(t)[member]||{status:'not_started'};const st=ST[sub.status]||ST.not_started;return`<div class="usc-task"><span>${esc(t.title)}${t.isRecurring?` <span class="badge bg-p" style="font-size:10px">🔁</span>`:''}</span><span class="badge ${st.bdg}">${st.lbl}</span></div>`;}).join(''):'';
     return`<div class="user-stat-card"><div class="usc-head"><div class="usc-name">👤 ${esc(member)}</div><div style="display:flex;gap:7px;flex-wrap:wrap"><span class="badge bg-r">未完成 ${pending}</span><span class="badge bg-g">已完成 ${done}</span><span class="badge bg-gr">共 ${myTasks.length} 項</span></div></div>${rows?`<div class="usc-body">${rows}</div>`:''}</div>`;
   }).join(''):`<div style="font-size:13px;color:#94a3b8;text-align:center;padding:24px">找不到符合的成員</div>`;
   return`<div class="user-panel"><h3>成員進度查詢</h3>
   <div class="user-search-row"><input class="inp" id="userSearchIn" placeholder="輸入成員姓名搜尋…" value="${esc(S.userSearch)}"/>${S.userSearch?`<button class="btn btn-ghost btn-sm" id="clearUserSearch">清除</button>`:''}</div>
-  <div>${cards}</div>
-</div>`;
+  <div>${cards}</div></div>`;
 }
 
 /* ══ BIND ══ */
@@ -736,75 +933,88 @@ function bind(){
   document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{S.tab=b.dataset.tab;render();}));
 
   // tasks toolbar
-  const tA=$('toggleAddBtn');if(tA)tA.addEventListener('click',()=>{S.showAdd=!S.showAdd;S.newTask={title:'',deadline:''};S.newMembers=[];S.memberInput='';render();});
+  const tA=$('toggleAddBtn');if(tA)tA.addEventListener('click',()=>{S.showAdd=!S.showAdd;S.newMembers=[];S.memberInput='';S.addIsRec=false;S.addRecType='weekly';S.addRecDays=[5];render();});
   const cA=$('cancelAddBtn');if(cA)cA.addEventListener('click',()=>{S.showAdd=false;render();});
   const sU=$('switchUserBtn');if(sU)sU.addEventListener('click',()=>{S.screen='login';S.editKey=null;S.showAdd=false;render();});
   const sI=$('searchIn');if(sI)sI.addEventListener('input',e=>{S.search=e.target.value;render();});
   document.querySelectorAll('[data-f]').forEach(b=>b.addEventListener('click',()=>{S.filter=b.dataset.f;render();}));
 
   // add form
-  const nT=$('nTitle'),nD=$('nDeadline'),mI=$('memberIn');
-  if(nT)nT.addEventListener('input',e=>S.newTask.title=e.target.value);
-  if(nD)nD.addEventListener('change',e=>S.newTask.deadline=e.target.value);
-  if(mI){mI.addEventListener('input',e=>S.memberInput=e.target.value);mI.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMember();}});$('addMemberBtn').addEventListener('click',addMember);}
-  document.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{S.newMembers=S.newMembers.filter(m=>m!==b.dataset.rm);render();}));
+  const nIsRec=$('nIsRec');
+  if(nIsRec)nIsRec.addEventListener('change',e=>{S.addIsRec=e.target.checked;render();});
+  const nRecType=$('nRecType');
+  if(nRecType)nRecType.addEventListener('change',e=>{S.addRecType=e.target.value;render();});
+  document.querySelectorAll('.addDowBtn').forEach(b=>b.addEventListener('click',()=>{
+    const dow=parseInt(b.dataset.dow);
+    const idx=S.addRecDays.indexOf(dow);
+    if(idx>=0)S.addRecDays.splice(idx,1);else S.addRecDays.push(dow);
+    b.classList.toggle('active',S.addRecDays.includes(dow));
+  }));
+  const mI=$('memberIn');
+  if(mI){mI.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMember();}});const aM=$('addMemberBtn');if(aM)aM.addEventListener('click',addMember);}
+  document.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{S.newMembers=(S.newMembers||[]).filter(m=>m!==b.dataset.rm);render();}));
   const dA=$('doAddTaskBtn');if(dA)dA.addEventListener('click',addTask);
 
-  // task card heads (expand/collapse)
+  // task heads
   S.tasks.forEach(task=>{
     const h=$(`hd_${task.id}`);
     if(h)h.addEventListener('click',e=>{
-      if(e.target.closest('.drag-handle')||e.target.id===`editTaskBtn_${task.id}`||e.target.id===`delTaskBtn_${task.id}`||e.target.closest('[data-edit]'))return;
+      if(['copyBtn_','editTaskBtn_','delTaskBtn_'].some(p=>e.target.id===p+task.id)||e.target.closest('.drag-handle')||e.target.closest('[data-edit]'))return;
       S.expanded.has(task.id)?S.expanded.delete(task.id):S.expanded.add(task.id);render();
     });
-
-    // edit task button — open modal
+    // copy
+    const cpBtn=$(`copyBtn_${task.id}`);
+    if(cpBtn)cpBtn.addEventListener('click',e=>{e.stopPropagation();copyTask(task.id);});
+    // edit
     const eBtn=$(`editTaskBtn_${task.id}`);
     if(eBtn)eBtn.addEventListener('click',e=>{
       e.stopPropagation();
       S.editTaskId=task.id;
       S.editTaskMembers=[...task.members];
-      S.editTaskMemberInput='';
+      S.editTaskRecDays=[...(task.recurrence?.daysOfWeek||[])];
       render();
     });
-
-    // delete task button
+    // delete
     const dBtn=$(`delTaskBtn_${task.id}`);
     if(dBtn)dBtn.addEventListener('click',e=>{
       e.stopPropagation();
-      if(confirm(`確定要刪除「${task.title}」嗎？`)){
-        S.tasks=S.tasks.filter(x=>x.id!==task.id);S.expanded.delete(task.id);
-        saveData();render();toast('已刪除任務');
-      }
+      if(confirm(`確定要刪除「${task.title}」嗎？`)){S.tasks=S.tasks.filter(x=>x.id!==task.id);S.expanded.delete(task.id);saveData();render();toast('已刪除任務');}
+    });
+    // history toggle
+    const hBtn=$(`histBtn_${task.id}`);
+    if(hBtn)hBtn.addEventListener('click',e=>{e.stopPropagation();S.showHistory.has(task.id)?S.showHistory.delete(task.id):S.showHistory.add(task.id);render();});
+    // history period heads
+    (task.periods||[]).forEach(period=>{
+      const ph=$(`histPH_${period.id}`);
+      if(ph)ph.addEventListener('click',e=>{e.stopPropagation();S.expandedHistPeriods.has(period.id)?S.expandedHistPeriods.delete(period.id):S.expandedHistPeriods.add(period.id);render();});
     });
   });
 
-  // member edit
+  // member row edit
   document.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',e=>{
     e.stopPropagation();
     const key=b.dataset.edit;
     if(S.editKey===key){S.editKey=null;S.editData={};}
-    else{const[tid,member]=key.split('|');const sub=S.tasks.find(t=>t.id===tid)?.submissions[member]||{};S.editKey=key;S.editData={status:sub.status||'not_started',content:'',date:new Date().toISOString().split('T')[0]};}
+    else{const {tid,pid,member}=parseKey(key);const task=S.tasks.find(t=>t.id===tid);const period=pid?(task?.periods||[]).find(p=>p.id===pid):null;const subs=getSubs(task,period);const sub=subs[member]||{};S.editKey=key;S.editData={status:sub.status||'not_started',content:'',date:new Date().toISOString().slice(0,16)};}
     render();
   }));
-  const eS=$('eStatus'),eD=$('eDate'),eC=$('eContent');
+  const eS=$('eStatus'),eC=$('eContent'),eD=$('eDate');
   if(eS)eS.addEventListener('change',e=>S.editData.status=e.target.value);
-  if(eD)eD.addEventListener('change',e=>S.editData.date=e.target.value);
   if(eC)eC.addEventListener('input',e=>S.editData.content=e.target.value);
+  if(eD)eD.addEventListener('change',e=>S.editData.date=e.target.value);
   const sv=$('saveEditBtn');if(sv)sv.addEventListener('click',doSaveEdit);
   const cv=$('cancelEditBtn');if(cv)cv.addEventListener('click',()=>{S.editKey=null;S.editData={};render();});
 
-  // ── EDIT TASK MODAL ──
-  // Members list changes trigger render; title/deadline are read from DOM on save only
-  document.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{
-    e.stopPropagation();
-    S.editTaskMembers=S.editTaskMembers.filter(m=>m!==b.dataset.m);render();
+  // edit task modal
+  document.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();S.editTaskMembers=S.editTaskMembers.filter(m=>m!==b.dataset.m);refreshEditTags();}));
+  document.querySelectorAll('.editDowBtn').forEach(b=>b.addEventListener('click',()=>{
+    const dow=parseInt(b.dataset.dow);
+    const idx=S.editTaskRecDays.indexOf(dow);
+    if(idx>=0)S.editTaskRecDays.splice(idx,1);else S.editTaskRecDays.push(dow);
+    b.classList.toggle('active',S.editTaskRecDays.includes(dow));
   }));
   const etM=$('etMemberIn');
-  if(etM){
-    etM.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMemberToEdit();}});
-    $('etAddBtn').addEventListener('click',addMemberToEdit);
-  }
+  if(etM){etM.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMemberToEdit();}});const etA=$('etAddBtn');if(etA)etA.addEventListener('click',addMemberToEdit);}
   const setBtn=$('saveEditTaskBtn');if(setBtn)setBtn.addEventListener('click',doSaveEditTask);
   const cetBtn=$('cancelEditTaskBtn');if(cetBtn)cetBtn.addEventListener('click',()=>{S.editTaskId=null;render();});
   const etOv=$('editOverlay');if(etOv)etOv.addEventListener('click',e=>{if(e.target===etOv){S.editTaskId=null;render();}});
@@ -820,26 +1030,23 @@ function bind(){
   const dpEl=$('dayPopup');if(dpEl)dpEl.addEventListener('click',e=>{if(e.target===dpEl){S.dayPopup=null;render();}});
 
   // users
-  const usI=$('userSearchIn');if(usI){usI.addEventListener('input',e=>{S.userSearch=e.target.value;render();});}
+  const usI=$('userSearchIn');if(usI)usI.addEventListener('input',e=>{S.userSearch=e.target.value;render();});
   const cuS=$('clearUserSearch');if(cuS)cuS.addEventListener('click',()=>{S.userSearch='';render();});
 
-  // drag & drop
   bindDrag();
 }
 
-/* ── DRAG ── */
+function refreshEditTags(){
+  const el=document.getElementById('etMemberTags');if(!el)return;
+  el.innerHTML=S.editTaskMembers.map(m=>`<span class="mtag">${esc(m)}<button class="rmEditMember" data-m="${esc(m)}">×</button></span>`).join('')||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>';
+  el.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();S.editTaskMembers=S.editTaskMembers.filter(m=>m!==b.dataset.m);refreshEditTags();}));
+}
+
 function bindDrag(){
   document.querySelectorAll('.task-card[data-taskid]').forEach(card=>{
-    card.addEventListener('dragstart',e=>{
-      S.dragSrcId=card.dataset.taskid;card.classList.add('dragging');e.dataTransfer.effectAllowed='move';
-    });
-    card.addEventListener('dragend',()=>{
-      card.classList.remove('dragging');document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));
-    });
-    card.addEventListener('dragover',e=>{
-      e.preventDefault();e.dataTransfer.dropEffect='move';
-      if(card.dataset.taskid!==S.dragSrcId){document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));card.classList.add('drag-over');}
-    });
+    card.addEventListener('dragstart',e=>{S.dragSrcId=card.dataset.taskid;card.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+    card.addEventListener('dragend',()=>{card.classList.remove('dragging');document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));});
+    card.addEventListener('dragover',e=>{e.preventDefault();e.dataTransfer.dropEffect='move';if(card.dataset.taskid!==S.dragSrcId){document.querySelectorAll('.task-card').forEach(c=>c.classList.remove('drag-over'));card.classList.add('drag-over');}});
     card.addEventListener('dragleave',()=>card.classList.remove('drag-over'));
     card.addEventListener('drop',e=>{
       e.preventDefault();card.classList.remove('drag-over');
@@ -867,80 +1074,135 @@ async function doSaveToken(){
   const btn=document.getElementById('saveTokenBtn');if(btn){btn.disabled=true;btn.textContent='驗證中…';}
   try{
     const d=await gistGet();
-    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks;
+    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks.map(migrateTask);
     if(!d||!d.tasks?.length)await gistSet({tasks:S.tasks});
-    S.syncTime=new Date();S.screen='login';render();startSync();toast('✅ Token 驗證成功！');
+    S.syncTime=new Date();S.screen='login';render();startSync();
+    await autoGenerate();
+    toast('✅ Token 驗證成功！');
   }catch(e){
     localStorage.removeItem(TOKEN_KEY);S.token='';
     if(btn){btn.disabled=false;btn.textContent='儲存並進入系統';}
     alert('❌ Token 無效或無法存取 Gist。\n\n錯誤：'+e.message);
   }
 }
-
 function doLogin(){
   const n=(document.getElementById('nameIn')?.value||S.nameInput||'').trim();if(!n)return;
   S.userName=n;S.nameInput=n;S.screen='main';render();
 }
-
 function addMember(){
-  const m=S.memberInput.trim();if(!m)return;
-  if(S.newMembers.includes(m)){toast('已新增過此成員');return;}
-  S.newMembers.push(m);S.memberInput='';render();
+  const mI=document.getElementById('memberIn');const m=(mI?.value||'').trim();if(!m)return;
+  if((S.newMembers||[]).includes(m)){toast('已新增過此成員');return;}
+  S.newMembers=[...(S.newMembers||[]),m];if(mI)mI.value='';
+  const tags=document.querySelector('.task-form .mtags');
+  if(tags){tags.innerHTML=S.newMembers.map(mm=>`<span class="mtag">${esc(mm)}<button data-rm="${esc(mm)}">×</button></span>`).join('');tags.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{S.newMembers=S.newMembers.filter(m=>m!==b.dataset.rm);const t=document.querySelector('.task-form .mtags');if(t)t.innerHTML=S.newMembers.map(mm=>`<span class="mtag">${esc(mm)}<button data-rm="${esc(mm)}">×</button></span>`).join('')||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>';b.closest('.task-form .mtags')?.querySelectorAll('[data-rm]').forEach(b2=>b2.addEventListener('click',arguments.callee));}));}
 }
-
 function addMemberToEdit(){
-  const etM=document.getElementById('etMemberIn');
-  const m=(etM?.value||'').trim();if(!m)return;
+  const etM=document.getElementById('etMemberIn');const m=(etM?.value||'').trim();if(!m)return;
   if(S.editTaskMembers.includes(m)){toast('已新增過此成員');return;}
-  S.editTaskMembers.push(m);
-  if(etM)etM.value='';
-  // re-render just the member tags area without full render
-  const tagsEl=document.querySelector('#editOverlay .mtags');
-  if(tagsEl){
-    tagsEl.innerHTML=S.editTaskMembers.map(mm=>`<span class="mtag">${esc(mm)}<button class="rmEditMember" data-m="${esc(mm)}">×</button></span>`).join('');
-    tagsEl.querySelectorAll('.rmEditMember').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();S.editTaskMembers=S.editTaskMembers.filter(x=>x!==b.dataset.m);const tagsEl2=document.querySelector('#editOverlay .mtags');if(tagsEl2){tagsEl2.innerHTML=S.editTaskMembers.map(mm=>`<span class="mtag">${esc(mm)}<button class="rmEditMember" data-m="${esc(mm)}">×</button></span>`).join('');tagsEl2.querySelectorAll('.rmEditMember').forEach(b2=>b2.addEventListener('click',arguments.callee));}}));
-  }
+  S.editTaskMembers.push(m);if(etM)etM.value='';refreshEditTags();
 }
 
 async function addTask(){
-  if(!S.newTask.title.trim()){toast('請輸入任務名稱');return;}
-  if(!S.newMembers.length){toast('請至少新增一位成員');return;}
-  const subs={};S.newMembers.forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
-  const t={id:uid(),title:S.newTask.title.trim(),deadline:S.newTask.deadline,members:[...S.newMembers],submissions:subs,createdAt:new Date().toISOString()};
-  S.tasks.push(t);S.showAdd=false;S.newTask={title:'',deadline:''};S.newMembers=[];S.memberInput='';
-  S.expanded.add(t.id);await saveData();render();toast('✅ 已新增任務');
+  const title=document.getElementById('nTitle')?.value?.trim();
+  if(!title){toast('請輸入任務名稱');return;}
+  if(!(S.newMembers||[]).length){toast('請至少新增一位成員');return;}
+  const subs={};(S.newMembers||[]).forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
+  let newTask;
+  if(S.addIsRec){
+    const recType=document.getElementById('nRecType')?.value||'weekly';
+    const recTime=document.getElementById('nRecTime')?.value||'17:00';
+    const recStart=document.getElementById('nRecStart')?.value||new Date().toISOString().split('T')[0];
+    const recEnd=document.getElementById('nRecEnd')?.value||'';
+    const recDom=parseInt(document.getElementById('nRecDom')?.value||'1');
+    const daysOfWeek=[...S.addRecDays].sort();
+    if((recType==='weekly'||recType==='biweekly')&&!daysOfWeek.length){toast('請選擇至少一個重複星期');return;}
+    const rec={type:recType,daysOfWeek,dayOfMonth:recDom,time:recTime,startDate:recStart,endDate:recEnd};
+    newTask={id:uid(),title,isRecurring:true,recurrence:rec,members:[...S.newMembers],periods:[],createdAt:new Date().toISOString()};
+    const{task:generated}=ensurePeriods(newTask);
+    newTask=generated;
+  } else {
+    const deadline=document.getElementById('nDeadline')?.value||'';
+    const deadlineTime=document.getElementById('nDeadlineTime')?.value||'';
+    newTask={id:uid(),title,isRecurring:false,deadline,deadlineTime,members:[...S.newMembers],submissions:subs,createdAt:new Date().toISOString()};
+  }
+  S.tasks.push(newTask);S.showAdd=false;S.newMembers=[];S.addIsRec=false;S.addRecType='weekly';S.addRecDays=[5];
+  S.expanded.add(newTask.id);
+  await saveData();render();toast('✅ 已新增任務');
+}
+
+function copyTask(id){
+  const task=S.tasks.find(t=>t.id===id);if(!task)return;
+  const subs={};(task.members||[]).forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
+  const newTask={
+    ...task,id:uid(),title:`複製 - ${task.title}`,
+    isRecurring:false,
+    deadline:task.isRecurring?'':task.deadline||'',
+    deadlineTime:task.isRecurring?(task.recurrence?.time||''):task.deadlineTime||'',
+    submissions:subs,
+    periods:undefined,recurrence:undefined,
+    createdAt:new Date().toISOString(),
+  };
+  delete newTask.periods;delete newTask.recurrence;
+  const idx=S.tasks.findIndex(t=>t.id===id);
+  S.tasks.splice(idx+1,0,newTask);
+  S.expanded.add(newTask.id);
+  saveData();render();toast('✅ 已複製任務（一次性）');
 }
 
 async function doSaveEditTask(){
-  /* Read title and deadline directly from DOM – avoids stale state issue */
-  const titleEl=document.getElementById('etTitle');
-  const deadlineEl=document.getElementById('etDeadline');
-  const newTitle=(titleEl?.value||'').trim();
-  const newDeadline=deadlineEl?.value||'';
-  if(!newTitle){toast('請輸入任務名稱');return;}
+  const title=document.getElementById('etTitle')?.value?.trim();
+  if(!title){toast('請輸入任務名稱');return;}
   if(!S.editTaskMembers.length){toast('請至少保留一位成員');return;}
-  const task=S.tasks.find(t=>t.id===S.editTaskId);
-  if(!task)return;
-  const newSubs={};
-  S.editTaskMembers.forEach(m=>{newSubs[m]=task.submissions[m]||{status:'not_started',updatedAt:'',log:[]};});
-  S.tasks=S.tasks.map(t=>t.id!==S.editTaskId?t:{...t,title:newTitle,deadline:newDeadline,members:[...S.editTaskMembers],submissions:newSubs});
-  S.editTaskId=null;
-  await saveData();render();toast('✅ 任務已更新');
+  const task=S.tasks.find(t=>t.id===S.editTaskId);if(!task)return;
+  const newSubs={};S.editTaskMembers.forEach(m=>{newSubs[m]=task.submissions?.[m]||task.periods?.[0]?.submissions?.[m]||{status:'not_started',updatedAt:'',log:[]};});
+  if(!task.isRecurring){
+    const deadline=document.getElementById('etDeadline')?.value||'';
+    const deadlineTime=document.getElementById('etDeadlineTime')?.value||'';
+    S.tasks=S.tasks.map(t=>t.id!==S.editTaskId?t:{...t,title,deadline,deadlineTime,members:[...S.editTaskMembers],submissions:newSubs});
+  } else {
+    const recType=document.getElementById('etRecType')?.value||task.recurrence.type;
+    const recTime=document.getElementById('etRecTime')?.value||task.recurrence.time;
+    const recStart=document.getElementById('etRecStart')?.value||task.recurrence.startDate;
+    const recEnd=document.getElementById('etRecEnd')?.value||'';
+    const recDom=parseInt(document.getElementById('etRecDom')?.value||task.recurrence.dayOfMonth||1);
+    const rec={type:recType,daysOfWeek:[...S.editTaskRecDays].sort(),dayOfMonth:recDom,time:recTime,startDate:recStart,endDate:recEnd};
+    // Update members in all periods
+    const updatedPeriods=(task.periods||[]).map(p=>{
+      const newPSubs={};S.editTaskMembers.forEach(m=>{newPSubs[m]=p.submissions[m]||{status:'not_started',updatedAt:'',log:[]};});
+      return{...p,submissions:newPSubs};
+    });
+    let updated={...task,title,recurrence:rec,members:[...S.editTaskMembers],periods:updatedPeriods};
+    const{task:generated}=ensurePeriods(updated);
+    S.tasks=S.tasks.map(t=>t.id!==S.editTaskId?t:generated);
+  }
+  S.editTaskId=null;await saveData();render();toast('✅ 任務已更新');
 }
 
 async function doSaveEdit(){
-  const eS=document.getElementById('eStatus'),eD=document.getElementById('eDate'),eC=document.getElementById('eContent');
-  if(eS)S.editData.status=eS.value;if(eD)S.editData.date=eD.value;if(eC)S.editData.content=eC.value;
+  const eS=document.getElementById('eStatus'),eC=document.getElementById('eContent'),eD=document.getElementById('eDate');
+  if(eS)S.editData.status=eS.value;if(eC)S.editData.content=eC.value;if(eD)S.editData.date=eD.value;
   const content=(S.editData.content||'').trim();if(!content){toast('請填寫本次更新內容');return;}
-  const[tid,member]=S.editKey.split('|');
+  const {tid,pid,member}=parseKey(S.editKey);
+  const at=S.editData.date?new Date(S.editData.date).toISOString():new Date().toISOString();
   S.tasks=S.tasks.map(task=>{
     if(task.id!==tid)return task;
-    const ex=task.submissions[member]||{log:[]};
-    return{...task,submissions:{...task.submissions,[member]:{status:S.editData.status,updatedAt:new Date().toISOString(),log:[...(ex.log||[]),{content,at:new Date().toISOString()}]}}};
+    if(pid){
+      // Recurring
+      return{...task,periods:(task.periods||[]).map(p=>{
+        if(p.id!==pid)return p;
+        const ex=p.submissions[member]||{log:[]};
+        return{...p,submissions:{...p.submissions,[member]:{status:S.editData.status,updatedAt:new Date().toISOString(),log:[...(ex.log||[]),{content,at}]}}};
+      })};
+    } else {
+      const ex=task.submissions[member]||{log:[]};
+      return{...task,submissions:{...task.submissions,[member]:{status:S.editData.status,updatedAt:new Date().toISOString(),log:[...(ex.log||[]),{content,at}]}}};
+    }
   });
   S.editKey=null;S.editData={};await saveData();render();toast('✅ 已儲存更新');
 }
 
+/* ── INIT ── */
+if(!S.newMembers)S.newMembers=[];
 init();
 </script>
 </body>
