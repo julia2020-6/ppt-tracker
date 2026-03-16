@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>簡報進度追蹤系統</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+TC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f2744;--navy2:#1a3a5c;--navy3:#2563a8;
+  --green:#059669;--green-bg:#d1fae5;--green-text:#065f46;
+  --blue:#2563eb;--blue-bg:#dbeafe;--blue-text:#1e40af;
+  --amber:#d97706;--amber-bg:#fef3c7;--amber-text:#92400e;
+  --red:#dc2626;--red-bg:#fee2e2;--red-text:#991b1b;
+  --gray:#64748b;--gray-bg:#f1f5f9;--gray-text:#334155;
+  --border:#e2e8f0;--surface:#f8fafc;
+  --text:#0f172a;--text2:#475569;
+  --shadow:0 1px 3px rgba(0,0,0,.07),0 4px 12px rgba(0,0,0,.05);
+  --shadow-lg:0 8px 40px rgba(15,39,68,.18);
+  --r:12px;
+}
+body{font-family:'IBM Plex Sans TC',sans-serif;background:var(--gray-bg);color:var(--text);font-size:14px;min-height:100vh}
+
+#loading{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:14px;z-index:300;transition:opacity .4s}
+.spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.overlay{position:fixed;inset:0;background:rgba(15,39,68,.5);display:flex;align-items:center;justify-content:center;z-index:100;animation:fadeIn .2s ease;padding:16px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.modal{background:#fff;border-radius:20px;padding:40px 36px;width:460px;max-width:100%;box-shadow:var(--shadow-lg);animation:slideUp .22s ease;max-height:90vh;overflow-y:auto}
+.modal-icon{font-size:26px;margin-bottom:14px}
+.modal h2{font-size:19px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.modal p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:20px}
+.modal a{color:var(--navy3)}
+
+.field{margin-bottom:13px}
+.label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);margin-bottom:5px}
+.input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;color:var(--text);outline:none;transition:border-color .15s;background:#fff}
+.input:focus{border-color:var(--navy3)}
+textarea.input{resize:vertical;min-height:82px}
+select.input{cursor:pointer}
+.check-row{display:flex;align-items:center;gap:9px;margin:12px 0;cursor:pointer}
+.check-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer}
+.check-row span{font-size:13px;color:var(--text2)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 20px;border-radius:9px;border:none;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:opacity .15s,transform .1s;white-space:nowrap}
+.btn:hover{opacity:.88}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-primary{background:linear-gradient(135deg,var(--navy),var(--navy3));color:#fff;width:100%;padding:12px;font-size:14px}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy3);opacity:1}
+.btn-ghost{background:var(--gray-bg);color:var(--text2)}
+.btn-danger{background:var(--red-bg);color:var(--red-text)}
+.btn-sm{padding:5px 13px;font-size:12px}
+.btn-icon{padding:5px 9px;font-size:14px;border-radius:7px}
+
+.header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff}
+.header-inner{max-width:1000px;margin:0 auto;padding:20px 24px 18px}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.header-title{font-size:17px;font-weight:700}
+.header-sub{font-size:12px;opacity:.7;margin-top:3px}
+.stat-pct{font-size:28px;font-weight:700;font-family:'IBM Plex Mono';line-height:1}
+.stat-label{font-size:11px;opacity:.65;margin-top:2px;text-align:right}
+.progress-wrap{background:rgba(255,255,255,.15);border-radius:100px;height:5px;margin-top:12px;overflow:hidden}
+.progress-fill{height:5px;background:linear-gradient(90deg,#34d399,#10b981);border-radius:100px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.sync-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px;font-size:11px;margin-top:8px}
+.sync-dot{width:6px;height:6px;background:#34d399;border-radius:50%;animation:pulse 2s infinite}
+.sync-dot.err{background:#f87171;animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.content{max-width:1000px;margin:0 auto;padding:22px 24px}
+
+.summary-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.sum-card{background:#fff;border-radius:var(--r);padding:13px 16px;box-shadow:var(--shadow);border-top:3px solid transparent}
+.sum-num{font-size:22px;font-weight:700;font-family:'IBM Plex Mono'}
+.sum-lbl{font-size:11px;color:var(--text2);margin-top:2px}
+
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.toolbar-left,.toolbar-right{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.filter-btn{padding:5px 13px;border-radius:100px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s;color:var(--text2)}
+.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.search-input{padding:6px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;outline:none;width:180px;color:var(--text);transition:border-color .15s}
+.search-input:focus{border-color:var(--navy3)}
+
+.tasks-list{display:flex;flex-direction:column;gap:12px}
+.task-card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;border:1.5px solid transparent;transition:box-shadow .2s;animation:slideUp .2s ease}
+.task-card:hover{box-shadow:0 4px 20px rgba(15,39,68,.1)}
+.task-card.overdue{border-color:#fca5a5}
+
+.task-head{padding:16px 20px;cursor:pointer;user-select:none}
+.task-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.task-title-wrap{flex:1;min-width:0}
+.task-title{font-size:15px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.task-meta{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap}
+.meta{font-size:12px;color:var(--text2)}
+.meta.red{color:var(--red)}
+.task-actions{display:flex;gap:6px;flex-shrink:0;align-items:center}
+.expand-icon{font-size:11px;color:var(--text2);transition:transform .2s;margin-left:4px}
+.expand-icon.open{transform:rotate(180deg)}
+
+.member-bar{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.member-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-size:12px;font-weight:500;border:1.5px solid transparent}
+.mp-done  {background:var(--green-bg);color:var(--green-text);border-color:#a7f3d0}
+.mp-prog  {background:var(--blue-bg);color:var(--blue-text);border-color:#bfdbfe}
+.mp-review{background:var(--amber-bg);color:var(--amber-text);border-color:#fde68a}
+.mp-late  {background:var(--red-bg);color:var(--red-text);border-color:#fecdd3}
+.mp-none  {background:var(--gray-bg);color:var(--gray);border-color:var(--border)}
+.pill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+.task-body{border-top:1px solid var(--gray-bg)}
+.member-rows{display:flex;flex-direction:column}
+.member-row{display:flex;align-items:stretch;border-bottom:1px solid var(--gray-bg)}
+.member-row:last-child{border-bottom:none}
+.mr-left{width:195px;flex-shrink:0;padding:14px 18px;border-right:1px solid var(--gray-bg);display:flex;flex-direction:column;gap:4px}
+.mr-name{font-size:13px;font-weight:600}
+.mr-mid{flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.mr-right{padding:14px 14px;display:flex;align-items:flex-start;flex-shrink:0}
+.log-list{display:flex;flex-direction:column;gap:6px}
+.log-entry{background:var(--surface);border-left:3px solid var(--border);border-radius:0 7px 7px 0;padding:8px 11px;font-size:12px;color:var(--text2);line-height:1.5}
+.log-entry .lm{font-size:11px;color:var(--gray);margin-bottom:3px}
+.log-entry.latest{border-left-color:var(--navy3)}
+.no-log{font-size:12px;color:#94a3b8;font-style:italic;padding:6px 0}
+
+.inline-edit{background:var(--surface);border-top:1px solid var(--border);padding:16px 20px;animation:slideUp .15s ease}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ef{margin-top:10px}
+.ea{display:flex;gap:8px;margin-top:12px}
+
+.add-form{background:#fff;border-radius:var(--r);padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow);border:1.5px solid var(--navy3);animation:slideUp .2s ease}
+.add-form h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.add-row{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.member-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;min-height:32px;align-items:center}
+.member-tag{display:inline-flex;align-items:center;gap:6px;background:var(--blue-bg);color:var(--blue-text);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:500}
+.member-tag button{background:none;border:none;cursor:pointer;color:var(--blue-text);font-size:15px;line-height:1;padding:0;opacity:.6}
+.member-tag button:hover{opacity:1}
+.madd-row{display:flex;gap:8px;margin-top:8px}
+.madd-row .input{flex:1}
+.add-actions{display:flex;gap:8px;margin-top:14px}
+
+.badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600}
+.bg-green {background:var(--green-bg);color:var(--green-text)}
+.bg-blue  {background:var(--blue-bg);color:var(--blue-text)}
+.bg-amber {background:var(--amber-bg);color:var(--amber-text)}
+.bg-red   {background:var(--red-bg);color:var(--red-text)}
+.bg-gray  {background:var(--gray-bg);color:var(--gray-text)}
+
+.empty{text-align:center;padding:60px 24px;background:#fff;border-radius:var(--r);color:var(--text2)}
+.empty .icon{font-size:34px;margin-bottom:10px}
+
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--navy);color:#fff;padding:9px 20px;border-radius:100px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;pointer-events:none;z-index:200;white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media(max-width:680px){
+  .summary-strip{grid-template-columns:repeat(2,1fr)}
+  .mr-left{width:130px;padding:12px 12px}
+  .add-row{grid-template-columns:1fr}
+  .eg{grid-template-columns:1fr}
+  .search-input{width:140px}
+}
+</style>
+</head>
+<body>
+<div id="loading"><div class="spinner"></div><div style="font-size:13px;opacity:.65">載入中…</div></div>
+<div id="toast"></div>
+<div id="app" style="display:none"></div>
+
+<script>
+const GIST_ID='8a2ffecb915c95aae1019c8af1d8b929',GIST_FILE='data.json',TOKEN_KEY='ppt_gh_token',SYNC_MS=5000;
+
+const ST={
+  not_started:   {lbl:'未開始',  pcls:'mp-none',  bdg:'bg-gray'},
+  in_progress:   {lbl:'進行中',  pcls:'mp-prog',  bdg:'bg-blue'},
+  pending_review:{lbl:'待審核',  pcls:'mp-review',bdg:'bg-amber'},
+  completed:     {lbl:'已完成',  pcls:'mp-done',  bdg:'bg-green'},
+  delayed:       {lbl:'進度落後',pcls:'mp-late',  bdg:'bg-red'},
+};
+const PDOT={mp-done:'#059669',  'mp-prog':'#2563eb','mp-review':'#d97706','mp-late':'#dc2626','mp-none':'#94a3b8'};
+
+const SAMPLE=[
+  {id:'t1',title:'Q2 業績總結簡報',deadline:'2025-06-10',
+   members:['王小明','陳美華','林志翔'],
+   submissions:{
+     '王小明':{status:'completed',updatedAt:'2025-05-20T09:00:00Z',log:[{content:'簡報已完成並上傳雲端',at:'2025-05-20T09:00:00Z'}]},
+     '陳美華':{status:'in_progress',updatedAt:'2025-05-21T14:30:00Z',log:[{content:'圖表製作中，預計明天完成',at:'2025-05-21T14:30:00Z'}]},
+     '林志翔':{status:'not_started',updatedAt:'',log:[]},
+   },createdAt:'2025-05-15T00:00:00Z'},
+  {id:'t2',title:'新產品發布報告',deadline:'2025-06-20',
+   members:['陳美華','林志翔','張雅婷'],
+   submissions:{
+     '陳美華':{status:'pending_review',updatedAt:'2025-05-22T10:00:00Z',log:[{content:'初稿完成，請負責人審閱',at:'2025-05-22T10:00:00Z'}]},
+     '林志翔':{status:'not_started',updatedAt:'',log:[]},
+     '張雅婷':{status:'not_started',updatedAt:'',log:[]},
+   },createdAt:'2025-05-16T00:00:00Z'},
+];
+
+const S={
+  screen:'loading',token:'',userName:'',isManager:false,nameInput:'',
+  tasks:[],expanded:new Set(),editKey:null,editData:{},
+  showAdd:false,newTask:{title:'',deadline:''},newMembers:[],memberInput:'',
+  filter:'all',search:'',lastEtag:'',syncTime:null,syncError:false,saving:false,
+};
+
+async function gistGet(){
+  const h={Authorization:`token ${S.token}`,Accept:'application/vnd.github.v3+json'};
+  if(S.lastEtag) h['If-None-Match']=S.lastEtag;
+  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{headers:h});
+  if(r.status===304) return null;
+  if(!r.ok) throw new Error(`HTTP ${r.status}`);
+  S.lastEtag=r.headers.get('ETag')||'';
+  const g=await r.json();
+  return JSON.parse(g.files?.[GIST_FILE]?.content||'{"tasks":[]}');
+}
+async function gistSet(data){
+  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{
+    method:'PATCH',
+    headers:{Authorization:`token ${S.token}`,'Content-Type':'application/json',Accept:'application/vnd.github.v3+json'},
+    body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(data,null,2)}}}),
+  });
+  if(!r.ok) throw new Error(`HTTP ${r.status}`);
+  S.lastEtag='';
+}
+
+async function init(){
+  S.token=localStorage.getItem(TOKEN_KEY)||'';
+  if(!S.token){S.screen='setup';hideLoading();render();return;}
+  try{
+    const d=await gistGet();
+    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks;
+    if(!d||!d.tasks?.length) await gistSet({tasks:S.tasks});
+    S.syncTime=new Date();S.screen='login';
+  }catch{localStorage.removeItem(TOKEN_KEY);S.token='';S.screen='setup';}
+  hideLoading();render();startSync();
+}
+function hideLoading(){
+  const el=document.getElementById('loading');
+  el.style.opacity='0';
+  setTimeout(()=>{el.style.display='none';document.getElementById('app').style.display='';},400);
+}
+
+let syncTimer=null;
+function startSync(){
+  clearInterval(syncTimer);
+  syncTimer=setInterval(async()=>{
+    if(S.screen!=='main'||S.editKey||S.saving) return;
+    try{
+      const d=await gistGet();
+      if(d&&JSON.stringify(d.tasks)!==JSON.stringify(S.tasks)){S.tasks=d.tasks;render();}
+      S.syncTime=new Date();S.syncError=false;updateSyncPill();
+    }catch{S.syncError=true;updateSyncPill();}
+  },SYNC_MS);
+}
+function updateSyncPill(){
+  const el=document.getElementById('syncPill');if(!el)return;
+  const t=S.syncTime?S.syncTime.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
+  el.innerHTML=S.syncError?`<span class="sync-dot err"></span> 同步失敗`:`<span class="sync-dot"></span> 同步中 · 上次 ${t}`;
+}
+async function saveData(){
+  S.saving=true;
+  try{await gistSet({tasks:S.tasks});S.syncTime=new Date();S.syncError=false;S.lastEtag='';}
+  catch{toast('❌ 儲存失敗，請確認網路與 Token');}
+  S.saving=false;
+}
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function isOver(d){return d&&new Date(d)<new Date();}
+function isSoon(d){if(!d)return false;const v=new Date(d)-new Date();return v>0&&v<3*86400000;}
+function fmtTs(iso){
+  if(!iso)return '';
+  const d=new Date(iso);
+  return d.toLocaleDateString('zh-TW',{month:'2-digit',day:'2-digit'})+' '+d.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+}
+function taskAllDone(t){return t.members.every(m=>t.submissions[m]?.status==='completed');}
+function taskPending(t){return t.members.filter(m=>t.submissions[m]?.status!=='completed').length;}
+function isMine(t){return t.members.includes(S.userName);}
+function myStatus(t){return t.submissions[S.userName]?.status||null;}
+
+let toastT;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2600);
+}
+
+function render(){
+  const app=document.getElementById('app');
+  if(S.screen==='setup'){app.innerHTML=rSetup();bind();return;}
+  if(S.screen==='login'){app.innerHTML=rLogin();bind();return;}
+  app.innerHTML=rMain();bind();
+}
+
+function rSetup(){return`<div class="overlay"><div class="modal">
+  <div class="modal-icon">🔑</div><h2>設定 GitHub Token</h2>
+  <p>前往 <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> 建立 Personal Access Token (Classic)，勾選 <strong>gist</strong> 權限後貼到下方。Token 僅存在您的瀏覽器。</p>
+  <div class="field"><label class="label">Personal Access Token</label>
+  <input class="input" type="password" id="tokIn" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"/></div>
+  <button class="btn btn-primary" id="saveTokenBtn" disabled>儲存並進入系統</button>
+</div></div>`;}
+
+function rLogin(){return`<div class="overlay"><div class="modal">
+  <div class="modal-icon">📊</div><h2>簡報進度追蹤</h2>
+  <p>輸入您的姓名後進入系統。若您是負責人，請勾選下方選項以取得新增 / 刪除任務的權限。</p>
+  <div class="field"><label class="label">您的姓名</label>
+  <input class="input" id="nameIn" placeholder="王小明" value="${S.nameInput||''}"/></div>
+  <label class="check-row"><input type="checkbox" id="mgrCb" ${S.isManager?'checked':''}/><span>我是負責人（可新增 / 刪除任務）</span></label>
+  <button class="btn btn-primary" id="loginBtn" ${!(S.nameInput||'').trim()?'disabled':''}>進入系統 →</button>
+  <div style="text-align:center;margin-top:12px"><button class="btn btn-ghost btn-sm" id="resetTokBtn">更換 Token</button></div>
+</div></div>`;}
+
+function rMain(){
+  let tasks=S.tasks;
+  if(S.filter==='mine')      tasks=tasks.filter(t=>isMine(t));
+  if(S.filter==='pending')   tasks=tasks.filter(t=>!taskAllDone(t));
+  if(S.filter==='myPending') tasks=tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed');
+  if(S.search.trim()) tasks=tasks.filter(t=>t.title.includes(S.search.trim()));
+
+  const totalSubs=S.tasks.reduce((a,t)=>a+t.members.length,0);
+  const doneSubs =S.tasks.reduce((a,t)=>a+t.members.filter(m=>t.submissions[m]?.status==='completed').length,0);
+  const pct=totalSubs?Math.round(doneSubs/totalSubs*100):0;
+  const overdue=S.tasks.filter(t=>isOver(t.deadline)&&!taskAllDone(t)).length;
+  const myPend=S.tasks.filter(t=>isMine(t)&&myStatus(t)!=='completed').length;
+  const ts=S.syncTime?S.syncTime.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'}):'—';
+
+  return`<div>
+  <div class="header"><div class="header-inner">
+    <div class="header-top">
+      <div>
+        <div class="header-title">📊 簡報進度追蹤系統</div>
+        <div class="header-sub">👤 ${S.userName}${S.isManager?'（負責人）':''} · ${S.tasks.length} 個任務</div>
+        <div class="sync-pill" id="syncPill"><span class="sync-dot"></span> 同步中 · 上次 ${ts}</div>
+      </div>
+      <div><div class="stat-pct">${pct}<span style="font-size:14px;opacity:.6">%</span></div>
+      <div class="stat-label">${doneSubs} / ${totalSubs} 已繳交</div></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:${pct}%"></div></div>
+  </div></div>
+
+  <div class="content">
+    <div class="summary-strip">
+      <div class="sum-card" style="border-top-color:#2563eb"><div class="sum-num" style="color:#2563eb">${S.tasks.length}</div><div class="sum-lbl">總任務數</div></div>
+      <div class="sum-card" style="border-top-color:#059669"><div class="sum-num" style="color:#059669">${S.tasks.filter(t=>taskAllDone(t)).length}</div><div class="sum-lbl">全員完成</div></div>
+      <div class="sum-card" style="border-top-color:#d97706"><div class="sum-num" style="color:#d97706">${myPend}</div><div class="sum-lbl">我尚未完成</div></div>
+      <div class="sum-card" style="border-top-color:#dc2626"><div class="sum-num" style="color:#dc2626">${overdue}</div><div class="sum-lbl">已逾期任務</div></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        ${S.isManager?`<button class="btn btn-navy" id="toggleAddBtn">${S.showAdd?'✕ 取消':'＋ 新增任務'}</button>`:''}
+        <button class="btn btn-ghost btn-sm" id="switchUserBtn">↩ 切換使用者</button>
+      </div>
+      <div class="toolbar-right">
+        <input class="search-input" id="searchIn" placeholder="搜尋任務…" value="${S.search}"/>
+        <button class="filter-btn ${S.filter==='all'?'active':''}" data-f="all">全部</button>
+        <button class="filter-btn ${S.filter==='myPending'?'active':''}" data-f="myPending">我未完成</button>
+        <button class="filter-btn ${S.filter==='pending'?'active':''}" data-f="pending">未全員繳交</button>
+        <button class="filter-btn ${S.filter==='mine'?'active':''}" data-f="mine">我的任務</button>
+      </div>
+    </div>
+
+    ${S.showAdd?rAddForm():''}
+
+    <div class="tasks-list">
+      ${tasks.length?tasks.map(rTask).join(''):`<div class="empty"><div class="icon">📋</div><div>沒有符合條件的任務</div></div>`}
+    </div>
+  </div></div>`;
+}
+
+function rAddForm(){
+  const tags=S.newMembers.map(m=>`<span class="member-tag">${m}<button data-rm="${m}">×</button></span>`).join('');
+  return`<div class="add-form">
+  <h3>＋ 新增任務</h3>
+  <div class="add-row">
+    <div class="field"><label class="label">任務名稱 *</label><input class="input" id="nTitle" placeholder="例：Q3 業績報告" value="${S.newTask.title}"/></div>
+    <div class="field"><label class="label">截止日期</label><input class="input" type="date" id="nDeadline" value="${S.newTask.deadline}"/></div>
+  </div>
+  <div class="field" style="margin-top:10px">
+    <label class="label">需繳交成員</label>
+    <div class="madd-row">
+      <input class="input" id="memberIn" placeholder="輸入成員姓名，按 Enter 新增" value="${S.memberInput}"/>
+      <button class="btn btn-ghost btn-sm" id="addMemberBtn">新增</button>
+    </div>
+    <div class="member-tags">${tags||'<span style="font-size:12px;color:#94a3b8">尚未新增成員</span>'}</div>
+  </div>
+  <div class="add-actions">
+    <button class="btn btn-navy btn-sm" id="doAddTaskBtn">建立任務</button>
+    <button class="btn btn-ghost btn-sm" id="cancelAddBtn">取消</button>
+  </div>
+</div>`;
+}
+
+function rTask(task){
+  const exp=S.expanded.has(task.id);
+  const od=isOver(task.deadline)&&!taskAllDone(task);
+  const sn=isSoon(task.deadline);
+  const pending=taskPending(task);
+  const done=task.members.length-pending;
+  const ms=myStatus(task);
+
+  const pills=task.members.map(m=>{
+    const sub=task.submissions[m]||{status:'not_started'};
+    const st=ST[sub.status]||ST.not_started;
+    const dotColor={'mp-done':'#059669','mp-prog':'#2563eb','mp-review':'#d97706','mp-late':'#dc2626','mp-none':'#94a3b8'}[st.pcls]||'#94a3b8';
+    return `<span class="member-pill ${st.pcls}"><span class="pill-dot" style="background:${dotColor}"></span>${m}</span>`;
+  }).join('');
+
+  return`<div class="task-card ${od?'overdue':''}">
+  <div class="task-head" id="hd_${task.id}">
+    <div class="task-head-row">
+      <div class="task-title-wrap">
+        <div class="task-title">
+          ${task.title}
+          ${taskAllDone(task)?`<span class="badge bg-green">✓ 全員完成</span>`:`<span class="badge bg-amber">${pending} 人未繳</span>`}
+          ${od?`<span class="badge bg-red">⚠ 已逾期</span>`:''}
+          ${sn?`<span class="badge bg-amber">⏰ 即將到期</span>`:''}
+          ${isMine(task)&&ms?`<span class="badge ${ST[ms].bdg}">我：${ST[ms].lbl}</span>`:''}
+        </div>
+        <div class="task-meta">
+          <span class="meta">👥 ${task.members.length} 位成員 · 已繳 ${done}</span>
+          ${task.deadline?`<span class="meta ${od?'red':''}">📅 截止 ${task.deadline}</span>`:''}
+        </div>
+        <div class="member-bar">${pills}</div>
+      </div>
+      <div class="task-actions">
+        ${S.isManager?`<button class="btn btn-danger btn-icon" data-del="${task.id}">🗑</button>`:''}
+        <span class="expand-icon ${exp?'open':''}">▼</span>
+      </div>
+    </div>
+  </div>
+  ${exp?rTaskBody(task):''}
+</div>`;
+}
+
+function rTaskBody(task){
+  return`<div class="task-body"><div class="member-rows">${task.members.map(m=>rMemberRow(task,m)).join('')}</div></div>`;
+}
+
+function rMemberRow(task,member){
+  const sub=task.submissions[member]||{status:'not_started',updatedAt:'',log:[]};
+  const st=ST[sub.status]||ST.not_started;
+  const key=`${task.id}|${member}`;
+  const isEditing=S.editKey===key;
+  const canEdit=member===S.userName;
+  const log=[...(sub.log||[])].reverse();
+
+  const logHtml=log.length
+    ?log.map((e,i)=>`<div class="log-entry ${i===0?'latest':''}"><div class="lm">${fmtTs(e.at)}</div>${e.content}</div>`).join('')
+    :`<div class="no-log">尚無更新記錄</div>`;
+
+  return`<div>
+  <div class="member-row">
+    <div class="mr-left">
+      <div class="mr-name">${member}${member===S.userName?' <span style="font-size:10px;color:#94a3b8">（我）</span>':''}</div>
+      <span class="badge ${st.bdg}">${st.lbl}</span>
+      ${sub.updatedAt?`<div style="font-size:11px;color:#94a3b8;margin-top:4px">更新 ${fmtTs(sub.updatedAt)}</div>`:''}
+    </div>
+    <div class="mr-mid"><div class="log-list">${logHtml}</div></div>
+    <div class="mr-right">
+      ${canEdit?`<button class="btn ${isEditing?'btn-ghost':'btn-navy'} btn-sm" data-edit="${key}">${isEditing?'取消':'✏️ 更新'}</button>`:''}
+    </div>
+  </div>
+  ${isEditing?rInlineEdit(sub):''}
+</div>`;
+}
+
+function rInlineEdit(sub){
+  const ed=S.editData;
+  return`<div class="inline-edit">
+  <div class="eg">
+    <div class="field"><label class="label">進度狀態</label>
+      <select class="input" id="eStatus">
+        ${Object.entries(ST).map(([v,s])=>`<option value="${v}" ${(ed.status||sub.status)===v?'selected':''}>${s.lbl}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field"><label class="label">更新日期（供參考）</label>
+      <input class="input" type="date" id="eDate" value="${ed.date||new Date().toISOString().split('T')[0]}"/>
+    </div>
+  </div>
+  <div class="ef">
+    <div class="field"><label class="label">本次更新內容 *</label>
+      <textarea class="input" id="eContent" placeholder="說明這次完成了什麼、目前進度、或遇到的問題…">${ed.content||''}</textarea>
+    </div>
+  </div>
+  <div class="ea">
+    <button class="btn btn-navy btn-sm" id="saveEditBtn" ${S.saving?'disabled':''}>
+      ${S.saving?'儲存中…':'💾 儲存更新'}
+    </button>
+    <button class="btn btn-ghost btn-sm" id="cancelEditBtn">取消</button>
+  </div>
+</div>`;
+}
+
+function bind(){
+  const $=id=>document.getElementById(id);
+
+  // setup
+  const tI=$('tokIn');
+  if(tI){
+    tI.addEventListener('input',e=>{$('saveTokenBtn').disabled=!e.target.value.trim();});
+    tI.addEventListener('keydown',e=>{if(e.key==='Enter'&&tI.value.trim())doSaveToken();});
+    $('saveTokenBtn').addEventListener('click',doSaveToken);
+  }
+
+  // login
+  const nI=$('nameIn');
+  if(nI){
+    nI.addEventListener('input',e=>{S.nameInput=e.target.value;$('loginBtn').disabled=!e.target.value.trim();});
+    nI.addEventListener('keydown',e=>{if(e.key==='Enter'&&S.nameInput?.trim())doLogin();});
+    $('loginBtn').addEventListener('click',doLogin);
+    $('mgrCb').addEventListener('change',e=>S.isManager=e.target.checked);
+    $('resetTokBtn').addEventListener('click',()=>{localStorage.removeItem(TOKEN_KEY);S.token='';S.screen='setup';render();});
+  }
+
+  // main toolbar
+  const tA=$('toggleAddBtn'); if(tA) tA.addEventListener('click',()=>{S.showAdd=!S.showAdd;S.newTask={title:'',deadline:''};S.newMembers=[];S.memberInput='';render();});
+  const cA=$('cancelAddBtn'); if(cA) cA.addEventListener('click',()=>{S.showAdd=false;render();});
+  const sU=$('switchUserBtn');if(sU) sU.addEventListener('click',()=>{S.screen='login';S.editKey=null;S.showAdd=false;render();});
+  const sI=$('searchIn');    if(sI) sI.addEventListener('input',e=>{S.search=e.target.value;render();});
+  document.querySelectorAll('[data-f]').forEach(b=>b.addEventListener('click',()=>{S.filter=b.dataset.f;render();}));
+
+  // add form
+  const nT=$('nTitle'),nD=$('nDeadline'),mI=$('memberIn');
+  if(nT) nT.addEventListener('input',e=>S.newTask.title=e.target.value);
+  if(nD) nD.addEventListener('change',e=>S.newTask.deadline=e.target.value);
+  if(mI){
+    mI.addEventListener('input',e=>S.memberInput=e.target.value);
+    mI.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addMember();}});
+    $('addMemberBtn').addEventListener('click',addMember);
+  }
+  document.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{S.newMembers=S.newMembers.filter(m=>m!==b.dataset.rm);render();}));
+  const dA=$('doAddTaskBtn');if(dA) dA.addEventListener('click',addTask);
+
+  // task heads
+  S.tasks.forEach(task=>{
+    const h=document.getElementById(`hd_${task.id}`);
+    if(h) h.addEventListener('click',e=>{
+      if(e.target.closest('[data-del]')||e.target.closest('[data-edit]')) return;
+      S.expanded.has(task.id)?S.expanded.delete(task.id):S.expanded.add(task.id);
+      render();
+    });
+  });
+
+  // delete
+  document.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const id=b.dataset.del;
+    const t=S.tasks.find(x=>x.id===id);
+    if(confirm(`確定要刪除「${t?.title}」嗎？`)){
+      S.tasks=S.tasks.filter(x=>x.id!==id);S.expanded.delete(id);
+      saveData();render();toast('已刪除任務');
+    }
+  }));
+
+  // edit
+  document.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const key=b.dataset.edit;
+    if(S.editKey===key){S.editKey=null;S.editData={};}
+    else{
+      const [tid,member]=key.split('|');
+      const task=S.tasks.find(t=>t.id===tid);
+      const sub=task?.submissions[member]||{};
+      S.editKey=key;
+      S.editData={status:sub.status||'not_started',content:'',date:new Date().toISOString().split('T')[0]};
+    }
+    render();
+  }));
+
+  const eS=$('eStatus'),eD=$('eDate'),eC=$('eContent');
+  if(eS) eS.addEventListener('change',e=>S.editData.status=e.target.value);
+  if(eD) eD.addEventListener('change',e=>S.editData.date=e.target.value);
+  if(eC) eC.addEventListener('input',e=>S.editData.content=e.target.value);
+  const sv=$('saveEditBtn');  if(sv) sv.addEventListener('click',doSaveEdit);
+  const cv=$('cancelEditBtn');if(cv) cv.addEventListener('click',()=>{S.editKey=null;S.editData={};render();});
+}
+
+async function doSaveToken(){
+  const val=document.getElementById('tokIn')?.value?.trim();if(!val)return;
+  S.token=val;localStorage.setItem(TOKEN_KEY,val);
+  const btn=document.getElementById('saveTokenBtn');
+  if(btn){btn.disabled=true;btn.textContent='驗證中…';}
+  try{
+    const d=await gistGet();
+    S.tasks=(!d||!d.tasks?.length)?SAMPLE:d.tasks;
+    if(!d||!d.tasks?.length) await gistSet({tasks:S.tasks});
+    S.syncTime=new Date();S.screen='login';render();startSync();toast('✅ Token 驗證成功！');
+  }catch(e){
+    localStorage.removeItem(TOKEN_KEY);S.token='';
+    if(btn){btn.disabled=false;btn.textContent='儲存並進入系統';}
+    alert('❌ Token 無效或無法存取 Gist。\n\n錯誤：'+e.message);
+  }
+}
+
+function doLogin(){
+  const n=(document.getElementById('nameIn')?.value||S.nameInput||'').trim();if(!n)return;
+  S.userName=n;S.nameInput=n;
+  S.isManager=document.getElementById('mgrCb')?.checked??S.isManager;
+  S.screen='main';render();
+}
+
+function addMember(){
+  const m=S.memberInput.trim();if(!m)return;
+  if(S.newMembers.includes(m)){toast('已新增過此成員');return;}
+  S.newMembers.push(m);S.memberInput='';render();
+}
+
+async function addTask(){
+  if(!S.newTask.title.trim()){toast('請輸入任務名稱');return;}
+  if(!S.newMembers.length){toast('請至少新增一位成員');return;}
+  const subs={};
+  S.newMembers.forEach(m=>{subs[m]={status:'not_started',updatedAt:'',log:[]};});
+  const newTask={id:uid(),title:S.newTask.title.trim(),deadline:S.newTask.deadline,members:[...S.newMembers],submissions:subs,createdAt:new Date().toISOString()};
+  S.tasks.push(newTask);
+  S.showAdd=false;S.newTask={title:'',deadline:''};S.newMembers=[];S.memberInput='';
+  S.expanded.add(newTask.id);
+  await saveData();render();toast('✅ 已新增任務');
+}
+
+async function doSaveEdit(){
+  const eS=document.getElementById('eStatus');
+  const eD=document.getElementById('eDate');
+  const eC=document.getElementById('eContent');
+  if(eS) S.editData.status=eS.value;
+  if(eD) S.editData.date=eD.value;
+  if(eC) S.editData.content=eC.value;
+  const content=S.editData.content.trim();
+  if(!content){toast('請填寫本次更新內容');return;}
+  const [tid,member]=S.editKey.split('|');
+  S.tasks=S.tasks.map(task=>{
+    if(task.id!==tid)return task;
+    const ex=task.submissions[member]||{log:[]};
+    return{...task,submissions:{...task.submissions,[member]:{
+      status:S.editData.status,
+      updatedAt:new Date().toISOString(),
+      log:[...(ex.log||[]),{content,at:new Date().toISOString()}],
+    }}};
+  });
+  S.editKey=null;S.editData={};
+  await saveData();render();toast('✅ 已儲存更新');
+}
+
+init();
+</script>
+</body>
+</html>
